@@ -6,6 +6,7 @@ package Scheduler;
 
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class SJNSScheduler {
     private ArrayList <Process> ProcessQueue;
@@ -38,22 +39,32 @@ public class SJNSScheduler {
         } 
     }
     
-    public void selectSJN(){
-        // thelei parapanw douleia auto to kommati
-        // tha grapsw sxolia aurio, thelw na paw gia ypno twra
-        // PS. na sbhseis auta ta sxolia.
-        double minArrivalTime = ProcessQueue.get(0).getProcessArrivalTime();
-        double minServiceTime = ProcessQueue.get(0).getProcessServiceTime();
-        double tempArrivalTime, tempServiceTime;
-        int sjnIndex;
-        for (int i = 0; i < ProcessQueue.size(); i++){
-            tempArrivalTime = ProcessQueue.get(i).getProcessArrivalTime();
-            tempServiceTime = ProcessQueue.get(i).getProcessServiceTime();
-            if (tempArrivalTime < minArrivalTime && tempServiceTime < minServiceTime){
-                minArrivalTime = tempArrivalTime;
-                minServiceTime = tempServiceTime;
-                sjnIndex = i;
+    // Methodos ekkinhshs algorithmou SJNS
+    public void startSJNS(){
+        double minArrivalTime,minExecutionTime;    
+        double tempArrivalTime, tempExecutionTime;
+        int sjnIndex = 0;
+        
+        // loop ekteleshs tou SJNS
+        while (ProcessQueue.size() != 0){
+            minArrivalTime = ProcessQueue.get(0).getProcessArrivalTime();
+            minExecutionTime = ProcessQueue.get(0).getProcessExecuteTime();
+            
+            // epilogh stoixeiou me mikrotero Arrival kai Execute xrono
+            for (int i = 0; i < ProcessQueue.size(); i++){
+                tempArrivalTime = ProcessQueue.get(i).getProcessArrivalTime();
+                tempExecutionTime = ProcessQueue.get(i).getProcessExecuteTime();
+                if (tempArrivalTime <= minArrivalTime && tempExecutionTime <= minExecutionTime){
+                    minArrivalTime = tempArrivalTime;
+                    minExecutionTime = tempExecutionTime;
+                    sjnIndex = i;
+                }
             }
+            
+            ProcessQueue.get(sjnIndex).setIsExecuting(true);
+            TimeUnit.SECONDS.sleep((long) ProcessQueue.get(sjnIndex).getProcessExecuteTime());
+            ProcessQueue.get(sjnIndex).setIsExecuting(false);
+            ProcessQueue.remove(sjnIndex);
         }
     }
     
