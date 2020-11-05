@@ -20,6 +20,7 @@ public class Process {
     private double processServiceTime;
     @SuppressWarnings("FieldMayBeFinal")
     private double processWaitTime;
+    private boolean isExecuting; // Deixnei an mia diergasia brisketai se ektelesh
     Process(String processID, double processArrivalTime,
             double processExecuteTime, double processServiceTime)
     {
@@ -50,6 +51,15 @@ public class Process {
         return processWaitTime;
     }
 
+    public boolean getIsExecuting() {
+        return isExecuting;
+    }
+
+    // H setIsExecuting yparxei edw gia na kathorizete apo ton kathe algorithmo an to process ekteleitai h oxi.
+    public void setIsExecuting(boolean isExecuting) {
+        this.isExecuting = isExecuting;
+    }
+    
     @Override
     public String toString() {
         return "Process{" + "processID=" + processID 
