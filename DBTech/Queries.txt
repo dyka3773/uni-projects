@@ -1,0 +1,38 @@
+1. SELECT DISTINCT B.name
+   FROM Books B JOIN Reservations R on (B.bid=R.bid)
+	JOIN Customers C on (C.cid=R.cid)
+   WHERE C.name= ?
+
+2. SELECT COUNT(B.name)
+   FROM Books B JOIN Reservations R on (B.bid=R.bid)
+	JOIN Customers C on (C.cid=R.cid)
+   WHERE C.name= ?
+
+3. SELECT COUNT(B.name)
+   FROM Books B JOIN Reservations R on (B.bid=R.bid)
+   WHERE B.name= ?
+
+4a. SELECT *
+    FROM Stuff S
+
+4b. SELECT *
+    FROM Stuff S
+    WHERE S.name= ?
+
+5a. SELECT *
+    FROM Customers C
+
+5b. SELECT *
+    FROM Customers C
+    WHERE C.name= ?
+
+6a. SELECT *
+    FROM Books B
+
+6b. SELECT *
+    FROM Books B
+    WHERE B.name= ?
+
+--7. SELECT B.quantity - (SELECT COUNT(*) FROM RESERVE
+   FROM Books B
+   WHERE B.name= ?
