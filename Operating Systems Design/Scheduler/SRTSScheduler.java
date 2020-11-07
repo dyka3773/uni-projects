@@ -40,34 +40,41 @@ public class SRTSScheduler {
     }
     
     // Methodos ekkinhshs algorithmou SJNS
-    public void startSRTS() throws InterruptedException{
-        double minArrivalTime,minExecutionTime;    
-        double tempArrivalTime, tempExecutionTime;
-        int sjnIndex = 0;
-        
-       double pin[][] = new double[ProcessQueue.size()][2];
-        for (int i = 0; i < ProcessQueue.size(); i++) {
-            pin[i][0] = i;
-            pin[i][1] = 0;
-        }
+    //        double pin[][] = new double[ProcessQueue.size()][2];
+//        for (int i = 0; i < ProcessQueue.size(); i++) {
+//            pin[i][0] = i;
+//            pin[i][1] = 0;
+//        }
         
         // loop ekteleshs tou SRTS
         while (ProcessQueue.size() != 0){
-            for (int i = 0; i < ProcessQueue.size(); i++){ 
-                for (int j = 1; j <= ProcessQueue.get(i).getProcessExecuteTime(); j++){ // To eswteriko for prosomeiwnei ta deuterolepta ekteleshs.
-                    pin[i][1] += j;
-                    if (j == ProcessQueue.get(i + 1).getProcessArrivalTime())
-                        if ((ProcessQueue.get(i).getProcessExecuteTime() - j) > ProcessQueue.get(i + 1).getProcessExecuteTime())
-                            break;
+            
+            minArrivalTime = ProcessQueue.get(0).getProcessArrivalTime();
+            minExecutionTime = ProcessQueue.get(0).getProcessExecuteTime();
+            
+            // epilogh stoixeiou me mikrotero Arrival kai Execute xrono
+            for (int i = 0; i < ProcessQueue.size(); i++){
+                tempArrivalTime = ProcessQueue.get(i).getProcessArrivalTime();
+                tempExecutionTime = ProcessQueue.get(i).getProcessExecuteTime();
+                //System.out.println("in For");
+                if (tempArrivalTime <= minArrivalTime && tempExecutionTime <= minExecutionTime){
+                    minArrivalTime = tempArrivalTime;
+                    minExecutionTime = tempExecutionTime;
+                    srtIndex = i;
                 }
-                if (pin[i][1] == ProcessQueue.get(i).getProcessExecuteTime()){
-                    ProcessQueue.remove(i);
-                    break;
-                }
-                    
             }
-        }
-    }
+            System.out.println("index: " + srtIndex);
+            sub = ProcessQueue.get(srtIndex).getProcessExecuteTime() - seconds;
+            seconds++;
+            ProcessQueue.get(srtIndex).setProcessExecuteTime(sub);
+            
+            if (ProcessQueue.get(srtIndex).getProcessExecuteTime() <= 0){
+                System.out.println("Process: " + ProcessQueue.get(srtIndex).getProcessID() + " has finished executing.");
+                ProcessQueue.remove(srtIndex);
+            }
+            System.out.println("\n" + processesEnqueued() + "\n");
+            if (ProcessQueue.size() != 0)
+                System.out.println("Process selected: " + ProcessQueue.get(srtIndex).getProcessID() + " | ExecuteTime:" + ProcessQueue.get(srtIndex).getProcessExecuteTime());
     
     // Methodos pou epistrefei AverageTurnAroundTime.
     public double getAverageTurnAroundTime() {
