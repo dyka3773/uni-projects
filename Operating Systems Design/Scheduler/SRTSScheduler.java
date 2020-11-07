@@ -45,26 +45,27 @@ public class SRTSScheduler {
         double tempArrivalTime, tempExecutionTime;
         int sjnIndex = 0;
         
-        // loop ekteleshs tou SJNS
+       double pin[][] = new double[ProcessQueue.size()][2];
+        for (int i = 0; i < ProcessQueue.size(); i++) {
+            pin[i][0] = i;
+            pin[i][1] = 0;
+        }
+        
+        // loop ekteleshs tou SRTS
         while (ProcessQueue.size() != 0){
-            minArrivalTime = ProcessQueue.get(0).getProcessArrivalTime();
-            minExecutionTime = ProcessQueue.get(0).getProcessExecuteTime();
-            
-            // epilogh stoixeiou me mikrotero Arrival kai Execute xrono
-            for (int i = 0; i < ProcessQueue.size(); i++){
-                tempArrivalTime = ProcessQueue.get(i).getProcessArrivalTime();
-                tempExecutionTime = ProcessQueue.get(i).getProcessExecuteTime();
-                if (tempArrivalTime <= minArrivalTime && tempExecutionTime <= minExecutionTime){
-                    minArrivalTime = tempArrivalTime;
-                    minExecutionTime = tempExecutionTime;
-                    sjnIndex = i;
+            for (int i = 0; i < ProcessQueue.size(); i++){ 
+                for (int j = 1; j <= ProcessQueue.get(i).getProcessExecuteTime(); j++){ // To eswteriko for prosomeiwnei ta deuterolepta ekteleshs.
+                    pin[i][1] += j;
+                    if (j == ProcessQueue.get(i + 1).getProcessArrivalTime())
+                        if ((ProcessQueue.get(i).getProcessExecuteTime() - j) > ProcessQueue.get(i + 1).getProcessExecuteTime())
+                            break;
                 }
+                if (pin[i][1] == ProcessQueue.get(i).getProcessExecuteTime()){
+                    ProcessQueue.remove(i);
+                    break;
+                }
+                    
             }
-            
-            ProcessQueue.get(sjnIndex).setIsExecuting(true);
-            TimeUnit.SECONDS.sleep((long) ProcessQueue.get(sjnIndex).getProcessExecuteTime());
-            ProcessQueue.get(sjnIndex).setIsExecuting(false);
-            ProcessQueue.remove(sjnIndex);
         }
     }
     
