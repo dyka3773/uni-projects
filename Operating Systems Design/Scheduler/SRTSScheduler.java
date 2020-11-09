@@ -40,13 +40,15 @@ public class SRTSScheduler {
     }
     
     // Methodos ekkinhshs algorithmou SJNS
-    public void startSRTS() throws InterruptedException{
-        double minArrivalTime,minExecutionTime;    
-        double tempArrivalTime, tempExecutionTime;
-        int sjnIndex = 0;
+    //        double pin[][] = new double[ProcessQueue.size()][2];
+//        for (int i = 0; i < ProcessQueue.size(); i++) {
+//            pin[i][0] = i;
+//            pin[i][1] = 0;
+//        }
         
-        // loop ekteleshs tou SJNS
+        // loop ekteleshs tou SRTS
         while (ProcessQueue.size() != 0){
+            
             minArrivalTime = ProcessQueue.get(0).getProcessArrivalTime();
             minExecutionTime = ProcessQueue.get(0).getProcessExecuteTime();
             
@@ -54,19 +56,25 @@ public class SRTSScheduler {
             for (int i = 0; i < ProcessQueue.size(); i++){
                 tempArrivalTime = ProcessQueue.get(i).getProcessArrivalTime();
                 tempExecutionTime = ProcessQueue.get(i).getProcessExecuteTime();
+                //System.out.println("in For");
                 if (tempArrivalTime <= minArrivalTime && tempExecutionTime <= minExecutionTime){
                     minArrivalTime = tempArrivalTime;
                     minExecutionTime = tempExecutionTime;
-                    sjnIndex = i;
+                    srtIndex = i;
                 }
             }
+            System.out.println("index: " + srtIndex);
+            sub = ProcessQueue.get(srtIndex).getProcessExecuteTime() - seconds;
+            seconds++;
+            ProcessQueue.get(srtIndex).setProcessExecuteTime(sub);
             
-            ProcessQueue.get(sjnIndex).setIsExecuting(true);
-            TimeUnit.SECONDS.sleep((long) ProcessQueue.get(sjnIndex).getProcessExecuteTime());
-            ProcessQueue.get(sjnIndex).setIsExecuting(false);
-            ProcessQueue.remove(sjnIndex);
-        }
-    }
+            if (ProcessQueue.get(srtIndex).getProcessExecuteTime() <= 0){
+                System.out.println("Process: " + ProcessQueue.get(srtIndex).getProcessID() + " has finished executing.");
+                ProcessQueue.remove(srtIndex);
+            }
+            System.out.println("\n" + processesEnqueued() + "\n");
+            if (ProcessQueue.size() != 0)
+                System.out.println("Process selected: " + ProcessQueue.get(srtIndex).getProcessID() + " | ExecuteTime:" + ProcessQueue.get(srtIndex).getProcessExecuteTime());
     
     // Methodos pou epistrefei AverageTurnAroundTime.
     public double getAverageTurnAroundTime() {
