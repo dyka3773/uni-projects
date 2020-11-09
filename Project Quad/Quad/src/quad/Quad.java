@@ -16,6 +16,15 @@ public class Quad {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        /* 
+        * ***When filling the Board note that :***
+        * 0 = Empty Slot
+        * 1 = Player_1
+        * 2 = Player_2
+        */
+        
+        
     }
     
 }
