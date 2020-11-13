@@ -13,8 +13,12 @@ import java.awt.Dimension;
  */
 public class gameScreen extends javax.swing.JPanel {
 
-    
-    Dimension dim = new Dimension(300,300);
+    /* 
+        * ***When filling the Board note that :***
+        * 0 = Empty Slot
+        * 1 = Player_1
+        * 2 = Player_2
+        */
     
     public gameScreen() {
         initComponents();
@@ -29,34 +33,11 @@ public class gameScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        board = new javax.swing.JPanel();
-
         setPreferredSize(new java.awt.Dimension(980, 720));
-
-        board.setBackground(new java.awt.Color(255, 153, 0));
-        board.setPreferredSize(dim);
-        board.setLayout(new java.awt.GridBagLayout());
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(330, 330, 330)
-                .addComponent(board, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(550, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(209, 209, 209)
-                .addComponent(board, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(411, Short.MAX_VALUE))
-        );
+        setLayout(new java.awt.GridLayout(7, 1));
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel board;
     // End of variables declaration//GEN-END:variables
 }
