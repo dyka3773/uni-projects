@@ -5,15 +5,17 @@
  */
 package quad.Panels;
 
+import java.awt.Dimension;
+
 /**
  *
  * @author user
  */
 public class gameScreen extends javax.swing.JPanel {
 
-    /**
-     * Creates new form gameScreen
-     */
+    
+    Dimension dim = new Dimension(300,300);
+    
     public gameScreen() {
         initComponents();
     }
@@ -27,19 +29,34 @@ public class gameScreen extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        board = new javax.swing.JPanel();
+
+        setPreferredSize(new java.awt.Dimension(980, 720));
+
+        board.setBackground(new java.awt.Color(255, 153, 0));
+        board.setPreferredSize(dim);
+        board.setLayout(new java.awt.GridBagLayout());
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(330, 330, 330)
+                .addComponent(board, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(550, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(209, 209, 209)
+                .addComponent(board, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(411, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel board;
     // End of variables declaration//GEN-END:variables
 }
