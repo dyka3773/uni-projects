@@ -6,12 +6,14 @@
 package quad;
 
 import quad.Panels.*;
+import quad.Game.CLIVersion;
 
 public class Quad extends javax.swing.JFrame {
 
     
     public Quad() {
         initComponents();
+        
     }
 
     /**
@@ -45,7 +47,8 @@ public class Quad extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
+        CLIVersion c= new CLIVersion(11,11);
+        System.out.print(c);
         /* 
         * ***When filling the Board note that :***
         * 0 = Empty Slot

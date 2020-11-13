@@ -11,9 +11,9 @@ package quad;
  */
 public class staticMethods {
     
-    public static int checkWin(int[][] board) {
-        final int HEIGHT = board.length;
-        final int WIDTH = board[0].length;
+    public static int checkWin(int[][] board) {         //Checks  the whole board for 4
+        final int HEIGHT = board.length;                // I could check these instead | - / \ for less iterations but leave that for later
+        final int WIDTH = board[0].length;              //(I mean the whole lines for 4 adjacent colors)
         final int EMPTY_SLOT = 0; 
         
         /* 

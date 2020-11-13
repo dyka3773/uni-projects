@@ -10,7 +10,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 /**
- *
+ * ********** AGNOHSTE O,TI DEITE EDW MESA***********************
  * @author user
  */
 public class DropButton extends JButton{
