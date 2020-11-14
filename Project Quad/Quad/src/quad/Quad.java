@@ -5,6 +5,7 @@
  */
 package quad;
 
+import java.util.Scanner;
 import quad.Panels.*;
 import quad.Game.CLIVersion;
 
@@ -47,13 +48,38 @@ public class Quad extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        CLIVersion c= new CLIVersion(11,11);
-        System.out.print(c);
+        
+        try(Scanner input= new Scanner (System.in)){
+            int moves =42; //7*6 I just hardcoded this
+            CLIVersion board = new CLIVersion(7,6);
+            
+            System.out.println("Use 0-6 to choose a column");   //Hardcoded this too
+            System.out.println(board);
+            
+            for(int player = 0; moves-- >0; player= 1-player){    //iterate until max moves & easy player change
+                char puk = board.getPLAYER(player);
+                
+                board.chooseAndDrop(puk, input);
+                System.out.println(board);
+                
+                if(board.isWinningPlay()){
+                    System.out.println("\nPlayer " + puk+" wins!!!");
+                    return;                                       // Game closes in this version
+                }
+            }
+            
+            System.out.println("Game is over. It's a tie. Better luck next time!");
+        }
+        
         /* 
         * ***When filling the Board note that :***
         * 0 = Empty Slot
         * 1 = Player_1
         * 2 = Player_2
+        *
+        * HEIGHT=6
+        * WIDTH=7 
+        * In the calssic game
         */
         
         /* Set the Nimbus look and feel */

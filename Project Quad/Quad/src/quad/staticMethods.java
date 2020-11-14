@@ -11,10 +11,10 @@ package quad;
  */
 public class staticMethods {
     
-    public static int checkWin(int[][] board) {         //Checks  the whole board for 4
+    public static int checkWin(char[][] board) {         //Checks  the whole board for 4
         final int HEIGHT = board.length;                // I could check these instead | - / \ for less iterations but leave that for later
         final int WIDTH = board[0].length;              //(I mean the whole lines for 4 adjacent colors)
-        final int EMPTY_SLOT = 0; 
+        final char EMPTY_SLOT = '_'; 
         
         /* 
         * ***When filling the Board note that :***
@@ -25,7 +25,7 @@ public class staticMethods {
         
         for (int r = 0; r < HEIGHT; r++) { // iterate rows, bottom to top
             for (int c = 0; c < WIDTH; c++) { // iterate columns, left to right
-                int player = board[r][c];
+                char player = board[r][c];
                 if (player == EMPTY_SLOT)
                     continue; // don't check empty slots
 
@@ -53,6 +53,10 @@ public class staticMethods {
             }
         }
         return EMPTY_SLOT; // no winner found
+    }
+    
+    public static boolean contains(String str, String substring){       //is substring in str?
+        return str.indexOf(substring)>=0;
     }
     
 }
