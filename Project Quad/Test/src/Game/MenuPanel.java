@@ -52,7 +52,7 @@ public class MenuPanel {
         menuOpenTutorialButton.setIcon(new ImageIcon(getClass().
                 getResource("/Game/imgs/menu_tutorial_s1.png")));
         menuPanel.add(menuOpenTutorialButton, new org.netbeans.lib.
-                awtextra.AbsoluteConstraints(0, 0, -1, -1));
+                awtextra.AbsoluteConstraints(750, 0, -1, -1));
         
         menuOpenTutorialButton.addMouseListener(new MouseAdapter() {
             @Override
