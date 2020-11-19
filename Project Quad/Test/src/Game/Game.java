@@ -11,8 +11,8 @@ import javax.swing.OverlayLayout;
 public class Game {
     public Game(){
         JFrame window = new JFrame("Score 4!");
-        MenuScreen menuPanel = new MenuScreen();
-        TutorialScreen tutorialPanel = new TutorialScreen();
+        MenuPanel menuPanel = new MenuPanel();
+        TutorialPanel tutorialPanel = new TutorialPanel();
         window.setResizable(false);
         window.setSize(960, 720);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();

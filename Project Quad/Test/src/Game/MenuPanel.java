@@ -3,15 +3,6 @@ package Game;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -33,8 +24,8 @@ public class MenuPanel {
     private JLabel left_arrow2;
     private JLabel right_arrow2;
     private JLabel players;
-    private int clicks1 = 0;
-    private int clicks2 = 0;
+    private static int clicks1 = 0;
+    private static int clicks2 = 0;
 
 
 
@@ -112,17 +103,20 @@ public class MenuPanel {
             @Override
             public void mouseEntered(MouseEvent e){
                 menuOpenTutorialButton.setIcon(new ImageIcon(getClass().
-                        getResource("/Game/imgs/menu_tutorial_s2.png")));
+                        getResource("/Game/imgs/buttons/menu_tutorial_s2.png")));
             }
             @Override
             public void mouseExited(MouseEvent e){
                 menuOpenTutorialButton.setIcon(new ImageIcon(getClass().
-                        getResource("/Game/imgs/menu_tutorial_s1.png")));
+                        getResource("/Game/imgs/buttons/menu_tutorial_s1.png")));
+            }
+            @Override
+            public void mousePressed(MouseEvent e){
+                menuOpenTutorialButton.setIcon(new ImageIcon(getClass().
+                        getResource("/Game/imgs/buttons/menu_tutorial_s3.png")));
             }
             @Override
             public void mouseClicked(MouseEvent e){
-                menuOpenTutorialButton.setIcon(new ImageIcon(getClass().
-                        getResource("/Game/imgs/menu_tutorial_s3.png")));
                 menuPanel.getParent().getComponent(0).setVisible(false);
                 menuPanel.getParent().getComponent(1).setVisible(true);
             }
@@ -161,7 +155,7 @@ public class MenuPanel {
             }
             @Override //Goes over the characters for Player One
             public void mouseClicked(MouseEvent e){
-                clicks1++;
+                System.out.println(clicks1);     //Debug Comment
                 if (clicks1 == 1)
                     {
                     player1_Color.setIcon(new ImageIcon(getClass().
@@ -182,17 +176,18 @@ public class MenuPanel {
                     player1_Color.setIcon(new ImageIcon(getClass().
                     getResource("/Game/imgs/pink.jpg")));
                     }
-                else if (clicks1 == 5)
+                else if (clicks1 >= 5)
                     {
                     player1_Color.setIcon(new ImageIcon(getClass().
                     getResource("/Game/imgs/yellow.jpg")));
-                    clicks1 = -1;
+                    clicks1 = 0;
                     }   
                 else if (clicks1 == 0)
                     {
                     player1_Color.setIcon(new ImageIcon(getClass().
                     getResource("/Game/imgs/red.jpg")));
                     } 
+                clicks1++;
             }
         });
         
@@ -215,7 +210,7 @@ public class MenuPanel {
             }
             @Override //Goes over the characters for Player One
             public void mouseClicked(MouseEvent e){
-                clicks1--;
+                System.out.println(clicks1);       //Debug comment
                 if (clicks1 == 0)
                     {
                     player1_Color.setIcon(new ImageIcon(getClass().
@@ -247,6 +242,7 @@ public class MenuPanel {
                     getResource("/Game/imgs/red.jpg")));
                     clicks1 = 5;
                     } 
+                clicks1--;
             }
         });        
         
@@ -276,7 +272,6 @@ public class MenuPanel {
             }
             @Override //Goes over the characters for Player Two
             public void mouseClicked(MouseEvent e){
-                clicks2++;
                 if (clicks2 == 1)
                     {
                     player2_Color.setIcon(new ImageIcon(getClass().
@@ -297,17 +292,18 @@ public class MenuPanel {
                     player2_Color.setIcon(new ImageIcon(getClass().
                     getResource("/Game/imgs/yellow.jpg")));
                     }
-                else if (clicks2 == 5)
+                else if (clicks2 >= 5)
                     {
                     player2_Color.setIcon(new ImageIcon(getClass().
                     getResource("/Game/imgs/red.jpg")));
-                    clicks2 = -1;
+                    clicks2 = 0;
                     }   
                 else if (clicks2 == 0)
                     {
                     player2_Color.setIcon(new ImageIcon(getClass().
                     getResource("/Game/imgs/blue.jpg")));
                     } 
+                clicks2++;
             }
         });
         
@@ -330,8 +326,7 @@ public class MenuPanel {
                         getResource("/Game/imgs/right_blank.png")));
             }
             @Override //Goes over the characters for Player Two
-            public void mouseClicked(MouseEvent e){   
-                clicks2--;
+            public void mouseClicked(MouseEvent e){ 
                 if (clicks2 == 0)
                     {
                     player2_Color.setIcon(new ImageIcon(getClass().
@@ -363,6 +358,7 @@ public class MenuPanel {
                     getResource("/Game/imgs/red.jpg")));
                     clicks2=4;
                     } 
+                clicks2--;
             }
             
         });

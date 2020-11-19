@@ -38,10 +38,18 @@ public class TutorialPanel {
         tutorialButton.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
-                tutorialButton.setIcon(new ImageIcon(getClass().
-                        getResource("/Game/imgs/tutorial_igotit.png")));
                 tutorialPanel.getParent().getComponent(0).setVisible(true); //Menu panel
                 tutorialPanel.getParent().getComponent(1).setVisible(false); //Tutorial panel
+            }
+            @Override
+            public void mousePressed(MouseEvent e){
+                tutorialButton.setIcon(new ImageIcon(getClass().
+                        getResource("/Game/imgs/buttons/tutorial_ok_s2.png")));
+            }
+            @Override
+            public void mouseReleased(MouseEvent e){
+                tutorialButton.setIcon(new ImageIcon(getClass().
+                        getResource("/Game/imgs/buttons/tutorial_ok_s1.png")));
             }
         });
     }
