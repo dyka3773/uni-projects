@@ -13,6 +13,7 @@ public class Game {
         JFrame window = new JFrame("Score 4!");
         MenuPanel menuPanel = new MenuPanel();
         TutorialPanel tutorialPanel = new TutorialPanel();
+        GamePanel gamePanel = new GamePanel();
         window.setResizable(false);
         window.setSize(960, 720);
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -23,6 +24,7 @@ public class Game {
         window.add(menuPanel.getMenuComponent());
         window.add(tutorialPanel.getTutorialComponent()); //Invisible by default. 
                                         //Visible when mouse clicked on book icon
+        window.add(gamePanel.getGamePanelComponent());
         
         window.pack();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
