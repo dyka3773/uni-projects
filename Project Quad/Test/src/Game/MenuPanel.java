@@ -3,6 +3,8 @@ package Game;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.FileWriter;
+import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -17,6 +19,8 @@ public class MenuPanel {
     private JLabel gameStartButton;
     private JLabel player1_Color;
     private JLabel player2_Color;
+    private static String player1ColorPath = "/Game/assets/players/player_red.jpg";
+    private static String player2ColorPath = "/Game/assets/players/player_blue.jpg";
     private JLabel menuOpenTutorialButton;
     private JLabel left_arrow;
     private JLabel right_arrow;
@@ -25,9 +29,6 @@ public class MenuPanel {
     private JLabel players;
     private static int clicks1 = 0;
     private static int clicks2 = 1;
-    
-    //private String[]
-
 
     public MenuPanel(){
         menuPanel = new JPanel();
@@ -43,6 +44,15 @@ public class MenuPanel {
         left_arrow2 = new JLabel();
         right_arrow2 = new JLabel();
         
+        /*
+                        #### Menu panel ####
+        */
+        /*
+        This call inits the config file with the default paths.
+        */
+        updateConfig(player1ColorPath, player2ColorPath);
+        
+        //Initialization
         menuPanel.setBackground(new Color(162, 192, 242));
         menuPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         
@@ -51,7 +61,6 @@ public class MenuPanel {
                 getResource("/Game/assets/general/menu_gameLogo.png"))); 
         menuPanel.add(gameLogo, new org.netbeans.lib.
                 awtextra.AbsoluteConstraints(120, 50, -1, -1));
-        
         
         //"Start Game" button
         gameStartButton.setIcon(new ImageIcon(getClass(). 
@@ -62,8 +71,8 @@ public class MenuPanel {
         gameStartButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e){ 
-                menuPanel.getParent().getComponent(0).setVisible(false); //Menu panel
-                menuPanel.getParent().getComponent(2).setVisible(true); //Tutorial panel
+                menuPanel.setVisible(false); //Menu panel
+                menuPanel.getParent().add(new GamePanel().getGamePanelComponent());
             }
             @Override
             public void mouseEntered(MouseEvent e){
@@ -104,7 +113,6 @@ public class MenuPanel {
             public void mouseClicked(MouseEvent e){
                 menuPanel.getParent().getComponent(0).setVisible(false);
                 menuPanel.getParent().getComponent(1).setVisible(true);
-                menuPanel.getParent().getComponent(2).setVisible(false);
             }
         });
         
@@ -221,14 +229,28 @@ public class MenuPanel {
                 changePlayerColorIcon(player2_Color, 2, clicks2, "right");
             }
             
-        });    
+        });
     }
+    /**
+     * Changes the player icons. Checks and prevents the players to choose the same
+     * player color. Updates the configuration file for the changes that occurred.
+     * @param playerIcon
+     * @param player
+     * @param playerClick
+     * @param direction 
+     */
     private void changePlayerColorIcon(JLabel playerIcon, int player, int playerClick, String direction){
         //Check which player is changing
-        if(player == 1)
+        String path = "";
+        if(player == 1){
             playerClick = clicks1;
-        else if(player == 2)
+            path = player1ColorPath;
+        }
+        else if(player == 2){
+            path = player2ColorPath;
             playerClick = clicks2;
+        }
+        updateConfig(player1ColorPath, player2ColorPath);
         //Check direction
         if(direction.equals("left")){
             playerClick--;
@@ -258,70 +280,92 @@ public class MenuPanel {
         if(playerClick == 0){
             playerIcon.setIcon(new ImageIcon(getClass().
                     getResource("/Game/assets/players/player_red.jpg")));
+            path = "/Game/assets/players/player_red.jpg";
         }
         else if(playerClick == 1){
             playerIcon.setIcon(new ImageIcon(getClass().
                     getResource("/Game/assets/players/player_blue.jpg")));
+            path = "/Game/assets/players/player_blue.jpg";
         }
         else if(playerClick == 2){
             playerIcon.setIcon(new ImageIcon(getClass().
                     getResource("/Game/assets/players/player_green.jpg")));
+            path = "/Game/assets/players/player_green.jpg";
         }
         else if(playerClick == 3){
             playerIcon.setIcon(new ImageIcon(getClass().
                     getResource("/Game/assets/players/player_orange.jpg")));
+            path = "/Game/assets/players/player_orange.jpg";
         }
         else if(playerClick == 4){
             playerIcon.setIcon(new ImageIcon(getClass().
                     getResource("/Game/assets/players/player_pink.jpg")));
+            path = "/Game/assets/players/player_pink.jpg";
         }
         else if(playerClick == 5){
             playerIcon.setIcon(new ImageIcon(getClass().
                     getResource("/Game/assets/players/player_yellow.jpg")));
+            path = "/Game/assets/players/player_yellow.jpg";
         }
         else if(playerClick > 5){
             playerClick = 0;
+            path = "/Game/assets/players/player_red.jpg";
         }
         else if(playerClick < 0){
             playerClick = 5;
+            path = "/Game/assets/players/player_yellow.jpg";
         }
         //Update indexes
-        if(player == 1)
+        if(player == 1){
             clicks1 = playerClick;
-        else if(player == 2)
+            player1ColorPath = path;
+        }
+        else if(player == 2){
             clicks2 = playerClick;
+            player2ColorPath = path;
+        }
+        updateConfig(player1ColorPath, player2ColorPath);
         //Update player icon
         if(playerClick == 0){
             playerIcon.setIcon(new ImageIcon(getClass().
                     getResource("/Game/assets/players/player_red.jpg")));
+            
         }
         else if(playerClick == 1){
             playerIcon.setIcon(new ImageIcon(getClass().
                     getResource("/Game/assets/players/player_blue.jpg")));
+            
         }
         else if(playerClick == 2){
             playerIcon.setIcon(new ImageIcon(getClass().
                     getResource("/Game/assets/players/player_green.jpg")));
+            
         }
         else if(playerClick == 3){
             playerIcon.setIcon(new ImageIcon(getClass().
                     getResource("/Game/assets/players/player_orange.jpg")));
+            
         }
         else if(playerClick == 4){
             playerIcon.setIcon(new ImageIcon(getClass().
                     getResource("/Game/assets/players/player_pink.jpg")));
+            
         }
         else if(playerClick == 5){
             playerIcon.setIcon(new ImageIcon(getClass().
                     getResource("/Game/assets/players/player_yellow.jpg")));
+            
         }
         else if(playerClick > 5){
             playerClick = 0;
+            
         }
         else if(playerClick < 0){
             playerClick = 5;
+            
         }
-        System.out.println(clicks1+" "+clicks2+"\n");
+        System.out.println(clicks1+" "+clicks2+"\n"+player1ColorPath+" "+player2ColorPath+"\n");
+        updateConfig(player1ColorPath, player2ColorPath);
         /*
         Because of the limitations of the game engine's, players cannot choose
         player color at the same time.
@@ -342,6 +386,20 @@ public class MenuPanel {
         Bugs yet to see! TODO: Find a better way to do all of this.
                                                                     - Sakis
         */
+    }
+    /**
+     * Updates the configuration file with the new path names.
+     * @param p1
+     * @param p2 
+     */
+    void updateConfig(String p1, String p2){
+        try{
+            FileWriter writer = new FileWriter("src/Game/config.txt");
+            writer.write(p1+"\n"+p2);
+            writer.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
     JPanel getMenuComponent(){
         return this.menuPanel;

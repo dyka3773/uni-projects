@@ -38,8 +38,8 @@ public class TutorialPanel {
         tutorialButton.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
-                tutorialPanel.getParent().getComponent(0).setVisible(true); //Menu panel
-                tutorialPanel.getParent().getComponent(1).setVisible(false); //Tutorial panel
+                tutorialPanel.getParent().getComponent(0).setVisible(true);
+                tutorialPanel.setVisible(false);
             }
             @Override
             public void mousePressed(MouseEvent e){
