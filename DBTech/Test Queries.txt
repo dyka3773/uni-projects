@@ -1,0 +1,38 @@
+drop table reservations;
+
+
+CREATE TABLE if not exists reservations  (
+  CID int NOT NULL,
+  BID int NOT NULL,
+  SID int NOT NULL,
+  Exp_date timestamp NOT NULL,
+  PRIMARY KEY (`CID`,`BID`,`Exp_date`),
+	Foreign key (CID)
+		references customers (CID) ON DELETE CASCADE, 
+	Foreign key (BID)
+		references books (BID) ON DELETE CASCADE,
+	Foreign key (SID)
+		references staff (SID) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `library`.`reservations`
+(`CID`,
+`BID`,
+`SID`,
+`Exp_date`)
+VALUES
+(31879, 568489, 3568, '2021-01-08 10:10:10'),
+(31865, 489684, 3459, '2021-04-03 10:10:10'),
+(31786, 425868, 3846, '2021-02-09 10:10:10'),
+(31900, 399458, 3541, '2021-01-06 10:10:10'),
+(31798, 785145, 3645, '2021-01-06 10:10:10');
+
+UPDATE `library`.`reservations`
+SET
+`CID` = 31865,
+`BID` = 489684,
+`SID` = 3645,
+`Exp_date` = '2021-04-03 10:10:10'
+WHERE `CID` = 31865 AND `BID` = 489684 AND `Exp_date` = '2021-04-03 10:10:10';
+
+

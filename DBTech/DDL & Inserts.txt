@@ -43,9 +43,9 @@ CREATE TABLE if not exists `staff` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 CREATE TABLE if not exists reservations  (
-  CID int(11) NOT NULL,
-  BID int(11) NOT NULL,
-  SID int(11) NOT NULL,
+  CID int NOT NULL,
+  BID int NOT NULL,
+  SID int NOT NULL,
   Exp_date timestamp NOT NULL,
   PRIMARY KEY (`CID`,`BID`,`Exp_date`),
 	Foreign key (CID)
