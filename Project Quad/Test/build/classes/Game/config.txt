@@ -1,2 +1,2 @@
-/Game/assets/players/player_pink.jpg
+/Game/assets/players/player_red.jpg
 /Game/assets/players/player_blue.jpg

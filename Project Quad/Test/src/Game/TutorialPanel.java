@@ -25,12 +25,12 @@ public class TutorialPanel {
         tutorialPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         
         tutorialButton.setIcon(new ImageIcon(getClass().
-                getResource("/Game/imgs/tutorial_igotit.png")));
+                getResource("/Game/assets/buttons/tutorial_okBtn_1.png")));
         tutorialPanel.add(tutorialButton, new org.netbeans.lib.
                 awtextra.AbsoluteConstraints(10, 650, -1, -1));
         
         tutorialBackground.setIcon(new ImageIcon(getClass().
-                getResource("/Game/imgs/tutorial_book.png")));
+                getResource("/Game/assets/general/tutorial_book.png")));
         tutorialPanel.add(tutorialBackground, new org.netbeans.
                 lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
         tutorialPanel.setVisible(false);
@@ -44,12 +44,12 @@ public class TutorialPanel {
             @Override
             public void mousePressed(MouseEvent e){
                 tutorialButton.setIcon(new ImageIcon(getClass().
-                        getResource("/Game/imgs/buttons/tutorial_ok_s2.png")));
+                        getResource("/Game/imgs/buttons/tutorial_ok_s2.png")));     //Button image missing
             }
             @Override
             public void mouseReleased(MouseEvent e){
                 tutorialButton.setIcon(new ImageIcon(getClass().
-                        getResource("/Game/imgs/buttons/tutorial_ok_s1.png")));
+                        getResource("/Game/imgs/buttons/tutorial_ok_s1.png")));     //Button image missing
             }
         });
     }
