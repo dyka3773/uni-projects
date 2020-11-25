@@ -1,3 +1,11 @@
+
+--7. SELECT B.quantity - (SELECT COUNT(*) FROM RESERVE
+   FROM Books B
+   WHERE B.name= ?
+
+
+---------------------------------------------------------------------DONE THESE BELOW------------------------------------------------------------
+
 1. SELECT DISTINCT B.name
    FROM Books B JOIN Reservations R on (B.bid=R.bid)
 	JOIN Customers C on (C.cid=R.cid)
@@ -13,10 +21,10 @@
    WHERE B.name= ?
 
 4a. SELECT *
-    FROM Stuff S
+    FROM Staff S
 
 4b. SELECT *
-    FROM Stuff S
+    FROM Staff S
     WHERE S.name= ?
 
 5a. SELECT *
@@ -32,7 +40,3 @@
 6b. SELECT *
     FROM Books B
     WHERE B.name= ?
-
---7. SELECT B.quantity - (SELECT COUNT(*) FROM RESERVE
-   FROM Books B
-   WHERE B.name= ?
