@@ -15,6 +15,7 @@ import javax.swing.JPanel;
 public class GamePanel {
     private JPanel gamePanel;
     //Gameplay panel
+    private JLabel gameTable;
     private JPanel gameplayPanel;
     private JLabel player1;
     private static String player1ColorPath;
@@ -40,6 +41,7 @@ public class GamePanel {
         gamePanel = new JPanel();
         //Gameplay panel
         gameplayPanel = new JPanel();
+        gameTable = new JLabel();
         player1 = new JLabel();
         player2 = new JLabel();
         optionsButton = new JLabel();
@@ -48,6 +50,7 @@ public class GamePanel {
         retryButton = new JLabel();
         quitButton = new JLabel();
         //Option panel
+        boolean optIsOpen = false;
         optionPanel = new JPanel();
         optionBackground = new JLabel();
         tutorialButton = new JLabel();
@@ -76,6 +79,9 @@ public class GamePanel {
         */
         String data[] = fetchColorNameFromConfig();
         
+        
+        gameTable.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/general/game_table.png")));
         player1.setIcon(new ImageIcon(getClass().
                 getResource("/Game/assets/players/transparent/player_"+data[0]+"_t.png")));
         player2.setIcon(new ImageIcon(getClass().
@@ -100,7 +106,8 @@ public class GamePanel {
                 getResource("/Game/assets/buttons/game_openOptionsBtn_1.png")));
             }
         });
-        
+        gameplayPanel.add(gameTable, new org.netbeans.
+                lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
         gameplayPanel.add(player1, new org.netbeans.
                 lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
         gameplayPanel.add(player2, new org.netbeans.
@@ -111,6 +118,8 @@ public class GamePanel {
         /*
                         #### Win panel ####
         */
+        winPanel.setVisible(false);
+        winPanel.setBackground(new Color(162, 192, 242));
         retryButton.setIcon(new ImageIcon(getClass().
                 getResource("/Game/assets/buttons/win_retryBtn_1.png")));
         quitButton.setIcon(new ImageIcon(getClass().
@@ -118,23 +127,32 @@ public class GamePanel {
         retryButton.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
-                
+                gamePanel.setVisible(false);
+                optionPanel.setVisible(false);
+                gamePanel.getParent().getComponent(0).setVisible(true);
+                /*
+                De-refrence the game panel so that the garbage collector can
+                collect the game panel. This practically removes it from the JVM Heap,
+                thus restarting and the game panel. (This affectively initializes
+                the game panel with whatever new updates made from the players in
+                the menu panel.
+                */
+                gamePanel = null;
             }
             @Override
             public void mousePressed(MouseEvent e){
                 retryButton.setIcon(new ImageIcon(getClass().
-                getResource("/Game/assets/buttons/game_openOptionsBtn_2.png")));
+                getResource("/Game/assets/buttons/win_retryBtn_2.png")));
             }
             @Override
             public void mouseReleased(MouseEvent e){
                 retryButton.setIcon(new ImageIcon(getClass().
-                getResource("/Game/assets/buttons/game_openOptionsBtn_1.png")));
+                getResource("/Game/assets/buttons/win_retryBtn_1.png")));
             }
         });
         quitButton.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
-                
             }
             @Override
             public void mousePressed(MouseEvent e){
@@ -158,7 +176,8 @@ public class GamePanel {
         /*
                         #### Options panel ####
         */
-        optionPanel.setOpaque(false);
+        optionPanel.setVisible(false);
+        optionPanel.setBackground(new Color(162, 192, 242));
         optionBackground.setIcon(new ImageIcon(getClass().
                 getResource("/Game/assets/general/prompt_bg.png")));
         tutorialButton.setIcon(new ImageIcon(getClass().
@@ -168,7 +187,7 @@ public class GamePanel {
         optQuitButton.setIcon(new ImageIcon(getClass().
                 getResource("/Game/assets/buttons/opt_quitBtn_1.png")));
         optCloseButton.setIcon(new ImageIcon(getClass().
-                getResource("/Game/assets/buttons/opt_closeOptionsBtn_1.png")));
+                getResource("/Game/assets/buttons/opt_closeOpt_1.png")));
         tutorialButton.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
@@ -240,12 +259,12 @@ public class GamePanel {
             @Override
             public void mousePressed(MouseEvent e){
                 optCloseButton.setIcon(new ImageIcon(getClass().
-                getResource("/Game/assets/buttons/opt_closeOptionsBtn_2.png")));
+                getResource("/Game/assets/buttons/opt_closeOpt_2.png")));
             }
             @Override
             public void mouseReleased(MouseEvent e){
                 optCloseButton.setIcon(new ImageIcon(getClass().
-                getResource("/Game/assets/buttons/opt_closeOptionsBtn_1.png")));
+                getResource("/Game/assets/buttons/opt_closeOpt_1.png")));
             }
         });
         optionPanel.add(tutorialButton, new org.netbeans.

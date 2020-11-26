@@ -44,12 +44,12 @@ public class TutorialPanel {
             @Override
             public void mousePressed(MouseEvent e){
                 tutorialButton.setIcon(new ImageIcon(getClass().
-                        getResource("/Game/imgs/buttons/tutorial_ok_s2.png")));     //Button image missing
+                        getResource("/Game/assets/buttons/tutorial_okBtn_2.png")));     //Button image missing
             }
             @Override
             public void mouseReleased(MouseEvent e){
                 tutorialButton.setIcon(new ImageIcon(getClass().
-                        getResource("/Game/imgs/buttons/tutorial_ok_s1.png")));     //Button image missing
+                        getResource("/Game/assets/buttons/tutorial_okBtn_1.png")));     //Button image missing
             }
         });
     }
