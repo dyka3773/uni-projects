@@ -1,6 +1,7 @@
 drop procedure if exists get_Staff;
 drop procedure if exists get_Customers;
 drop procedure if exists get_Books; 
+drop procedure if exists get_Reservations;
 drop procedure if exists get_StaffWithNameLike;
 drop procedure if exists get_CustomersWithNameLike;
 drop procedure if exists get_BooksWithNameLike;
@@ -54,6 +55,12 @@ create procedure get_Books()
 begin
 	SELECT *
     FROM Books B;
+end$$
+
+create procedure get_Reservations()
+begin
+	SELECT *
+    FROM Reservations R;
 end$$
 
 CREATE procedure get_StaffWithNameLike(
