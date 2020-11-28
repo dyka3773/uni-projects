@@ -5,10 +5,7 @@ import javax.swing.JOptionPane;
 public class ListaIpallilon extends javax.swing.JFrame {
 
 
-    private static final String username= "root";
-    private static final String password= "dyka3773";
-    private static final String conn_string="jdbc:mysql://localhost:3306/mysql";
-    Connection conn=null;
+    MySQLConnect mysqlConnect = new MySQLConnect();
     
     
     public ListaIpallilon() {
@@ -231,7 +228,7 @@ public class ListaIpallilon extends javax.swing.JFrame {
         String dob = contactField.getText();
 
         try {
-            Statement st = conn.createStatement();
+            Statement st = mysqlConnect.connect().createStatement();
             String sql = "addStaff("+name+cid+contact+dob+")";
             st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Staff added succesfully!");
@@ -245,14 +242,18 @@ public class ListaIpallilon extends javax.swing.JFrame {
         sidField.setText("");
         jobField.setText("");
         contactField.setText("");
-
+        
+        
+        
+        
+        mysqlConnect.disconnect();
     }//GEN-LAST:event_InsertButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
         String sid = sidField.getText();
 
         try {
-            Statement st = conn.createStatement();
+            Statement st = mysqlConnect.connect().createStatement();
             String sql = "deleteStaff("+sid+")";
             st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Staff deleted succesfully!");
@@ -261,20 +262,26 @@ public class ListaIpallilon extends javax.swing.JFrame {
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
+        
+        
+        mysqlConnect.disconnect();
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
 
         try {
-            Statement st = conn.createStatement();
-            String sql = "get_Staff()";
+            Statement st = mysqlConnect.connect().createStatement();
+            String sql = "call get_Staff()";
             st.executeQuery(sql);
         }
 
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
-
+        
+        
+        
+        mysqlConnect.disconnect();
     }//GEN-LAST:event_refreshButtonActionPerformed
 
 

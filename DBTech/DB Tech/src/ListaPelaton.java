@@ -7,10 +7,7 @@ import javax.swing.JFrame;
 
 public class ListaPelaton extends javax.swing.JFrame {
 
-    private static final String username= "root";
-    private static final String password= "dyka3773";
-    private static final String conn_string="jdbc:mysql://localhost:3306/library";
-    Connection conn=null;
+    MySQLConnect mysqlConnect = new MySQLConnect();
     
     public ListaPelaton() {
         initComponents();
@@ -249,7 +246,7 @@ public class ListaPelaton extends javax.swing.JFrame {
        String sub = subCombo.getName();
        
        try {
-           Statement st = conn.createStatement();
+           Statement st = mysqlConnect.connect().createStatement();
            String sql = "addCustomer("+name+cid+contact+dob+sub+")";
            st.executeQuery(sql);
            JOptionPane.showMessageDialog(null,"Client added succesfully!");
@@ -265,13 +262,16 @@ public class ListaPelaton extends javax.swing.JFrame {
        dobField.setText("");
        subCombo.setSelectedIndex(0);       
        
+       
+       
+       mysqlConnect.disconnect();
     }//GEN-LAST:event_InsertButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
         String cid = cidField.getText();
         
         try {
-            Statement st = conn.createStatement();
+            Statement st = mysqlConnect.connect().createStatement();
             String sql = "deleteCustomer("+cid+")";
             st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Client deleted succesfully!");
@@ -280,13 +280,16 @@ public class ListaPelaton extends javax.swing.JFrame {
         catch (Exception e) {
            JOptionPane.showMessageDialog(null,e);
        }
+        
+        
+        mysqlConnect.disconnect();
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
         
         try {
-            Statement st = conn.createStatement();
-            String sql = "get_Customers()";
+            Statement st = mysqlConnect.connect().createStatement();
+            String sql = "call get_Customers()";
             st.executeQuery(sql);
         }
         
@@ -294,6 +297,9 @@ public class ListaPelaton extends javax.swing.JFrame {
            JOptionPane.showMessageDialog(null,e);
        }
         
+        
+        
+        mysqlConnect.disconnect();
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

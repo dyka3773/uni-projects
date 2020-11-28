@@ -19,34 +19,7 @@ import javax.swing.JOptionPane;
  */
 public class Kratiseis extends javax.swing.JFrame {
     
-    private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String username= "root";
-    private static final String password= "dyka3773";
-    private static final String conn_string="jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
-    Connection conn;
-    Properties props;
-    
-    private Properties getProperties() {
-    if (props == null) {
-        props = new Properties();
-        props.setProperty("user", username);
-        props.setProperty("password", password);
-    }
-    return props;
-}
-    
-    public Connection connect() {
-    if (conn == null) {
-        try {
-            Class.forName(DATABASE_DRIVER);
-            conn = DriverManager.getConnection(conn_string, getProperties());
-        } catch (ClassNotFoundException | SQLException e) {
-            // Java 7+
-            e.printStackTrace();
-        }
-    }
-    return conn;
-}
+    MySQLConnect mysqlConnect = new MySQLConnect();
     
     public Kratiseis() {
         initComponents();
@@ -267,7 +240,7 @@ public class Kratiseis extends javax.swing.JFrame {
         String expdate = expdateField.getText();
 
         try {
-            Statement st = conn.createStatement();
+            Statement st = mysqlConnect.connect().createStatement();
             String sql = "addReservation("+cid+bid+sid+expdate+")";
             st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Reservation added succesfully!");
@@ -281,14 +254,17 @@ public class Kratiseis extends javax.swing.JFrame {
         bidField.setText("");
         sidField.setText("");
         expdateField.setText("");
-
+        
+        
+        
+        mysqlConnect.disconnect();
     }//GEN-LAST:event_InsertButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
         String bid = bidField.getText();
 
         try {
-            Statement st = conn.createStatement();
+            Statement st = mysqlConnect.connect().createStatement();
             String sql = "deleteReservation("+bid+")";
             st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Reservation deleted succesfully!");
@@ -297,20 +273,24 @@ public class Kratiseis extends javax.swing.JFrame {
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
+        
+        mysqlConnect.disconnect();
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
     private void refreshButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshButtonActionPerformed
 
         try {
-            Statement st = conn.createStatement();
-            String sql = "get_Reservations()";
+            Statement st = mysqlConnect.connect().createStatement();
+            String sql = "call get_Reservations()";
             st.executeQuery(sql);
         }
 
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
-
+        
+        
+        mysqlConnect.disconnect();
     }//GEN-LAST:event_refreshButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
