@@ -1,4 +1,5 @@
 import java.sql.*;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 public class ListaIpallilon extends javax.swing.JFrame {
@@ -12,6 +13,7 @@ public class ListaIpallilon extends javax.swing.JFrame {
     
     public ListaIpallilon() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     

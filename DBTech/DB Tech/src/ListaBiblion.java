@@ -1,6 +1,7 @@
 
 import java.sql.Connection;
 import java.sql.Statement;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 
@@ -13,6 +14,7 @@ public class ListaBiblion extends javax.swing.JFrame {
     
     public ListaBiblion() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**

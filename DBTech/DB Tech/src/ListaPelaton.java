@@ -3,6 +3,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import javax.swing.JFrame;
 
 public class ListaPelaton extends javax.swing.JFrame {
 
@@ -13,6 +14,7 @@ public class ListaPelaton extends javax.swing.JFrame {
     
     public ListaPelaton() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**

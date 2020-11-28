@@ -1,6 +1,10 @@
 
 import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Properties;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /*
@@ -15,14 +19,38 @@ import javax.swing.JOptionPane;
  */
 public class Kratiseis extends javax.swing.JFrame {
     
-    
+    private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
     private static final String username= "root";
     private static final String password= "dyka3773";
-    private static final String conn_string="jdbc:mysql://localhost:3306/mysql";
-    Connection conn=null;
+    private static final String conn_string="jdbc:mysql://localhost:3306/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    Connection conn;
+    Properties props;
+    
+    private Properties getProperties() {
+    if (props == null) {
+        props = new Properties();
+        props.setProperty("user", username);
+        props.setProperty("password", password);
+    }
+    return props;
+}
+    
+    public Connection connect() {
+    if (conn == null) {
+        try {
+            Class.forName(DATABASE_DRIVER);
+            conn = DriverManager.getConnection(conn_string, getProperties());
+        } catch (ClassNotFoundException | SQLException e) {
+            // Java 7+
+            e.printStackTrace();
+        }
+    }
+    return conn;
+}
     
     public Kratiseis() {
         initComponents();
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     /**
