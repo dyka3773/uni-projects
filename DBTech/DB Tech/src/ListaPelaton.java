@@ -1,6 +1,7 @@
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
@@ -248,7 +249,7 @@ public class ListaPelaton extends javax.swing.JFrame {
        try {
            Statement st = mysqlConnect.connect().createStatement();
            String sql = "addCustomer("+name+cid+contact+dob+sub+")";
-           st.executeQuery(sql);
+           ResultSet rs = st.executeQuery(sql);
            JOptionPane.showMessageDialog(null,"Client added succesfully!");
        }
        
@@ -273,7 +274,7 @@ public class ListaPelaton extends javax.swing.JFrame {
         try {
             Statement st = mysqlConnect.connect().createStatement();
             String sql = "deleteCustomer("+cid+")";
-            st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Client deleted succesfully!");
         }
         
@@ -290,7 +291,7 @@ public class ListaPelaton extends javax.swing.JFrame {
         try {
             Statement st = mysqlConnect.connect().createStatement();
             String sql = "call get_Customers()";
-            st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);
         }
         
         catch (Exception e) {

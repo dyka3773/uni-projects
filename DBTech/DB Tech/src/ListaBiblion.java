@@ -1,5 +1,6 @@
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
@@ -254,7 +255,7 @@ public class ListaBiblion extends javax.swing.JFrame {
         try {
             Statement st = mysqlConnect.connect().createStatement();
             String sql = "addBook("+name+bid+genre+publisher+writer+quantity+")";
-            st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Book added succesfully!");
         }
 
@@ -278,7 +279,7 @@ public class ListaBiblion extends javax.swing.JFrame {
         try {
             Statement st = mysqlConnect.connect().createStatement();
             String sql = "deleteBook("+bid+")";
-            st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Book deleted succesfully!");
         }
 
@@ -295,7 +296,7 @@ public class ListaBiblion extends javax.swing.JFrame {
         try {
             Statement st = mysqlConnect.connect().createStatement();
             String sql = "call get_Books()";
-            st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);
         }
 
         catch (Exception e) {

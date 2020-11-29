@@ -1,4 +1,4 @@
-drop table res_Logs;
+drop if exists table res_Logs;
 
 CREATE TABLE `res_logs` (
   -- `ID` int NOT NULL AUTO_INCREMENT,

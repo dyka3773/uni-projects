@@ -1,9 +1,5 @@
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.ResultSet;
 import java.sql.Statement;
-import java.util.Properties;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -242,7 +238,7 @@ public class Kratiseis extends javax.swing.JFrame {
         try {
             Statement st = mysqlConnect.connect().createStatement();
             String sql = "addReservation("+cid+bid+sid+expdate+")";
-            st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Reservation added succesfully!");
         }
 
@@ -266,7 +262,7 @@ public class Kratiseis extends javax.swing.JFrame {
         try {
             Statement st = mysqlConnect.connect().createStatement();
             String sql = "deleteReservation("+bid+")";
-            st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Reservation deleted succesfully!");
         }
 
@@ -282,7 +278,16 @@ public class Kratiseis extends javax.swing.JFrame {
         try {
             Statement st = mysqlConnect.connect().createStatement();
             String sql = "call get_Reservations()";
-            st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);
+            /*Debugging code
+            
+            while (rs.next()) {
+                int sid = rs.getInt("sid");
+                int cid = rs.getInt("cid");
+                int bid = rs.getInt("bid");
+                System.out.println(sid + ", " + cid + ", " + bid);
+            }*/
+            
         }
 
         catch (Exception e) {

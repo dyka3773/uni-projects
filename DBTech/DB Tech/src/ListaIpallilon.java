@@ -230,7 +230,7 @@ public class ListaIpallilon extends javax.swing.JFrame {
         try {
             Statement st = mysqlConnect.connect().createStatement();
             String sql = "addStaff("+name+cid+contact+dob+")";
-            st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Staff added succesfully!");
         }
 
@@ -255,7 +255,7 @@ public class ListaIpallilon extends javax.swing.JFrame {
         try {
             Statement st = mysqlConnect.connect().createStatement();
             String sql = "deleteStaff("+sid+")";
-            st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Staff deleted succesfully!");
         }
 
@@ -272,7 +272,7 @@ public class ListaIpallilon extends javax.swing.JFrame {
         try {
             Statement st = mysqlConnect.connect().createStatement();
             String sql = "call get_Staff()";
-            st.executeQuery(sql);
+            ResultSet rs = st.executeQuery(sql);
         }
 
         catch (Exception e) {

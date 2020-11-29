@@ -1,8 +1,8 @@
-drop table reservations;
-drop table books ;
-drop table customers;
-drop table staff;
-drop table subscriptions;
+drop table if exists reservations;
+drop table if exists books ;
+drop table if exists customers;
+drop table if exists staff;
+drop table if exists subscriptions;
 
 CREATE TABLE if not exists books (
   Name varchar(45) NOT NULL,
