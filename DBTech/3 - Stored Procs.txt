@@ -1,0 +1,259 @@
+﻿drop procedure if exists get_Staff;
+drop procedure if exists get_Customers;
+drop procedure if exists get_Books; 
+drop procedure if exists get_Reservations;
+drop procedure if exists get_StaffWithNameLike;
+drop procedure if exists get_CustomersWithNameLike;
+drop procedure if exists get_BooksWithNameLike;
+drop procedure if exists get_BooksReserevedByThisCustomer;
+drop procedure if exists count_BooksReserevedByThisCustomer;
+drop procedure if exists count_BooksReserevedWithNamesLike;
+drop procedure if exists addCustomer;
+drop procedure if exists addStaff;
+drop procedure if exists addReservation;
+drop procedure if exists addBook;
+drop procedure if exists deleteCustomer;
+drop procedure if exists deleteStaff;
+drop procedure if exists deleteReservation;
+drop procedure if exists deleteBook;
+drop function if exists checkAvailability;
+
+
+DELIMITER $$
+create procedure count_BooksReserevedWithNamesLike(
+in onoma varchar(45)
+)
+begin
+        SELECT COUNT(B.name)
+   FROM Books B JOIN Reservations R on (B.bid=R.bid)
+   WHERE B.name = onoma;
+end$$
+
+
+create procedure get_BooksReserevedByThisCustomer(
+in onoma varchar(45)
+)
+begin
+        SELECT DISTINCT B.name
+   FROM Books B JOIN Reservations R on (B.bid=R.bid)
+        JOIN Customers C on (C.cid=R.cid)
+   WHERE C.name = onoma;
+end$$
+
+
+create procedure count_BooksReserevedByThisCustomer(
+in onoma varchar(45)
+)
+begin
+        SELECT COUNT(B.name)
+   FROM Books B JOIN Reservations R on (B.bid=R.bid)
+        JOIN Customers C on (C.cid=R.cid)
+   WHERE C.name = onoma;
+end$$
+
+
+CREATE procedure get_Staff()
+begin
+        SELECT *
+    FROM Staff S;
+end$$
+
+
+create procedure get_Customers()
+begin
+        SELECT *
+    FROM Customers C;
+end$$
+
+
+create procedure get_Books()
+begin
+        SELECT *
+    FROM Books B;
+end$$
+
+
+create procedure get_Reservations()
+begin
+        SELECT *
+    FROM Reservations R;
+end$$
+
+
+CREATE procedure get_StaffWithNameLike(
+in onoma varchar(45)
+)
+begin
+        SELECT *
+    FROM Staff S
+    WHERE S.name= onoma;
+end$$
+
+
+CREATE procedure get_CustomersWithNameLike(
+in onoma varchar(45)
+)
+begin
+        SELECT *
+    FROM Customers C
+    WHERE C.name= onoma;
+end$$
+
+
+CREATE procedure get_BooksWithNameLike(
+in onoma varchar(45)
+)
+begin
+        SELECT *
+    FROM Books B
+    WHERE B.name= onoma;
+end$$
+
+
+
+
+
+
+CREATE procedure addCustomer(IN name VARCHAR(45),  IN cid INT(11), IN contacts VARCHAR(45), IN dob YEAR(4), IN sub_id INT(11))
+
+
+BEGIN
+
+
+INSERT INTO customers (Name, CID, Contacts, DOB, Sub_ID)
+VALUES (name, cid, contacts, dob, sub_id);
+
+
+END$$
+
+
+
+
+CREATE procedure addStaff(IN name VARCHAR(45), IN sid INT(11), IN job VARCHAR(45), IN contacts VARCHAR(45))
+
+
+BEGIN
+
+
+INSERT INTO staff (Name, SID, Job, Contacts)
+VALUES (name, sid, job, contacts);
+
+
+END$$
+
+
+
+
+CREATE procedure addReservation(IN cid INT(11), IN bid INT(11), IN sid INT(11), IN exp_date TIMESTAMP)
+
+
+BEGIN
+
+
+INSERT INTO reservations (CID, BID, SID, Exp_date)
+VALUES (cid, bid, sid, exp_date);
+UPDATE books B SET B.quantity = B.quantity -1
+WHERE B.bid = bid;
+
+
+END$$
+
+
+
+
+CREATE procedure addBook(IN name VARCHAR(45), IN bid INT(11), IN genre VARCHAR(45), IN publisher VARCHAR(45), IN writer VARCHAR(45), IN quantity INT(11))
+
+
+BEGIN
+
+
+INSERT INTO books (Name, BID, Genre, Publisher, Writer, Quantity)
+VALUES (name, bid, genre, publisher, writer, quantity);
+
+
+END$$
+
+
+
+
+CREATE procedure deleteCustomer(IN cid INT(11))
+
+
+BEGIN
+
+
+DELETE FROM customers WHERE CID=cid;
+
+
+END$$
+
+
+
+
+CREATE procedure deleteStaff(IN sid INT(11))
+
+
+BEGIN
+
+
+DELETE FROM staff WHERE SID=sid;
+
+
+END$$
+
+
+
+
+CREATE procedure deleteReservation(IN rid INT(11))
+
+
+BEGIN
+
+
+DELETE FROM reservations WHERE RID=rid;
+
+
+END$$
+
+
+
+
+
+
+CREATE procedure deleteBook(IN bid INT(11))
+
+
+BEGIN
+
+
+DELETE FROM books WHERE BID=bid;
+
+
+END$$
+
+
+
+
+CREATE function checkAvailability(cid INT(11), bid varchar(45), sid INT(11), exp_date TIMESTAMP )
+returns int
+BEGIN
+
+
+DECLARE quant int;
+declare err INT;
+
+
+SET quant  = (SELECT Quantity FROM books WHERE BID=bid);
+
+
+IF quant > 0 then
+        CALL addReservation(cid,bid,sid,exp_date);
+        RETURN err=1;
+END IF;
+RETURN err=0;
+
+
+END$$
+
+
+delimiter ;

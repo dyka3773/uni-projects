@@ -1,4 +1,5 @@
-drop if exists table res_Logs;
+﻿drop table if exists res_logs;
+
 
 CREATE TABLE `res_logs` (
   -- `ID` int NOT NULL AUTO_INCREMENT,
@@ -14,11 +15,15 @@ CREATE TABLE `res_logs` (
   ,
   `EndDate` datetime,
   PRIMARY KEY (`CID`,`BID`,`Exp_date`,`StartDate`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+
+
 
 
 
 DELIMITER $$
+
 
 /* Trigger  for INSERT */
 CREATE TRIGGER HistoryTableInsert AFTER INSERT ON reservations FOR EACH ROW BEGIN
@@ -28,6 +33,7 @@ CREATE TRIGGER HistoryTableInsert AFTER INSERT ON reservations FOR EACH ROW BEGI
    INSERT INTO res_logs
    VALUES ('Inserted',New.CID, New.BID, New.SID, New.Exp_date, N, NULL);
 END;
+
 
 /* Trigger for DELETE */
 CREATE TRIGGER HistoryTableDelete AFTER DELETE ON reservations FOR EACH ROW BEGIN
@@ -40,15 +46,18 @@ CREATE TRIGGER HistoryTableDelete AFTER DELETE ON reservations FOR EACH ROW BEGI
       AND EndDate IS NULL;
 END;
 
+
 /* Trigger for UPDATE */
 CREATE TRIGGER HistoryTableUpdate AFTER UPDATE ON reservations FOR EACH ROW BEGIN
    DECLARE N DATETIME;
    SET N = now();
 
+
    UPDATE res_logs
       SET EndDate = N
     WHERE CID = OLD.CID and BID = OLD.BID and SID = OLD.SID
       AND EndDate IS NULL;
+
 
    INSERT INTO res_logs
    VALUES ('Updated',New.CID, New.BID, New.SID, New.Exp_date, N, NULL);
