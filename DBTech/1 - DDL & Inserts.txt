@@ -49,7 +49,7 @@ CREATE TABLE if not exists `staff` (
 
 
 CREATE TABLE `reservations` (
-  `RID` int(11) NOT NULL AUTO_INCREMENT,
+  `RID` int(11) NOT NULL,
   `CID` int(11) NOT NULL,
   `BID` int(11) NOT NULL,
   `SID` int(11) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE `reservations` (
   CONSTRAINT `reservations_ibfk_1` FOREIGN KEY (`CID`) REFERENCES `customers` (`CID`) ON DELETE CASCADE,
   CONSTRAINT `reservations_ibfk_2` FOREIGN KEY (`BID`) REFERENCES `books` (`BID`) ON DELETE CASCADE,
   CONSTRAINT `reservations_ibfk_3` FOREIGN KEY (`SID`) REFERENCES `staff` (`SID`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
 
@@ -80,7 +80,7 @@ VALUES
 ("Το μονοπάτι με τις λεύκες", 489684, "Τρόμου", "Lone Walk" , "Jason Krueger" , 10),
 ("Βλέποντας τον χορό του άλλου", 425868, "Ρομαντισμός", "Theory of Love" , "Natasha Catzenkovic" , 80),
 ("Ο κυνηγός μου", 399458, "Αστυνομικό Θρίλερ", "Lone Walk" , "Freddy Voorhees" , 50),
-("Ρομάντζο στην Μολδαβία", 785145, "Ρομαντισμός", "Romance Police" , "Shayna Rousey" , 5);
+("Ρομάντζο στην Μολδαβία", 785145, "Ρομαντισμός", "Romance Police" , "Shayna Rousey" , 0);
 
 
 INSERT INTO `library`.`subscriptions`
@@ -126,13 +126,14 @@ VALUES
 
 
 INSERT INTO `library`.`reservations`
-(`CID`,
+(`RID`,
+`CID`,
 `BID`,
 `SID`,
 `Exp_date`)
 VALUES
-(31879, 568489, 3568, '2021-01-08 10:10:10'),
-(31865, 489684, 3459, '2021-04-03 10:10:10'),
-(31786, 425868, 3846, '2021-02-09 10:10:10'),
-(31900, 399458, 3541, '2021-01-06 10:10:10'),
-(31798, 785145, 3645, '2021-01-06 10:10:10');
+(1,31879, 568489, 3568, '2021-01-08 10:10:10'),
+(2,31865, 489684, 3459, '2021-04-03 10:10:10'),
+(3,31786, 425868, 3846, '2021-02-09 10:10:10'),
+(4,31900, 399458, 3541, '2021-01-06 10:10:10'),
+(5,31798, 785145, 3645, '2021-01-06 10:10:10');

@@ -25,7 +25,7 @@ in onoma varchar(45)
 )
 begin
         SELECT COUNT(B.name)
-   FROM Books B JOIN Reservations R on (B.bid=R.bid)
+   FROM books B JOIN reservations R on (B.bid=R.bid)
    WHERE B.name = onoma;
 end$$
 
@@ -35,8 +35,8 @@ in onoma varchar(45)
 )
 begin
         SELECT DISTINCT B.name
-   FROM Books B JOIN Reservations R on (B.bid=R.bid)
-        JOIN Customers C on (C.cid=R.cid)
+   FROM books B JOIN reservations R on (B.bid=R.bid)
+        JOIN customers C on (C.cid=R.cid)
    WHERE C.name = onoma;
 end$$
 
@@ -46,8 +46,8 @@ in onoma varchar(45)
 )
 begin
         SELECT COUNT(B.name)
-   FROM Books B JOIN Reservations R on (B.bid=R.bid)
-        JOIN Customers C on (C.cid=R.cid)
+   FROM books B JOIN reservations R on (B.bid=R.bid)
+        JOIN customers C on (C.cid=R.cid)
    WHERE C.name = onoma;
 end$$
 
@@ -55,28 +55,28 @@ end$$
 CREATE procedure get_Staff()
 begin
         SELECT *
-    FROM Staff S;
+    FROM staff S;
 end$$
 
 
 create procedure get_Customers()
 begin
         SELECT *
-    FROM Customers C;
+    FROM customers C;
 end$$
 
 
 create procedure get_Books()
 begin
         SELECT *
-    FROM Books B;
+    FROM books B;
 end$$
 
 
 create procedure get_Reservations()
 begin
         SELECT *
-    FROM Reservations R;
+    FROM reservations R;
 end$$
 
 
@@ -85,7 +85,7 @@ in onoma varchar(45)
 )
 begin
         SELECT *
-    FROM Staff S
+    FROM staff S
     WHERE S.name= onoma;
 end$$
 
@@ -95,7 +95,7 @@ in onoma varchar(45)
 )
 begin
         SELECT *
-    FROM Customers C
+    FROM customers C
     WHERE C.name= onoma;
 end$$
 
@@ -105,7 +105,7 @@ in onoma varchar(45)
 )
 begin
         SELECT *
-    FROM Books B
+    FROM books B
     WHERE B.name= onoma;
 end$$
 
@@ -144,14 +144,14 @@ END$$
 
 
 
-CREATE procedure addReservation(IN cid INT(11), IN bid INT(11), IN sid INT(11), IN exp_date TIMESTAMP)
+CREATE procedure addReservation(IN rid int(11),IN cid INT(11), IN bid INT(11), IN sid INT(11), IN exp_date TIMESTAMP)
 
 
 BEGIN
 
 
-INSERT INTO reservations (CID, BID, SID, Exp_date)
-VALUES (cid, bid, sid, exp_date);
+INSERT INTO reservations (RID,CID, BID, SID, Exp_date)
+VALUES (rid,cid, bid, sid, exp_date);
 UPDATE books B SET B.quantity = B.quantity -1
 WHERE B.bid = bid;
 
@@ -176,13 +176,13 @@ END$$
 
 
 
-CREATE procedure deleteCustomer(IN cid INT(11))
+CREATE procedure deleteCustomer(IN ciid INT(11))
 
 
 BEGIN
 
 
-DELETE FROM customers WHERE CID=cid;
+DELETE FROM customers WHERE CID=ciid;
 
 
 END$$
@@ -190,13 +190,13 @@ END$$
 
 
 
-CREATE procedure deleteStaff(IN sid INT(11))
+CREATE procedure deleteStaff(IN siid INT(11))
 
 
 BEGIN
 
 
-DELETE FROM staff WHERE SID=sid;
+DELETE FROM staff WHERE SID=siid;
 
 
 END$$
@@ -204,13 +204,13 @@ END$$
 
 
 
-CREATE procedure deleteReservation(IN rid INT(11))
+CREATE procedure deleteReservation(IN riid INT(11))
 
 
 BEGIN
 
 
-DELETE FROM reservations WHERE RID=rid;
+DELETE FROM reservations WHERE RID=riid;
 
 
 END$$
@@ -220,13 +220,13 @@ END$$
 
 
 
-CREATE procedure deleteBook(IN bid INT(11))
+CREATE procedure deleteBook(IN biid INT(11))
 
 
 BEGIN
 
 
-DELETE FROM books WHERE BID=bid;
+DELETE FROM books WHERE BID=biid;
 
 
 END$$
@@ -246,10 +246,10 @@ declare err INT;
 SET quant  = (SELECT Quantity FROM books WHERE BID=bid);
 
 
-IF quant > 0 then
-        CALL addReservation(cid,bid,sid,exp_date);
+IF quant <= 0 then
         RETURN err=1;
 END IF;
+CALL addReservation(cid,bid,sid,exp_date);
 RETURN err=0;
 
 
