@@ -1,20 +1,21 @@
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class ListaIpallilon extends javax.swing.JFrame {
 
+public class ListaEggrafon extends javax.swing.JFrame {
 
     MySQLConnect mysqlConnect = new MySQLConnect();
     
-    
-    public ListaIpallilon() {
+    public ListaEggrafon() {
         initComponents();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -28,7 +29,6 @@ public class ListaIpallilon extends javax.swing.JFrame {
         jTable2 = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         InsertButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
@@ -38,14 +38,14 @@ public class ListaIpallilon extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        contactField = new javax.swing.JTextField();
-        jobField = new javax.swing.JTextField();
-        sidField = new javax.swing.JTextField();
-        nameField = new javax.swing.JTextField();
+        Sub_IDField = new javax.swing.JTextField();
+        PriceField = new javax.swing.JTextField();
+        DurationField = new javax.swing.JTextField();
+        TypeField = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -53,7 +53,7 @@ public class ListaIpallilon extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "SID", "Job", "Contact"
+                "Type", "Duration", "Price", "Sub_ID"
             }
         ) {
             Class[] types = new Class [] {
@@ -66,7 +66,7 @@ public class ListaIpallilon extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 19, 540, 330));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 21, -1, 91));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -83,22 +83,7 @@ public class ListaIpallilon extends javax.swing.JFrame {
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 
-        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 870, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 90, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 870, 90));
-
-        jPanel5.setBackground(new java.awt.Color(0, 102, 153));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 153));
 
         jPanel4.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -158,147 +143,162 @@ public class ListaIpallilon extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
-        jLabel1.setText("Name: ");
+        jLabel1.setText("Type:");
 
-        jLabel2.setText("SID:");
+        jLabel2.setText("Duration:");
 
-        jLabel3.setText("Job:");
+        jLabel3.setText("Price:");
 
-        jLabel4.setText("Contact:");
+        jLabel4.setText("Sub_ID");
 
-        contactField.addActionListener(new java.awt.event.ActionListener() {
+        Sub_IDField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contactFieldActionPerformed(evt);
+                Sub_IDFieldActionPerformed(evt);
             }
         });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel6.setText("Use only SID to delete a staff member");
+        jLabel6.setText("Use only Sub_ID to delete a subscription type");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(34, 34, 34)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1)
                             .addComponent(jLabel3)
                             .addComponent(jLabel4))
-                        .addGap(73, 73, 73)
+                        .addGap(74, 74, 74)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(contactField, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-                            .addComponent(sidField)
-                            .addComponent(jobField)
-                            .addComponent(nameField))
-                        .addGap(31, 31, 31))))
+                            .addComponent(Sub_IDField, javax.swing.GroupLayout.DEFAULT_SIZE, 155, Short.MAX_VALUE)
+                            .addComponent(DurationField)
+                            .addComponent(PriceField)
+                            .addComponent(TypeField))
+                        .addGap(28, 28, 28))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
+                .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(sidField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(TypeField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(DurationField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jobField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(PriceField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
-                    .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                    .addComponent(Sub_IDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(479, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(55, 55, 55))))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94))
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 870, 400));
+
+        jPanel5.setBackground(new java.awt.Color(0, 153, 153));
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(509, 509, 509)
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(61, 61, 61))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(51, 51, 51))
+            .addGap(0, 870, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(89, 89, 89))
+            .addGap(0, 90, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 870, 400));
+        getContentPane().add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 0, 870, 90));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void contactFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contactFieldActionPerformed
+    private void Sub_IDFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Sub_IDFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_contactFieldActionPerformed
+    }//GEN-LAST:event_Sub_IDFieldActionPerformed
 
     private void InsertButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InsertButtonActionPerformed
-        String name = nameField.getText();
-        String sid = sidField.getText();
-        String job = jobField.getText();
-        String contact = contactField.getText();
-
+        String Type = TypeField.getText();
+        String Duration = DurationField.getText();
+        String Price = PriceField.getText();
+        String Sub_ID = Sub_IDField.getText();
         try {
             Statement st = mysqlConnect.connect().createStatement();
-            String sql = "call addStaff('"+name+"',"+sid+",'"+job+"','"+contact+"')";
+            String sql = "call addSub('"+Type+"',"+Duration+",'"+Price+"','"+Sub_ID+"')";
             ResultSet rs = st.executeQuery(sql);
-            JOptionPane.showMessageDialog(null,"Staff added succesfully!");
+            JOptionPane.showMessageDialog(null,"Subscription type added succesfully!");
         }
 
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
 
-        nameField.setText("");
-        sidField.setText("");
-        jobField.setText("");
-        contactField.setText("");
-                                
+        TypeField.setText("");
+        DurationField.setText("");
+        PriceField.setText("");
+        Sub_IDField.setText("");
+        
         mysqlConnect.disconnect();
     }//GEN-LAST:event_InsertButtonActionPerformed
 
     private void DeleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeleteButtonActionPerformed
-        String sid = sidField.getText();
+        String Sub_ID = Sub_IDField.getText();
 
         try {
             Statement st = mysqlConnect.connect().createStatement();
-            String sql = "call deleteStaff("+sid+")";
+            String sql = "call deleteSub("+Sub_ID+")";
             ResultSet rs = st.executeQuery(sql);
-            JOptionPane.showMessageDialog(null,"Staff deleted succesfully!");
+            JOptionPane.showMessageDialog(null,"Book deleted succesfully!");
         }
 
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
         
-        nameField.setText("");
-        sidField.setText("");
-        jobField.setText("");
-        contactField.setText("");
+        TypeField.setText("");
+        DurationField.setText("");
+        PriceField.setText("");
+        Sub_IDField.setText("");
         
         mysqlConnect.disconnect();
     }//GEN-LAST:event_DeleteButtonActionPerformed
@@ -307,19 +307,19 @@ public class ListaIpallilon extends javax.swing.JFrame {
 
         try {
             Statement st = mysqlConnect.connect().createStatement();
-            String sql = "call get_Staff()";
+            String sql = "call get_Subs()";
             ResultSet rs = st.executeQuery(sql);
             
             DefaultTableModel tblModel = (DefaultTableModel) jTable2.getModel();
             tblModel.setRowCount(0);
             
             while (rs.next()) {
-                String name = rs.getString("Name");
-                String sid = rs.getString("SID");
-                String job = rs.getString("Job");
-                String contacts = rs.getString("Contacts");
+                String type = rs.getString("Types");
+                String duration = rs.getString("Duration");
+                String price = rs.getString("Price");
+                String sub_ID = rs.getString("Sub_ID");          
                 
-                String tbData[] = {name,sid,job,contacts};
+                String tbData[] = {type,duration,price,sub_ID};
                 tblModel.addRow(tbData);
                 tbData = null;
             }
@@ -330,15 +330,16 @@ public class ListaIpallilon extends javax.swing.JFrame {
         }
         
         
-        
         mysqlConnect.disconnect();
     }//GEN-LAST:event_refreshButtonActionPerformed
 
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DeleteButton;
+    private javax.swing.JTextField DurationField;
     private javax.swing.JButton InsertButton;
-    private javax.swing.JTextField contactField;
+    private javax.swing.JTextField PriceField;
+    private javax.swing.JTextField Sub_IDField;
+    private javax.swing.JTextField TypeField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -351,9 +352,6 @@ public class ListaIpallilon extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jobField;
-    private javax.swing.JTextField nameField;
     private javax.swing.JButton refreshButton;
-    private javax.swing.JTextField sidField;
     // End of variables declaration//GEN-END:variables
 }

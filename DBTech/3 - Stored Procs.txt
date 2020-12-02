@@ -17,9 +17,30 @@ drop procedure if exists deleteStaff;
 drop procedure if exists deleteReservation;
 drop procedure if exists deleteBook;
 drop function if exists checkAvailability;
-
+drop procedure if exists get_Subs;
+drop procedure if exists deleteSub;
+drop procedure if exists addSub;
+drop procedure if exists get_res_logs;
 
 DELIMITER $$
+create procedure get_res_logs()
+begin
+	select * from res_logs;
+end$$
+
+
+create procedure addSub(in type varchar(45), in Duration int(11), in Price double, in Sub_ID int(11))
+begin
+
+	INSERT INTO `subscriptions`
+	(`Type`,`Duration`,`Price`,`Sub_ID`)
+	VALUES
+	(type,Duration,Price,Sub_ID);
+    
+end$$
+
+
+
 create procedure count_BooksReserevedWithNamesLike(
 in onoma varchar(45)
 )
@@ -55,28 +76,32 @@ end$$
 CREATE procedure get_Staff()
 begin
         SELECT *
-    FROM staff S;
+    FROM staff S
+    order by SID;
 end$$
 
 
 create procedure get_Customers()
 begin
         SELECT *
-    FROM customers C;
+    FROM customers C
+    order by CID;
 end$$
 
 
 create procedure get_Books()
 begin
         SELECT *
-    FROM books B;
+    FROM books B
+    order by BID;
 end$$
 
 
 create procedure get_Reservations()
 begin
         SELECT *
-    FROM reservations R;
+    FROM reservations R
+    order by RID;
 end$$
 
 
@@ -110,150 +135,90 @@ begin
 end$$
 
 
-
-
+create procedure get_Subs()
+begin
+	select *
+    from subscriptions
+    order by Duration;
+end$$
 
 
 CREATE procedure addCustomer(IN name VARCHAR(45),  IN cid INT(11), IN contacts VARCHAR(45), IN dob YEAR(4), IN sub_id INT(11))
-
-
 BEGIN
-
 
 INSERT INTO customers (Name, CID, Contacts, DOB, Sub_ID)
 VALUES (name, cid, contacts, dob, sub_id);
 
-
 END$$
 
 
-
-
 CREATE procedure addStaff(IN name VARCHAR(45), IN sid INT(11), IN job VARCHAR(45), IN contacts VARCHAR(45))
-
-
 BEGIN
-
 
 INSERT INTO staff (Name, SID, Job, Contacts)
 VALUES (name, sid, job, contacts);
 
-
 END$$
 
 
-
-
 CREATE procedure addReservation(IN rid int(11),IN cid INT(11), IN bid INT(11), IN sid INT(11), IN exp_date TIMESTAMP)
-
-
 BEGIN
-
 
 INSERT INTO reservations (RID,CID, BID, SID, Exp_date)
 VALUES (rid,cid, bid, sid, exp_date);
 UPDATE books B SET B.quantity = B.quantity -1
 WHERE B.bid = bid;
 
-
 END$$
 
 
-
-
 CREATE procedure addBook(IN name VARCHAR(45), IN bid INT(11), IN genre VARCHAR(45), IN publisher VARCHAR(45), IN writer VARCHAR(45), IN quantity INT(11))
-
-
 BEGIN
-
 
 INSERT INTO books (Name, BID, Genre, Publisher, Writer, Quantity)
 VALUES (name, bid, genre, publisher, writer, quantity);
 
-
 END$$
-
-
 
 
 CREATE procedure deleteCustomer(IN ciid INT(11))
-
-
 BEGIN
-
 
 DELETE FROM customers WHERE CID=ciid;
 
-
 END$$
-
-
 
 
 CREATE procedure deleteStaff(IN siid INT(11))
-
-
 BEGIN
-
 
 DELETE FROM staff WHERE SID=siid;
 
-
 END$$
-
-
 
 
 CREATE procedure deleteReservation(IN riid INT(11))
-
-
 BEGIN
-
 
 DELETE FROM reservations WHERE RID=riid;
 
-
 END$$
-
-
-
-
 
 
 CREATE procedure deleteBook(IN biid INT(11))
-
-
 BEGIN
-
 
 DELETE FROM books WHERE BID=biid;
 
-
 END$$
 
 
+create procedure deleteSub( in sub_iid int)
+begin
 
+delete from subscriptions where Sub_ID=sub_iid;
 
-CREATE function checkAvailability(cid INT(11), bid varchar(45), sid INT(11), exp_date TIMESTAMP )
-returns int
-BEGIN
-
-
-DECLARE quant int;
-declare err INT;
-
-
-SET quant  = (SELECT Quantity FROM books WHERE BID=bid);
-
-
-IF quant <= 0 then
-        RETURN err=1;
-END IF;
-CALL addReservation(cid,bid,sid,exp_date);
-RETURN err=0;
-
-
-END$$
+end$$
 
 
 delimiter ;

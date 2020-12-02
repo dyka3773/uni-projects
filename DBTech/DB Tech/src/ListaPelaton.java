@@ -281,7 +281,7 @@ public class ListaPelaton extends javax.swing.JFrame {
        
        try {
            Statement st = mysqlConnect.connect().createStatement();
-           String sql = "call addCustomer("+name+cid+contact+dob+sub+")";
+           String sql = "call addCustomer('"+name+"',"+cid+",'"+contact+"','"+dob+"',"+sub+")";
            ResultSet rs = st.executeQuery(sql);
            JOptionPane.showMessageDialog(null,"Client added succesfully!");
        }
@@ -329,6 +329,9 @@ public class ListaPelaton extends javax.swing.JFrame {
             String sql = "call get_Customers()";
             ResultSet rs = st.executeQuery(sql);
             
+            DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
+            tblModel.setRowCount(0);
+            
             while (rs.next()) {
                 String name = rs.getString("Name");
                 String cid = rs.getString("CID");
@@ -337,8 +340,8 @@ public class ListaPelaton extends javax.swing.JFrame {
                 String sid = rs.getString("Sub_ID");
                 
                 String tbData[] = {name,cid,contacts,dob,sid};
-                DefaultTableModel tblModel = (DefaultTableModel) jTable1.getModel();
                 tblModel.addRow(tbData);
+                tbData = null;
             }
         }
         
