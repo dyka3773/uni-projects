@@ -4,6 +4,7 @@ drop table customers;
 drop table staff;
 drop table subscriptions;
 
+kappa
 
 CREATE TABLE if not exists books (
   Name varchar(45) NOT NULL,
