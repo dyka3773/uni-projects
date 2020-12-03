@@ -7,6 +7,7 @@ CREATE TABLE `res_logs` (
   -- `OldCID` int NOT NULL,
   -- `OldBID` int NOT NULL,
   -- `OldSID` int NOT NULL,
+  `RID` int not null,  
   `CID` int NOT NULL,
   `BID` int NOT NULL,
   `SID` int NOT NULL,
@@ -25,40 +26,47 @@ CREATE TABLE `res_logs` (
 DELIMITER $$
 
 
-/* Trigger  for INSERT */
-CREATE TRIGGER HistoryTableInsert AFTER INSERT ON reservations FOR EACH ROW BEGIN
+-- /* Trigger  for INSERT */
+CREATE TRIGGER HistoryTableInsert 
+AFTER INSERT ON reservations 
+FOR EACH ROW 
+BEGIN
    DECLARE N DATETIME;
    SET N = now();
     
    INSERT INTO res_logs
-   VALUES ('Inserted',New.CID, New.BID, New.SID, New.Exp_date, N, NULL);
-END;
+   VALUES ('Inserted',New.RID,New.CID, New.BID, New.SID, New.Exp_date, N, NULL);
+END$$
 
 
-/* Trigger for DELETE */
-CREATE TRIGGER HistoryTableDelete AFTER DELETE ON reservations FOR EACH ROW BEGIN
+-- /* Trigger for DELETE */
+CREATE TRIGGER HistoryTableDelete AFTER DELETE ON reservations 
+FOR EACH ROW 
+BEGIN
    DECLARE N DATETIME;
    SET N = now();
     
    UPDATE res_logs
       SET EndDate = N, Command = 'Deleted'
-    WHERE CID = OLD.CID and BID = OLD.BID and SID = OLD.SID
+    WHERE RID= OLD.RID and CID = OLD.CID and BID = OLD.BID and SID = OLD.SID
       AND EndDate IS NULL;
-END;
+END$$
 
 
-/* Trigger for UPDATE */
-CREATE TRIGGER HistoryTableUpdate AFTER UPDATE ON reservations FOR EACH ROW BEGIN
+-- /* Trigger for UPDATE */
+CREATE TRIGGER HistoryTableUpdate AFTER UPDATE ON reservations 
+FOR EACH ROW 
+BEGIN
    DECLARE N DATETIME;
    SET N = now();
 
 
    UPDATE res_logs
       SET EndDate = N
-    WHERE CID = OLD.CID and BID = OLD.BID and SID = OLD.SID
+    WHERE RID= OLD.RID and CID = OLD.CID and BID = OLD.BID and SID = OLD.SID
       AND EndDate IS NULL;
 
 
    INSERT INTO res_logs
-   VALUES ('Updated',New.CID, New.BID, New.SID, New.Exp_date, N, NULL);
-END;
+   VALUES ('Updated',New.RID,New.CID, New.BID, New.SID, New.Exp_date, N, NULL);
+END$$
