@@ -12,9 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class GamePanel {
@@ -390,6 +388,7 @@ public class GamePanel {
             }
         }
     }
+
     
     public void winnerPlayer(int winner)
     {
@@ -484,26 +483,12 @@ public class GamePanel {
         { }      
     }
     
-   /*public void startAgain()
-   {
-       
-        for(int i=0; i<7; ++i)
-        {         
-            for(int j=0; j<7; ++j)
-            {
-                gameBoard[i][j].setCellState(-99);  // Initial Value
-                buttons[i][j].setIcon(empty);       // Put the empty cell icon
-            }
-        }
-        
-        frame.setVisible(false);                            // Unvisible previous game board
-        ConnectFour newGame = new ConnectFour();           // New Game Object
-   }*/
     
     JPanel getGamePanelComponent()
     {
         return this.gamePanel;
     }
+    
     private class listenButtonTwoPlayers implements ActionListener
     {           
         @Override

@@ -37,6 +37,7 @@ public class MenuPanel {
         "/Game/assets/players/player_pink.jpg",     //4
         "/Game/assets/players/player_yellow.jpg"    //5
     };
+    private JLabel devsButton;
 
     public MenuPanel(){
         menuPanel = new JPanel();
@@ -51,6 +52,7 @@ public class MenuPanel {
         right_arrow = new JLabel();
         left_arrow2 = new JLabel();
         right_arrow2 = new JLabel();
+        devsButton = new JLabel();
         
         /*
                         #### Menu panel ####
@@ -235,6 +237,35 @@ public class MenuPanel {
             @Override //Goes over the characters for Player Two
             public void mouseClicked(MouseEvent e){  
                 changinColors(player2_Color, 2, "R");
+            }
+            
+        });
+        
+        devsButton.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/buttons/menu_devs_1.png")));
+        menuPanel.add(devsButton, new org.netbeans.lib.
+                awtextra.AbsoluteConstraints(0, 25, -1, -1));
+        devsButton.addMouseListener(new MouseAdapter() {
+            
+            @Override
+            public void mouseEntered(MouseEvent e){
+                devsButton.setIcon(new ImageIcon(getClass().
+                        getResource("/Game/assets/buttons/menu_devs_2.png")));
+            }
+            @Override
+            public void mouseExited(MouseEvent e){
+                devsButton.setIcon(new ImageIcon(getClass().
+                        getResource("/Game/assets/buttons/menu_devs_1.png")));
+            }
+            @Override
+            public void mousePressed(MouseEvent e){  
+                devsButton.setIcon(new ImageIcon(getClass().
+                        getResource("/Game/assets/buttons/menu_devs_3.png")));
+            }
+            @Override
+            public void mouseClicked(MouseEvent e){  
+                menuPanel.getParent().getComponent(0).setVisible(false);
+                menuPanel.getParent().getComponent(2).setVisible(true);
             }
             
         });

@@ -14,6 +14,7 @@ public class Game {
         
         MenuPanel menuPanel = new MenuPanel();
         TutorialPanel tutorialPanel = new TutorialPanel();
+        DevPanel devPanel = new DevPanel();
         
         window.setResizable(false);
         window.setSize(960, 720);
@@ -31,6 +32,7 @@ public class Game {
         The tutorial panel is set to invisible on startup.
         */
         window.add(tutorialPanel.getTutorialComponent());
+        window.add(devPanel.getDevComponent());
         
         window.pack();
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
