@@ -157,7 +157,7 @@ public class MenuPanel {
             }
             @Override //Goes over the characters for Player One
             public void mouseClicked(MouseEvent e){
-                changinColors(player1_Color, 1, clicks1, "L");
+                changinColors(player1_Color, 1, "L");
             }
         });
         
@@ -180,7 +180,7 @@ public class MenuPanel {
             }
             @Override //Goes over the characters for Player One
             public void mouseClicked(MouseEvent e){
-                changinColors(player1_Color, 1, clicks1, "R");
+                changinColors(player1_Color, 1, "R");
             }
         });        
         
@@ -210,7 +210,7 @@ public class MenuPanel {
             }
             @Override //Goes over the characters for Player Two
             public void mouseClicked(MouseEvent e){
-                changinColors(player2_Color, 2, clicks2, "L");
+                changinColors(player2_Color, 2, "L");
             }
         });
         
@@ -234,7 +234,7 @@ public class MenuPanel {
             }
             @Override //Goes over the characters for Player Two
             public void mouseClicked(MouseEvent e){  
-                changinColors(player2_Color, 2, clicks2, "R");
+                changinColors(player2_Color, 2, "R");
             }
             
         });
@@ -247,6 +247,8 @@ public class MenuPanel {
      * @param playerClick
      * @param direction 
      */
+    
+    //Not used anymore
     private void changePlayerColorIcon(JLabel playerIcon, int player, int playerClick, String direction ){
         //Check which player is changing
         String path = "";
@@ -414,7 +416,7 @@ public class MenuPanel {
     }
     
     
-    void changinColors(JLabel playerIcon, int player, int playerClick, String direction ){
+    void changinColors(JLabel playerIcon, int player,String direction ){
         if (player == 1){
             if (direction.equals("L")){ 
                 clicks1--;

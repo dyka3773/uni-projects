@@ -179,12 +179,12 @@ public class GamePanel {
             @Override
             public void mousePressed(MouseEvent e){
                 quitButton.setIcon(new ImageIcon(getClass().
-                getResource("/Game/assets/buttons/opt_quitBtn_2.png")));
+                getResource("/Game/assets/buttons/menu_quitBtn_2.png")));
             }
             @Override
             public void mouseReleased(MouseEvent e){
                 quitButton.setIcon(new ImageIcon(getClass().
-                getResource("//Game/assets/buttons/opt_quitBtn_1.png")));
+                getResource("/Game/assets/buttons/menu_quitBtn_1.png")));
             }
         });
         
@@ -462,11 +462,13 @@ public class GamePanel {
    {
        if(winnerPlayer==1)
        {
+           //wait(500);
            gameplayPanel.setVisible(false);
            winPanel.setVisible(true);
        }
        else
        {
+           //wait(500);
            gameplayPanel.setVisible(false);
            winPanel.setVisible(true);
        }
@@ -576,4 +578,16 @@ public class GamePanel {
        
         } // END ACTIONPERFORMED    
     } // END listenButtonTwoPlayers CLASS
+    
+    public static void wait(int ms)
+        {
+            try
+            {
+                Thread.sleep(ms);
+            }
+            catch(InterruptedException ex)
+            {
+                Thread.currentThread().interrupt();
+            }
+        }
 }
