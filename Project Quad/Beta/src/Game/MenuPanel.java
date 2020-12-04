@@ -29,6 +29,14 @@ public class MenuPanel {
     private JLabel players;
     private static int clicks1 = 0;
     private static int clicks2 = 1;
+    static String imgPath[]= {
+        "/Game/assets/players/player_red.jpg",      //0
+        "/Game/assets/players/player_blue.jpg",     //1
+        "/Game/assets/players/player_green.jpg",    //2
+        "/Game/assets/players/player_orange.jpg",   //3
+        "/Game/assets/players/player_pink.jpg",     //4
+        "/Game/assets/players/player_yellow.jpg"    //5
+    };
 
     public MenuPanel(){
         menuPanel = new JPanel();
@@ -149,7 +157,7 @@ public class MenuPanel {
             }
             @Override //Goes over the characters for Player One
             public void mouseClicked(MouseEvent e){
-                changePlayerColorIcon(player1_Color, 1, clicks1, "left");
+                changinColors(player1_Color, 1, clicks1, "L");
             }
         });
         
@@ -172,7 +180,7 @@ public class MenuPanel {
             }
             @Override //Goes over the characters for Player One
             public void mouseClicked(MouseEvent e){
-                changePlayerColorIcon(player1_Color, 1, clicks1, "right");
+                changinColors(player1_Color, 1, clicks1, "R");
             }
         });        
         
@@ -202,7 +210,7 @@ public class MenuPanel {
             }
             @Override //Goes over the characters for Player Two
             public void mouseClicked(MouseEvent e){
-                changePlayerColorIcon(player2_Color, 2, clicks2, "left");
+                changinColors(player2_Color, 2, clicks2, "L");
             }
         });
         
@@ -226,7 +234,7 @@ public class MenuPanel {
             }
             @Override //Goes over the characters for Player Two
             public void mouseClicked(MouseEvent e){  
-                changePlayerColorIcon(player2_Color, 2, clicks2, "right");
+                changinColors(player2_Color, 2, clicks2, "R");
             }
             
         });
@@ -239,7 +247,7 @@ public class MenuPanel {
      * @param playerClick
      * @param direction 
      */
-    private void changePlayerColorIcon(JLabel playerIcon, int player, int playerClick, String direction){
+    private void changePlayerColorIcon(JLabel playerIcon, int player, int playerClick, String direction ){
         //Check which player is changing
         String path = "";
         if(player == 1){
@@ -403,5 +411,47 @@ public class MenuPanel {
     }
     JPanel getMenuComponent(){
         return this.menuPanel;
+    }
+    
+    
+    void changinColors(JLabel playerIcon, int player, int playerClick, String direction ){
+        if (player == 1){
+            if (direction.equals("L")){ 
+                clicks1--;
+                if (clicks1<0) clicks1=5;
+                if (clicks1==clicks2) clicks1--;
+                if (clicks1<0) clicks1=5;
+            }
+            else{ 
+                clicks1++;
+                if (clicks1>5) clicks1=0;
+                if (clicks1==clicks2) clicks1++;
+                if (clicks1>5) clicks1=0;
+            }
+            player1ColorPath = imgPath[clicks1];
+        }
+        else{
+            if (direction.equals("L")){ 
+                clicks2--;
+                if (clicks2<0) clicks2=5;
+                if (clicks1==clicks2) clicks2--;
+                if (clicks2<0) clicks2=5;
+            }
+            else{ 
+                clicks2++;
+                if (clicks2>5) clicks2=0;
+                if (clicks1==clicks2) clicks2++;
+                if (clicks2>5) clicks2=0;
+            }
+            player2ColorPath = imgPath[clicks2];
+        }    
+        
+        updateConfig(player1ColorPath, player2ColorPath);
+        
+        System.out.println(clicks1+" "+clicks2+"\n"+player1ColorPath+" "+player2ColorPath+"\n");
+        
+        if (player==1)
+            playerIcon.setIcon(new ImageIcon(getClass().getResource(player1ColorPath)));
+        else playerIcon.setIcon(new ImageIcon(getClass().getResource(player2ColorPath)));
     }
 }

@@ -1,0 +1,129 @@
+private void changePlayerColorIcon(JLabel playerIcon, int player, int playerClick, String direction ){
+        //Check which player is changing
+        String path = "";
+        if(player == 1){
+            playerClick = clicks1;
+            path = player1ColorPath;
+        }
+        else if(player == 2){
+            path = player2ColorPath;
+            playerClick = clicks2;
+        }
+        updateConfig(player1ColorPath, player2ColorPath);
+        //Check direction
+        if(direction.equals("left")){
+            playerClick--;
+        }
+        else if(direction.equals("right")){
+            playerClick++;
+        }
+        //Update indexes
+        if(player == 1)
+            clicks1 = playerClick;
+        else if(player == 2)
+            clicks2 = playerClick;
+        //Check if indexes collide
+        if(clicks1 == clicks2)
+            if(direction.equals("left")){
+                playerClick--;
+            }   
+            else if(direction.equals("right")){
+                playerClick++;
+            }
+        //Update indexes
+        if(player == 1)
+            clicks1 = playerClick;
+        else if(player == 2)
+            clicks2 = playerClick;
+        //Update player icon
+        if(playerClick == 0){
+            playerIcon.setIcon(new ImageIcon(getClass().
+                    getResource("/Game/assets/players/player_red.jpg")));
+            path = "/Game/assets/players/player_red.jpg";
+        }
+        else if(playerClick == 1){
+            playerIcon.setIcon(new ImageIcon(getClass().
+                    getResource("/Game/assets/players/player_blue.jpg")));
+            path = "/Game/assets/players/player_blue.jpg";
+        }
+        else if(playerClick == 2){
+            playerIcon.setIcon(new ImageIcon(getClass().
+                    getResource("/Game/assets/players/player_green.jpg")));
+            path = "/Game/assets/players/player_green.jpg";
+        }
+        else if(playerClick == 3){
+            playerIcon.setIcon(new ImageIcon(getClass().
+                    getResource("/Game/assets/players/player_orange.jpg")));
+            path = "/Game/assets/players/player_orange.jpg";
+        }
+        else if(playerClick == 4){
+            playerIcon.setIcon(new ImageIcon(getClass().
+                    getResource("/Game/assets/players/player_pink.jpg")));
+            path = "/Game/assets/players/player_pink.jpg";
+        }
+        else if(playerClick == 5){
+            playerIcon.setIcon(new ImageIcon(getClass().
+                    getResource("/Game/assets/players/player_yellow.jpg")));
+            path = "/Game/assets/players/player_yellow.jpg";
+        }
+        else if(playerClick > 5){
+            playerClick = 0;
+            path = "/Game/assets/players/player_red.jpg";
+        }
+        else if(playerClick < 0){
+            playerClick = 5;
+            path = "/Game/assets/players/player_yellow.jpg";
+        }
+        //Update indexes
+        if(player == 1){
+            clicks1 = playerClick;
+            player1ColorPath = path;
+        }
+        else if(player == 2){
+            clicks2 = playerClick;
+            player2ColorPath = path;
+        }
+        updateConfig(player1ColorPath, player2ColorPath);
+        //Update player icon
+        if(playerClick == 0){
+            playerIcon.setIcon(new ImageIcon(getClass().
+                    getResource("/Game/assets/players/player_red.jpg")));
+            
+        }
+        else if(playerClick == 1){
+            playerIcon.setIcon(new ImageIcon(getClass().
+                    getResource("/Game/assets/players/player_blue.jpg")));
+            
+        }
+        else if(playerClick == 2){
+            playerIcon.setIcon(new ImageIcon(getClass().
+                    getResource("/Game/assets/players/player_green.jpg")));
+            
+        }
+        else if(playerClick == 3){
+            playerIcon.setIcon(new ImageIcon(getClass().
+                    getResource("/Game/assets/players/player_orange.jpg")));
+            
+        }
+        else if(playerClick == 4){
+            playerIcon.setIcon(new ImageIcon(getClass().
+                    getResource("/Game/assets/players/player_pink.jpg")));
+            
+        }
+        else if(playerClick == 5){
+            playerIcon.setIcon(new ImageIcon(getClass().
+                    getResource("/Game/assets/players/player_yellow.jpg")));
+            
+        }
+        else if(playerClick > 5){
+            playerClick = 0;
+            
+        }
+        else if(playerClick < 0){
+            playerClick = 5;
+            
+        }
+        System.out.println(clicks1+" "+clicks2+"\n"+player1ColorPath+" "+player2ColorPath+"\n");
+        updateConfig(player1ColorPath, player2ColorPath);
+        
+    }
