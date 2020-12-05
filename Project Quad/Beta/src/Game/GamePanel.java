@@ -30,9 +30,20 @@ public class GamePanel {
     private JLabel optionsButton;
     //Win panel
     private JPanel winPanel;
+    private JPanel winPanel1;
+    private JPanel winPanel2;
     private JLabel winBackground;
+    private JLabel winBackground1;
+    private JLabel winBackground2;
+    private JLabel winPlayerWinPic;
+    private JLabel winPlayerWinPic1;
+    private JLabel winPlayerWinPic2;
     private JLabel retryButton;
+    private JLabel retryButton1;
+    private JLabel retryButton2;
     private JLabel quitButton;
+    private JLabel quitButton1;
+    private JLabel quitButton2;
     //Option panel
     private JPanel optionPanel;
     private JLabel optionBackground;
@@ -59,9 +70,20 @@ public class GamePanel {
         optionsButton = new JLabel();
         //Win panel
         winPanel = new JPanel();
+        winPanel1 = new JPanel();
+        winPanel2 = new JPanel();
         winBackground = new JLabel();
+        winBackground1 = new JLabel();
+        winBackground2 = new JLabel();
+        winPlayerWinPic = new JLabel();
+        winPlayerWinPic1 = new JLabel();
+        winPlayerWinPic2 = new JLabel();
         retryButton = new JLabel();
+        retryButton1 = new JLabel();
+        retryButton2 = new JLabel();
         quitButton = new JLabel();
+        quitButton1 = new JLabel();
+        quitButton2 = new JLabel();
         //Option panel
         boolean optIsOpen = false;
         optionPanel = new JPanel();
@@ -78,6 +100,8 @@ public class GamePanel {
         gameplayPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         tableGrid.setLayout(new java.awt.GridLayout(7, 7));
         winPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        winPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        winPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         optionPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         gameplayPanel.setBackground(new Color(162, 192, 242));
         
@@ -109,6 +133,8 @@ public class GamePanel {
             public void mouseClicked(MouseEvent e){
                 gameplayPanel.setVisible(false);
                 winPanel.setVisible(false);
+                winPanel1.setVisible(false);
+                winPanel2.setVisible(false);
                 optionPanel.setVisible(true);
             }
             @Override
@@ -137,11 +163,34 @@ public class GamePanel {
         */
         winPanel.setVisible(false);
         winPanel.setBackground(new Color(162, 192, 242));
+        winPanel1.setVisible(false);
+        winPanel1.setBackground(new Color(162, 192, 242));
+        winPanel2.setVisible(false);
+        winPanel2.setBackground(new Color(162, 192, 242));
+        
+        winPlayerWinPic.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/players/win_text_tie.png")));
+        winPlayerWinPic1.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/players/win_p1_text.png")));
+        winPlayerWinPic2.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/players/win_p2_text.png")));
         winBackground.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/general/prompt_bg.png")));
+        winBackground1.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/general/prompt_bg.png")));
+        winBackground2.setIcon(new ImageIcon(getClass().
                 getResource("/Game/assets/general/prompt_bg.png")));
         retryButton.setIcon(new ImageIcon(getClass().
                 getResource("/Game/assets/buttons/win_retryBtn_1.png")));
+        retryButton1.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/buttons/win_retryBtn_1.png")));
+        retryButton2.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/buttons/win_retryBtn_1.png")));
         quitButton.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/buttons/menu_quitBtn_1.png")));
+        quitButton1.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/buttons/menu_quitBtn_1.png")));
+        quitButton2.setIcon(new ImageIcon(getClass().
                 getResource("/Game/assets/buttons/menu_quitBtn_1.png")));
         retryButton.addMouseListener(new MouseAdapter(){
             @Override
@@ -169,6 +218,58 @@ public class GamePanel {
                 getResource("/Game/assets/buttons/win_retryBtn_1.png")));
             }
         });
+        retryButton1.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                gamePanel.setVisible(false);
+                optionPanel.setVisible(false);
+                gamePanel.getParent().getComponent(0).setVisible(true);
+                /*
+                De-refrence the game panel so that the garbage collector can
+                collect the game panel. This practically removes it from the JVM Heap,
+                thus restarting and the game panel. (This affectively initializes
+                the game panel with whatever new updates made from the players in
+                the menu panel.
+                */
+                gamePanel = null;
+            }
+            @Override
+            public void mousePressed(MouseEvent e){
+                retryButton1.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/buttons/win_retryBtn_2.png")));
+            }
+            @Override
+            public void mouseReleased(MouseEvent e){
+                retryButton1.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/buttons/win_retryBtn_1.png")));
+            }
+        });
+        retryButton2.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                gamePanel.setVisible(false);
+                optionPanel.setVisible(false);
+                gamePanel.getParent().getComponent(0).setVisible(true);
+                /*
+                De-refrence the game panel so that the garbage collector can
+                collect the game panel. This practically removes it from the JVM Heap,
+                thus restarting and the game panel. (This affectively initializes
+                the game panel with whatever new updates made from the players in
+                the menu panel.
+                */
+                gamePanel = null;
+            }
+            @Override
+            public void mousePressed(MouseEvent e){
+                retryButton2.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/buttons/win_retryBtn_2.png")));
+            }
+            @Override
+            public void mouseReleased(MouseEvent e){
+                retryButton2.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/buttons/win_retryBtn_1.png")));
+            }
+        });
         quitButton.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
@@ -185,12 +286,62 @@ public class GamePanel {
                 getResource("/Game/assets/buttons/menu_quitBtn_1.png")));
             }
         });
+        quitButton1.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                Runtime.getRuntime().exit((0));
+            }
+            @Override
+            public void mousePressed(MouseEvent e){
+                quitButton1.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/buttons/menu_quitBtn_2.png")));
+            }
+            @Override
+            public void mouseReleased(MouseEvent e){
+                quitButton1.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/buttons/menu_quitBtn_1.png")));
+            }
+        });
+        quitButton2.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                Runtime.getRuntime().exit((0));
+            }
+            @Override
+            public void mousePressed(MouseEvent e){
+                quitButton2.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/buttons/menu_quitBtn_2.png")));
+            }
+            @Override
+            public void mouseReleased(MouseEvent e){
+                quitButton2.setIcon(new ImageIcon(getClass().
+                getResource("/Game/assets/buttons/menu_quitBtn_1.png")));
+            }
+        });
         
+        winPanel.add(winPlayerWinPic, new org.netbeans.
+                lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
         winPanel.add(quitButton, new org.netbeans.
-                lib.awtextra.AbsoluteConstraints(450, 400, -1, -1));
+                lib.awtextra.AbsoluteConstraints(450, 440, -1, -1));
         winPanel.add(retryButton, new org.netbeans.
-                lib.awtextra.AbsoluteConstraints(450, 290, -1, -1));
+                lib.awtextra.AbsoluteConstraints(450, 330, -1, -1));
         winPanel.add(winBackground, new org.netbeans.
+                lib.awtextra.AbsoluteConstraints(280, 70, -1, -1));
+        winPanel1.add(winPlayerWinPic1, new org.netbeans.
+                lib.awtextra.AbsoluteConstraints(305, 120, -1, -1));
+        winPanel1.add(quitButton1, new org.netbeans.
+                lib.awtextra.AbsoluteConstraints(450, 440, -1, -1));
+        winPanel1.add(retryButton1, new org.netbeans.
+                lib.awtextra.AbsoluteConstraints(450, 330, -1, -1));
+        winPanel1.add(winBackground1, new org.netbeans.
+                lib.awtextra.AbsoluteConstraints(280, 70, -1, -1));
+        winPanel2.add(winPlayerWinPic2, new org.netbeans.
+                lib.awtextra.AbsoluteConstraints(350, 100, -1, -1));
+        winPanel2.add(quitButton2, new org.netbeans.
+                lib.awtextra.AbsoluteConstraints(450, 440, -1, -1));
+        winPanel2.add(retryButton2, new org.netbeans.
+                lib.awtextra.AbsoluteConstraints(450, 330, -1, -1));
+        winPanel2.add(winBackground2, new org.netbeans.
                 lib.awtextra.AbsoluteConstraints(280, 70, -1, -1));
         
         /*
@@ -304,6 +455,8 @@ public class GamePanel {
         */
         gamePanel.add(gameplayPanel);
         gamePanel.add(winPanel);
+        gamePanel.add(winPanel1);
+        gamePanel.add(winPanel2);
         gamePanel.add(optionPanel);
         
         /*
@@ -392,6 +545,9 @@ public class GamePanel {
     
     public void winnerPlayer(int winner)
     {
+        if (livingCellNumber == gameBoard.length * gameBoard[0].length){
+            showResult(3);
+        }
         for(int i=0; i<7; ++i)
         {         
             for(int j=0; j<7; ++j)
@@ -463,14 +619,20 @@ public class GamePanel {
        {
            //wait(500);
            gameplayPanel.setVisible(false);
-           winPanel.setVisible(true);
+           winPanel1.setVisible(true);
        }
-       else
+       else if (winnerPlayer==2)
        {
            //wait(500);
            gameplayPanel.setVisible(false);
+           winPanel2.setVisible(true);
+       }
+       else{
+           gameplayPanel.setVisible(false);
            winPanel.setVisible(true);
        }
+       
+       
    }
     
     public void setUpperCellToEmpty(int rowPos, int columnPos)
@@ -565,14 +727,14 @@ public class GamePanel {
     } // END listenButtonTwoPlayers CLASS
     
     public static void wait(int ms)
+    {
+        try
         {
-            try
-            {
-                Thread.sleep(ms);
-            }
-            catch(InterruptedException ex)
-            {
-                Thread.currentThread().interrupt();
-            }
+            Thread.sleep(ms);
         }
+        catch(InterruptedException ex)
+        {
+            Thread.currentThread().interrupt();
+        }
+    }
 }
