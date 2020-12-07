@@ -45,6 +45,7 @@ public class ListaIpallilon extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Λίστα Υπαλλήλων");
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -66,7 +67,7 @@ public class ListaIpallilon extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 19, 540, 330));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 29, 530, 400));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -267,16 +268,15 @@ public class ListaIpallilon extends javax.swing.JFrame {
             String sql = "call addStaff('"+name+"',"+sid+",'"+job+"','"+contact+"')";
             ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Staff added succesfully!");
+            nameField.setText("");
+            sidField.setText("");
+            jobField.setText("");
+            contactField.setText("");            
         }
 
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
-
-        nameField.setText("");
-        sidField.setText("");
-        jobField.setText("");
-        contactField.setText("");
                                 
         mysqlConnect.disconnect();
     }//GEN-LAST:event_InsertButtonActionPerformed
@@ -289,17 +289,16 @@ public class ListaIpallilon extends javax.swing.JFrame {
             String sql = "call deleteStaff("+sid+")";
             ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Staff deleted succesfully!");
+            nameField.setText("");
+            sidField.setText("");
+            jobField.setText("");
+            contactField.setText("");
         }
 
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
-        
-        nameField.setText("");
-        sidField.setText("");
-        jobField.setText("");
-        contactField.setText("");
-        
+               
         mysqlConnect.disconnect();
     }//GEN-LAST:event_DeleteButtonActionPerformed
 

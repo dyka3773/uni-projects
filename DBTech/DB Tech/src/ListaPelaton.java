@@ -13,6 +13,7 @@ public class ListaPelaton extends javax.swing.JFrame {
     
     public ListaPelaton() {
         initComponents();
+        dynamicComboBox();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
@@ -29,7 +30,6 @@ public class ListaPelaton extends javax.swing.JFrame {
         jTable1 = new javax.swing.JTable();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         InsertButton = new javax.swing.JButton();
         DeleteButton = new javax.swing.JButton();
@@ -45,9 +45,11 @@ public class ListaPelaton extends javax.swing.JFrame {
         contactField = new javax.swing.JTextField();
         cidField = new javax.swing.JTextField();
         nameField = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Λίστα Πελατών");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -68,7 +70,7 @@ public class ListaPelaton extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 28, -1, 92));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 28, 530, 400));
 
         jPanel3.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -86,10 +88,6 @@ public class ListaPelaton extends javax.swing.JFrame {
         getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 500));
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 153));
-
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel6.setText("Use only CID to delete a customer");
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -159,13 +157,15 @@ public class ListaPelaton extends javax.swing.JFrame {
 
         jLabel5.setText("Subscription:");
 
-        subCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1 month", "3 months", "6 months", "1 year" }));
-
         dobField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 dobFieldActionPerformed(evt);
             }
         });
+
+        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(204, 0, 51));
+        jLabel6.setText("Use only CID to delete a customer");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -193,6 +193,9 @@ public class ListaPelaton extends javax.swing.JFrame {
                             .addComponent(dobField, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(subCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(31, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -217,7 +220,9 @@ public class ListaPelaton extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(subCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                .addComponent(jLabel6)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -228,10 +233,8 @@ public class ListaPelaton extends javax.swing.JFrame {
                 .addContainerGap(463, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(77, 77, 77))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(87, 87, 87))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(62, 62, 62))))
@@ -243,9 +246,7 @@ public class ListaPelaton extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addGap(76, 76, 76))
+                .addGap(101, 101, 101))
         );
 
         getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 100, 860, 400));
@@ -277,25 +278,24 @@ public class ListaPelaton extends javax.swing.JFrame {
        String cid = cidField.getText();
        String contact = contactField.getText();
        String dob = dobField.getText();
-       String sub = subCombo.getName();
+       int sub = subCombo.getSelectedIndex();
        
        try {
            Statement st = mysqlConnect.connect().createStatement();
            String sql = "call addCustomer('"+name+"',"+cid+",'"+contact+"','"+dob+"',"+sub+")";
            ResultSet rs = st.executeQuery(sql);
            JOptionPane.showMessageDialog(null,"Client added succesfully!");
+           nameField.setText("");
+           cidField.setText("");
+           contactField.setText("");
+           dobField.setText("");
+           subCombo.setSelectedIndex(0);
        }
        
        catch (Exception e) {
            JOptionPane.showMessageDialog(null,e);
        }
-       
-       nameField.setText("");
-       cidField.setText("");
-       contactField.setText("");
-       dobField.setText("");
-       subCombo.setSelectedIndex(0);       
-                    
+                                  
        mysqlConnect.disconnect();
     }//GEN-LAST:event_InsertButtonActionPerformed
 
@@ -307,18 +307,17 @@ public class ListaPelaton extends javax.swing.JFrame {
             String sql = "call deleteCustomer("+cid+")";
             ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Client deleted succesfully!");
+            nameField.setText("");
+            cidField.setText("");
+            contactField.setText("");
+            dobField.setText("");
+            subCombo.setSelectedIndex(0);
         }
         
         catch (Exception e) {
            JOptionPane.showMessageDialog(null,e);
        }
-        
-       nameField.setText("");
-       cidField.setText("");
-       contactField.setText("");
-       dobField.setText("");
-       subCombo.setSelectedIndex(0);
-        
+                
        mysqlConnect.disconnect();
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
@@ -354,6 +353,22 @@ public class ListaPelaton extends javax.swing.JFrame {
         mysqlConnect.disconnect();
     }//GEN-LAST:event_refreshButtonActionPerformed
 
+    // Combo Box for subscriptions fills dynamicly from database
+    private void dynamicComboBox() {
+        try {                  
+            Statement st = mysqlConnect.connect().createStatement();
+            String sql = "select Type from subscriptions";
+            ResultSet rs = st.executeQuery(sql);
+            
+            while (rs.next()) {
+                subCombo.addItem(rs.getString("Type"));
+            }
+        }
+        
+        catch (Exception e) {            
+        }
+    }
+               
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DeleteButton;
     private javax.swing.JButton InsertButton;

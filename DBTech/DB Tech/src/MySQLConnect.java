@@ -6,9 +6,9 @@ import java.util.Properties;
 public class MySQLConnect {
     // init database constants
     private static final String DATABASE_DRIVER = "com.mysql.cj.jdbc.Driver";
-    private static final String DATABASE_URL = "jdbc:mysql://localhost:3333/library?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/mysql";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "dyka3773";
+    private static final String PASSWORD = "";
     private static final String MAX_POOL = "250";
 
     //ssh -L3333 :/home/student/it/2018/it185200/mysql/run/mysql.sock it185200@users.iee.ihu.gr

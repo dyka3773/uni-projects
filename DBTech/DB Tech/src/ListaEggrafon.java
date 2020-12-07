@@ -66,7 +66,7 @@ public class ListaEggrafon extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 21, -1, 91));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 31, 530, 400));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -267,16 +267,15 @@ public class ListaEggrafon extends javax.swing.JFrame {
             String sql = "call addSub('"+Type+"',"+Duration+",'"+Price+"','"+Sub_ID+"')";
             ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Subscription type added succesfully!");
+            TypeField.setText("");
+            DurationField.setText("");
+            PriceField.setText("");
+            Sub_IDField.setText("");
         }
 
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
-
-        TypeField.setText("");
-        DurationField.setText("");
-        PriceField.setText("");
-        Sub_IDField.setText("");
         
         mysqlConnect.disconnect();
     }//GEN-LAST:event_InsertButtonActionPerformed
@@ -289,17 +288,16 @@ public class ListaEggrafon extends javax.swing.JFrame {
             String sql = "call deleteSub("+Sub_ID+")";
             ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Book deleted succesfully!");
+            TypeField.setText("");
+            DurationField.setText("");
+            PriceField.setText("");
+            Sub_IDField.setText("");
         }
 
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
-        
-        TypeField.setText("");
-        DurationField.setText("");
-        PriceField.setText("");
-        Sub_IDField.setText("");
-        
+
         mysqlConnect.disconnect();
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
@@ -314,7 +312,7 @@ public class ListaEggrafon extends javax.swing.JFrame {
             tblModel.setRowCount(0);
             
             while (rs.next()) {
-                String type = rs.getString("Types");
+                String type = rs.getString("Type");
                 String duration = rs.getString("Duration");
                 String price = rs.getString("Price");
                 String sub_ID = rs.getString("Sub_ID");          

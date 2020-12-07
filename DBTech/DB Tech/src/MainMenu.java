@@ -35,6 +35,7 @@ public class MainMenu extends javax.swing.JFrame {
         SubTypeButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Main Menu");
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setForeground(new java.awt.Color(0, 102, 153));

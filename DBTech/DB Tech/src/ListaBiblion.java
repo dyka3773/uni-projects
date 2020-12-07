@@ -50,6 +50,7 @@ public class ListaBiblion extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Λίστα Βιβλίων");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -70,7 +71,7 @@ public class ListaBiblion extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jTable2);
 
-        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 21, -1, 91));
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 31, 530, 400));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
 
@@ -226,7 +227,7 @@ public class ListaBiblion extends javax.swing.JFrame {
                     .addComponent(jLabel8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel6)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -246,7 +247,8 @@ public class ListaBiblion extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(94, 94, 94))
@@ -289,18 +291,17 @@ public class ListaBiblion extends javax.swing.JFrame {
             String sql = "call addBook('"+name+"',"+bid+",'"+genre+"','"+publisher+"','"+writer+"',"+quantity+")";
             ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Book added succesfully!");
+            nameField.setText("");
+            bidField.setText("");
+            genreField.setText("");
+            publisherField.setText("");
+            writerField.setText("");
+            quantityField.setText("");
         }
 
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
-
-        nameField.setText("");
-        bidField.setText("");
-        genreField.setText("");
-        publisherField.setText("");
-        writerField.setText("");
-        quantityField.setText("");
         
         mysqlConnect.disconnect();
     }//GEN-LAST:event_InsertButtonActionPerformed
@@ -313,19 +314,18 @@ public class ListaBiblion extends javax.swing.JFrame {
             String sql = "call deleteBook("+bid+")";
             ResultSet rs = st.executeQuery(sql);
             JOptionPane.showMessageDialog(null,"Book deleted succesfully!");
+            nameField.setText("");
+            bidField.setText("");
+            genreField.setText("");
+            publisherField.setText("");
+            writerField.setText("");
+            quantityField.setText("");
         }
 
         catch (Exception e) {
             JOptionPane.showMessageDialog(null,e);
         }
-        
-        nameField.setText("");
-        bidField.setText("");
-        genreField.setText("");
-        publisherField.setText("");
-        writerField.setText("");
-        quantityField.setText("");
-        
+                      
         mysqlConnect.disconnect();
     }//GEN-LAST:event_DeleteButtonActionPerformed
 
