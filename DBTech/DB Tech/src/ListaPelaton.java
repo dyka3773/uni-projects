@@ -357,11 +357,11 @@ public class ListaPelaton extends javax.swing.JFrame {
     private void dynamicComboBox() {
         try {                  
             Statement st = mysqlConnect.connect().createStatement();
-            String sql = "select Type from subscriptions";
+            String sql = "select Types from subscriptions";
             ResultSet rs = st.executeQuery(sql);
             
             while (rs.next()) {
-                subCombo.addItem(rs.getString("Type"));
+                subCombo.addItem(rs.getString("Types"));
             }
         }
         

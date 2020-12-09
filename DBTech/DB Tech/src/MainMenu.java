@@ -331,8 +331,8 @@ public class MainMenu extends javax.swing.JFrame {
         String [] s = new String[Command.size()];
 
         s[0] ="|"+ Command.get(Command.size()-1)+"|\t|"+RID.get(Command.size()-1)+"|\t|"+CID.get(Command.size()-1)+"|\t|"+
-                    BID.get(Command.size()-1)+"|\t|"+SID.get(Command.size()-1)+"|\t|"+Exp_date.get(Command.size()-1)+"|\t|"+
-                    StartDate.get(Command.size()-1)+"|\t|"+EndDate.get(Command.size()-1)+"|";
+                    BID.get(Command.size()-1)+"|\t|"+SID.get(Command.size()-1)+"|\t|"+Exp_date.get(Command.size()-1)+"|\t\t|"+
+                    StartDate.get(Command.size()-1)+"|\t\t|"+EndDate.get(Command.size()-1)+"|\n";
 
 
         for (int i=0; i<Command.size()-1; i++){
@@ -342,7 +342,7 @@ public class MainMenu extends javax.swing.JFrame {
         }
         String logs="\n";
         for (int i=0; i<s.length;i++){
-            logs +=s[i];
+            logs +=s[i] +"\n";
         }
         
         
