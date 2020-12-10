@@ -46,6 +46,7 @@ public class ListaEggrafon extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Λίστα Εγγραφών");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
@@ -312,7 +313,7 @@ public class ListaEggrafon extends javax.swing.JFrame {
             tblModel.setRowCount(0);
             
             while (rs.next()) {
-                String type = rs.getString("Type");
+                String type = rs.getString("Types");
                 String duration = rs.getString("Duration");
                 String price = rs.getString("Price");
                 String sub_ID = rs.getString("Sub_ID");          

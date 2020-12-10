@@ -272,7 +272,7 @@ public class Kratiseis extends javax.swing.JFrame {
 
         try {
             Statement st = mysqlConnect.connect().createStatement();
-            String sql = "call addReservation("+rid+","+cid+","+bid+","+sid+","+expdate+")";
+            String sql = "call addReservation("+rid+","+cid+","+bid+","+sid+",'"+expdate+"')";
             ResultSet rs = st.executeQuery(sql);           
             JOptionPane.showMessageDialog(null,"Reservation added succesfully!");
             ridField.setText("");
