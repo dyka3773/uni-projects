@@ -111,7 +111,7 @@ in onoma varchar(45)
 begin
         SELECT *
     FROM staff S
-    WHERE S.name= onoma;
+    WHERE S.name like CONCAT('%',onoma,'%');
 end$$
 
 
@@ -121,7 +121,7 @@ in onoma varchar(45)
 begin
         SELECT *
     FROM customers C
-    WHERE C.name= onoma;
+    WHERE C.name like CONCAT('%',onoma,'%');
 end$$
 
 
@@ -131,7 +131,7 @@ in onoma varchar(45)
 begin
         SELECT *
     FROM books B
-    WHERE B.name= onoma;
+    WHERE B.name like CONCAT('%',onoma,'%');
 end$$
 
 
@@ -201,6 +201,8 @@ CREATE procedure deleteReservation(IN riid INT(11))
 BEGIN
 
 DELETE FROM reservations WHERE RID=riid;
+UPDATE books B SET B.quantity = B.quantity +1
+WHERE B.bid = bid;
 
 END$$
 
