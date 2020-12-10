@@ -1,2 +1,0 @@
-/Game/assets/players/player_red.jpg
-/Game/assets/players/player_red.jpg
