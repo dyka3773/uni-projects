@@ -164,10 +164,11 @@ END$$
 CREATE procedure addReservation(IN rid int(11),IN cid INT(11), IN bid INT(11), IN sid INT(11), IN exp_date TIMESTAMP)
 BEGIN
 
-INSERT INTO reservations (RID,CID, BID, SID, Exp_date)
-VALUES (rid,cid, bid, sid, exp_date);
 UPDATE books B SET B.quantity = B.quantity -1
 WHERE B.bid = bid;
+INSERT INTO reservations (RID,CID, BID, SID, Exp_date)
+VALUES (rid,cid, bid, sid, exp_date);
+
 
 END$$
 
