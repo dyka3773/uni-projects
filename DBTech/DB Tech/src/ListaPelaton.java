@@ -437,6 +437,7 @@ public class ListaPelaton extends javax.swing.JFrame {
             while (rs.next()) {
                 subCombo.addItem(rs.getString("Types"));
             }
+            mysqlConnect.disconnect();
         }
         
         catch (Exception e) {            

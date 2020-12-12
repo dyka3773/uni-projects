@@ -15,7 +15,7 @@ CREATE TABLE `res_logs` (
   `StartDate` datetime NOT NULL -- DEFAULT CURRENT_TIMESTAMP
   ,
   `EndDate` datetime,
-  PRIMARY KEY (`CID`,`BID`,`Exp_date`,`StartDate`)
+  PRIMARY KEY (`Command` ,`RID`,`Exp_date`,`StartDate`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 

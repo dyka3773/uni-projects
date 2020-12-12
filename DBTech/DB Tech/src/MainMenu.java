@@ -345,7 +345,7 @@ public class MainMenu extends javax.swing.JFrame {
             logs +=s[i] +"\n";
         }
         
-        
+        mysqlConnect.disconnect();
         return logs;
     }
 
