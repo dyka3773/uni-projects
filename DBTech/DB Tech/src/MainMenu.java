@@ -297,7 +297,6 @@ public class MainMenu extends javax.swing.JFrame {
         ArrayList SID = new ArrayList();
         ArrayList Exp_date = new ArrayList();
         ArrayList StartDate = new ArrayList();
-        ArrayList EndDate = new ArrayList();
 
         try {
             Statement st = mysqlConnect.connect().createStatement();
@@ -312,7 +311,6 @@ public class MainMenu extends javax.swing.JFrame {
                 SID.add(rs.getString("SID"));
                 Exp_date.add(rs.getString("Exp_date"));
                 StartDate.add(rs.getString("StartDate"));
-                EndDate.add(rs.getString("EndDate"));
 
 
             }
@@ -325,20 +323,19 @@ public class MainMenu extends javax.swing.JFrame {
         BID.add("BID");
         SID.add("SID");
         Exp_date.add("Exp_date");
-        StartDate.add("StartDate");
-        EndDate.add("EndDate");
+        StartDate.add("LogDate");
 
         String [] s = new String[Command.size()];
 
         s[0] ="|"+ Command.get(Command.size()-1)+"|\t|"+RID.get(Command.size()-1)+"|\t|"+CID.get(Command.size()-1)+"|\t|"+
                     BID.get(Command.size()-1)+"|\t|"+SID.get(Command.size()-1)+"|\t|"+Exp_date.get(Command.size()-1)+"|\t\t|"+
-                    StartDate.get(Command.size()-1)+"|\t\t|"+EndDate.get(Command.size()-1)+"|\n";
+                    StartDate.get(Command.size()-1)+"|\n";
 
 
         for (int i=0; i<Command.size()-1; i++){
-            s[i+1] = Command.get(i)+"\t"+RID.get(i)+"\t"+CID.get(i)+"\t"+
+            s[i+1] = Command.get(i)+"\t\t"+RID.get(i)+"\t"+CID.get(i)+"\t"+
                     BID.get(i)+"\t"+SID.get(i)+"\t"+Exp_date.get(i)+"\t"+
-                    StartDate.get(i)+"\t"+EndDate.get(i);
+                    StartDate.get(i)+"\t";
         }
         String logs="\n";
         for (int i=0; i<s.length;i++){

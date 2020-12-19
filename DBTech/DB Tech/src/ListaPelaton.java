@@ -324,7 +324,7 @@ public class ListaPelaton extends javax.swing.JFrame {
        
        try {
            Statement st = mysqlConnect.connect().createStatement();
-           String sql = "call addCustomer('"+name+"',"+cid+",'"+contact+"','"+dob+"',"+sub+")";
+           String sql = "call addCustomer('"+name+"',"+cid+",'"+contact+"',"+dob+","+sub+")";
            ResultSet rs = st.executeQuery(sql);
            JOptionPane.showMessageDialog(null,"Client added succesfully!");
            nameField.setText("");

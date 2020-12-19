@@ -12,10 +12,9 @@ CREATE TABLE `res_logs` (
   `BID` int NOT NULL,
   `SID` int NOT NULL,
   Exp_date timestamp NOT NULL,
-  `StartDate` datetime NOT NULL -- DEFAULT CURRENT_TIMESTAMP
-  ,
-  `EndDate` datetime,
-  PRIMARY KEY (`Command` ,`RID`,`Exp_date`,`StartDate`)
+  `StartDate` datetime NOT NULL -- DEFAULT CURRENT_TIMESTAMP ,
+  -- `EndDate` datetime,
+  ,PRIMARY KEY (`Command` ,`RID`,`Exp_date`,`StartDate`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 
@@ -35,38 +34,21 @@ BEGIN
    SET N = now();
     
    INSERT INTO res_logs
-   VALUES ('Inserted',New.RID,New.CID, New.BID, New.SID, New.Exp_date, N, NULL);
+   VALUES ('Inserted',New.RID,New.CID, New.BID, New.SID, New.Exp_date, N);
 END$$
 
 
+
 -- /* Trigger for DELETE */
-CREATE TRIGGER HistoryTableDelete AFTER DELETE ON reservations 
+CREATE TRIGGER HistoryTableDelete 
+AFTER DELETE ON reservations 
 FOR EACH ROW 
 BEGIN
    DECLARE N DATETIME;
    SET N = now();
     
-   UPDATE res_logs
-      SET EndDate = N, Command = 'Deleted'
-    WHERE RID= OLD.RID and CID = OLD.CID and BID = OLD.BID and SID = OLD.SID
-      AND EndDate IS NULL;
-END$$
-
-
--- /* Trigger for UPDATE */
-CREATE TRIGGER HistoryTableUpdate AFTER UPDATE ON reservations 
-FOR EACH ROW 
-BEGIN
-   DECLARE N DATETIME;
-   SET N = now();
-
-
-   UPDATE res_logs
-      SET EndDate = N
-    WHERE RID= OLD.RID and CID = OLD.CID and BID = OLD.BID and SID = OLD.SID
-      AND EndDate IS NULL;
-
-
    INSERT INTO res_logs
-   VALUES ('Updated',New.RID,New.CID, New.BID, New.SID, New.Exp_date, N, NULL);
+   VALUES ('Deleted',OLD.RID,OLD.CID, OLD.BID, OLD.SID, OLD.Exp_date, N);
 END$$
+
+delimiter ;

@@ -1,4 +1,4 @@
 Αυτές είναι οι αλλαγές που έχουν γίνει στις κρατήσεις :
 
-|Command|	|RID|	|CID|	|BID|	|SID|	|Exp_date|		|StartDate|		|EndDate|
+|Command|	|RID|	|CID|	|BID|	|SID|	|Exp_date|		|LogDate|
 

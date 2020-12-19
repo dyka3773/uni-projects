@@ -11,7 +11,7 @@ public class MySQLConnect {
     private static final String PASSWORD = "dyka3773";
     private static final String MAX_POOL = "250";
 
-    //ssh -L3333 :/home/student/it/2018/it185200/mysql/run/mysql.sock it185200@users.iee.ihu.gr
+    //ssh -L3333:/home/student/it/2018/it185200/mysql/run/mysql.sock it185200@users.iee.ihu.gr
     //password : It185200@197358426
     
     // init connection object
