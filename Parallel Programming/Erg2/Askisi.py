@@ -8,14 +8,16 @@ def knowWhereToGo(i):       # Didn't know how else to index the files
 
 def downloadThisURL(url, i):
     j = knowWhereToGo(i)
-    
-    fid = gimme.urlopen(url)
-    webpage = str(fid.read())
-    
+    try:
+        fid = gimme.urlopen(url)
+        webpage = str(fid.read())
+    except:
+        webpage = "Trouble connecting to Server. Sorry..."
+        
     s = "\n--------------------------------------------------------------------\n"
     st = s+'\n{i}.\t'.format(i=i)+url+s
     
-    f = open('./Webpages/pages{firstIndex}-{lastIndex}.txt'.format(firstIndex=j, lastIndex=j+9),'a')
+    f = open('./Webpages/pages{firstIndex}-{lastIndex}.txt'.format(firstIndex=j, lastIndex=j+9),'a') # page files have to be deleted in every execution of the program yet
     f.write(st)
     f.write(webpage)
     f.close()
