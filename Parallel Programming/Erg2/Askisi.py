@@ -54,7 +54,11 @@ def main(N):
             threadIndex+=1
      
     for k in range(N):
-        th[k].join()
+        th[k].join()                                
+        
+        """If I delete this everything works perfectly but if I cannot join the 
+        threads I won't be able to perform the speed tests """
+    
     print(N,'-threaded downloading has finished')
             
             
