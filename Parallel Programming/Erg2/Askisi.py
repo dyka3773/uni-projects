@@ -23,12 +23,8 @@ def downloadThisURL(url, i, arg,N):
     f.write(st)
     f.write(webpage)
     f.close()
-    print('Writing in webpages_with_{n}_threads'.format(n=N) )
-    print('num of link = ',i,'\tnum of thread = ',arg,'\tthis url: ',url)
-
-def createDownThread(link,i,threadIndex, N):
-    download_thread = threading.Thread(target=downloadThisURL, args=(link,i,threadIndex, N))
-    return download_thread
+    #print('Writing in webpages_with_{n}_threads'.format(n=N) )
+    #print('num of link = ',i,'\tnum of thread = ',arg,'\tthis url: ',url)
 
 
 def main(N):
@@ -46,17 +42,20 @@ def main(N):
     threadIndex=0
     
     for k in range(N):
-        th.append(createDownThread)
+        th.append(threading.Thread)
         
-    
     for url in urls:
-        th[threadIndex](url,i,threadIndex, N).start()
+        th[threadIndex](target=downloadThisURL, args=(url,i,threadIndex, N)).start()
         #downloadThisURL(url, i)
         i+=1
         if (threadIndex==N-1):
             threadIndex=0
         else:
             threadIndex+=1
+     
+    for k in range(N):
+        th[k].join()
+    print(N,'-threaded downloading has finished')
             
             
 N={1,2,4,8,12,16,20,32,64}  
@@ -65,3 +64,4 @@ for n in N:
     if not os.path.exists('./webpages_with_{n}_threads'.format(n=n)):
         os.mkdir('./webpages_with_{n}_threads'.format(n=n))
     main(n)
+
