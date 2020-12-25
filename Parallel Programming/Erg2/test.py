@@ -8,7 +8,7 @@ def knowWhereToGo(i):       # Didn't know how else to index the files
     i=i*10
     return i
 
-def downloadThisURL(url, i, arg):
+def downloadThisURL(url, i):
     j = knowWhereToGo(i)
     try:
         fid = gimme.urlopen(url)
@@ -17,18 +17,24 @@ def downloadThisURL(url, i, arg):
         webpage = "Trouble connecting to Server. Sorry for the inconvinience..."
         
     s = "\n--------------------------------------------------------------------\n"
-    st = s+'\n{i}.\t'.format(i=i)+url+'\nThread who wrote this {thread}'.format(thread=arg)+s
+    st = s+'\n{i}.\t'.format(i=i)+url+s
     
     f = open('./Webpages/pages{firstIndex}-{lastIndex}.txt'.format(firstIndex=j, lastIndex=j+9),'a')
     f.write(st)
     f.write(webpage)
     f.close()
-    print(i,'   ',arg,'   ',url)
 
-def createDownThread(link,i,threadIndex):
-    download_thread = threading.Thread(target=downloadThisURL, args=(link,i,threadIndex))
+def createDownThread(link,i):
+    download_thread = threading.Thread(target=downloadThisURL, args=(link,i))
     download_thread.start()
-    return download_thread
+
+def startThreads(urls):
+    for url in urls:
+        #for k in range(N):
+        #    createDownThread(url,i)
+        print(url)
+        downloadThisURL(url, i)
+        i+=1
 
 def main():
     os.chdir('Webpages')
@@ -39,26 +45,13 @@ def main():
     
     file = open('urls.txt', 'r')
     urls = file.readlines()
+    global i
     i=0
     
-    #N={1,2,4,8,12,16,20,32,64}
-    N=64
-    th = []
-    threadIndex=0
-    
-    for k in range(N):
-        th.append(createDownThread)
-        
-    
-    for url in urls:
-        th[threadIndex](url,i,threadIndex)
-        #downloadThisURL(url, i)
-        i+=1
-        if (threadIndex==N-1):
-            threadIndex=0
-        else:
-            threadIndex+=1
-    
+    N={1,2,4,8,12,16,20,32,64}
+    N=2
+
+
 main()
 
     
