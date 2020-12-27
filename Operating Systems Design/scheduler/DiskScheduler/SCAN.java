@@ -1,15 +1,16 @@
-package Scheduler;
+package Scheduler.DiskScheduler;
 
+import Scheduler.SimProcess;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class SCAN {
-    public static final long DISK_SIZE = 2097152L; //That's 20MB in bytes.
+    public static final long DISK_SIZE = 2097152L; //That's 2MB in bytes.
     public static final long MBYTES = 1048576L;
     private ArrayList<Long> seekSequence;
     private Long seekOps;
 
-    enum Direction{
+    public enum Direction{
         LEFT,
         RIGHT
     }
@@ -19,7 +20,7 @@ public class SCAN {
         long distance, currentTrack;
         ArrayList<Long> left = new ArrayList(), right = new ArrayList();
         this.seekSequence = new ArrayList();
-        long head = this.getSize()/2;
+        long head = DISK_SIZE/2;
         
         if(direction == Direction.LEFT)
             left.add(0L);

@@ -1,4 +1,5 @@
-package Scheduler;
+package Scheduler.ProcessScheduler;
+import Scheduler.SimProcess;
 import java.util.ArrayList;
 
 

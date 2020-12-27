@@ -1,4 +1,5 @@
-package Scheduler;
+package Scheduler.DiskScheduler;
+import Scheduler.SimProcess;
 import java.util.ArrayList;
 
 public class FIFO {

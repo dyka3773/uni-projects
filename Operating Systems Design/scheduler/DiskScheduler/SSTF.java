@@ -1,4 +1,4 @@
-package Scheduler;
+package Scheduler.DiskScheduler;
 
 import java.util.Scanner;
 
