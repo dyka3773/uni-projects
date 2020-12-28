@@ -4,8 +4,8 @@
 /DBTech/DB Tech/nbproject/private/
 /DBTech/DB Tech
 /DBTech/DB Tech/dist/
-/Operating Systems Design/scheduler/nbproject/private/
-/Operating Systems Design/scheduler/build/
-/Operating Systems Design/scheduler/dist/
+/Operating Systems Design/scheduler/nbproject/private/*
+/Operating Systems Design/scheduler/build/*
+/Operating Systems Design/scheduler/dist/*
 MySQLConnect.java
 /Parallel Programming/Erg2/webpages_with_*_threads/
