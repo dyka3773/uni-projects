@@ -19,31 +19,35 @@ public class RoundRobin {
     private int n;
 
                       //***Priority Queue Elements are ArrayLists***
-    public RoundRobin(ArrayList<SimProcess> processList) {  
-        this.processList = processList;
-        n = processList.size();
-        //start();
+    public RoundRobin() {
     }
     
-    public ArrayList<SimProcess> start(){
-        
+    public ArrayList<SimProcess> start(ArrayList<SimProcess> sortedQueue){
+        this.processList = sortedQueue;
+        this.n = processList.size();
         int arrival_time[] = new int[n];
         String process[] = new String[n];
         int brusttime[] = new int[n];
         
         int index =0;
+        ArrayList<SimProcess> execQueue = new ArrayList();
         ArrayList<SimProcess> BlockedQueue = new ArrayList<SimProcess>();
         for(SimProcess i : processList){
             if (i.needsIO()){
                 BlockedQueue.add(i);
                 continue;
             }
+            execQueue.add(i);
             arrival_time[index] = i.getArrivalTime();
             brusttime[index] = i.getBurstTime();
             process[index] = i.getName();
         }
         
-        findAvgTime(process,n,brusttime,quantum,arrival_time);
+        System.out.println("Round Robin's Execution Queue: ");
+        for(SimProcess i: execQueue)
+            System.out.println(i.toString());
+        
+        //findAvgTime(process,n,brusttime,quantum,arrival_time);
         
         return BlockedQueue;
     }

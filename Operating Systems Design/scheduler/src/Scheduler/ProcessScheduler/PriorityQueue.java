@@ -1,6 +1,8 @@
 package Scheduler.ProcessScheduler;
+import Scheduler.DiskScheduler.SCAN;
 import Scheduler.SimProcess;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class PriorityQueue {
@@ -16,7 +18,25 @@ public class PriorityQueue {
     }
     
     public void start() {
-        sortQueuesByPriority();
+        RoundRobin scheduler = new RoundRobin();
+        for(int i=0; i<SimProcess.PRIORITIES; i++) {
+            sortQueuesByPriority();
+            
+            System.out.println("Round Robin's Current Process Queue: \n" + processesQueue.get(i).toString());
+            blockedQueue = scheduler.start(processesQueue.get(i));
+            System.out.println("Round Robin's Blocked Queue:\n" + blockedQueue.toString());
+            
+            SCAN diskScheduler = new SCAN(blockedQueue, SCAN.Direction.LEFT);
+            System.out.println("Disk sequence:\n" + diskScheduler.getSeekSequence());
+            
+            blockedQueue = scheduler.start(blockedQueue);
+            System.out.println("Round Robin's Blocked Queue:\n" + blockedQueue.toString());
+            
+            System.out.print("Paused...<Press ENTER>\n");
+            Scanner sc = new Scanner(System.in);
+            String temp = sc.nextLine();
+        }
+        
     }
     
     private void sortQueuesByPriority() {
@@ -28,10 +48,6 @@ public class PriorityQueue {
             System.exit(1);
         }
         for(SimProcess p : memory) {
-            if (p.needsIO()) {
-                blockedQueue.add(p);
-                break;
-            }
             switch (p.getPriority()) {
                 case 0: processesQueue.get(0).add(p);
                         break;

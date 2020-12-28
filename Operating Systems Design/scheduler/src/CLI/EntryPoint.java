@@ -11,10 +11,9 @@ public class EntryPoint {
         ArrayList<SimProcess> memory = new ArrayList();
         
         //Create some processes
-        for(int i=1; i<101; i++)
+        for(int i=1; i<31; i++)
             memory.add(new SimProcess("P"+i));
         PriorityQueue pq = new PriorityQueue(memory);
         pq.start();
-        pq.printProcessQueues();
     }
 }

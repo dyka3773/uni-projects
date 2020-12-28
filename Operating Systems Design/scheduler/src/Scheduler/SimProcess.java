@@ -62,6 +62,16 @@ public class SimProcess {
         return (trackAddressHex + Integer.toHexString((int)trackAddress));
     }
     
+    public String getIO() {
+        if (this.needsIO())
+            return "True";
+        else return "False";
+    }
+    
+    public void setIO(boolean io) {
+        this.needsIO = io;
+    }
+    
     public boolean needsIO() {
         return needsIO;
     }
