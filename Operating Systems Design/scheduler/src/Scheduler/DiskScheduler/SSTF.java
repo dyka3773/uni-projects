@@ -6,19 +6,28 @@ import java.util.Scanner;
  *
  * @author Captain Nero
  */
-public class SSTF 
-    {
-    private int distance;
+public class SSTF {
+    // Attributes used for the algorithm
+    private long distance;
     private boolean accessed;
-       
-    SSTF(){}
-       
-    SSTF(int distance, boolean accessed)
-    {
-        distance = this.distance;
-        accessed = this.accessed;
+   
+    // Attributes used when calling the algorithm
+    private int arr[];
+    private int head;
+
+    public SSTF(int[] arr) {
+        this.arr = arr;
+        head = (int)SCAN.DISK_SIZE/2;
+        //start();
     }
 
+    public SSTF() {
+    }
+    
+    public void start() {
+        shortestSeekTimeFirst(arr, head);
+    }
+        
     public int setDistance() {
             return 0;
     }
@@ -35,7 +44,8 @@ public class SSTF
     
     public int findMin(SSTF diff[]) 
     { 
-        int index = -1, minimum = Integer.MAX_VALUE;   
+        int index = -1;
+        long minimum = Long.MAX_VALUE;   
         for (int i = 0; i < diff.length; i++) 
         { 
             if (!diff[i].accessed && minimum > diff[i].distance) 
@@ -88,13 +98,4 @@ public class SSTF
             System.out.println(seek_sequence[i]); 
     }
     
-        public static void main(String[] args) {
-        Scanner console = new Scanner(System.in);
-        SSTF s = new SSTF();
-        int arr[] = { 176, 79, 34, 60, 92, 11, 41, 114 };
-        System.out.print("Give the Head of the Array: ");
-        int head = console.nextInt();
-        System.out.println();
-        s.shortestSeekTimeFirst(arr, head);
-    }
 }
