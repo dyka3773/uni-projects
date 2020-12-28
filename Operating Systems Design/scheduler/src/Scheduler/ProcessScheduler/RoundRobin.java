@@ -25,15 +25,19 @@ public class RoundRobin {
         //start();
     }
     
-    public void start(){
+    public ArrayList<SimProcess> start(){
         
         int arrival_time[] = new int[n];
         String process[] = new String[n];
         int brusttime[] = new int[n];
         
         int index =0;
-        
+        ArrayList<SimProcess> BlockedQueue = new ArrayList<SimProcess>();
         for(SimProcess i : processList){
+            if (i.needsIO()){
+                BlockedQueue.add(i);
+                continue;
+            }
             arrival_time[index] = i.getArrivalTime();
             brusttime[index] = i.getBurstTime();
             process[index] = i.getName();
@@ -41,6 +45,7 @@ public class RoundRobin {
         
         findAvgTime(process,n,brusttime,quantum,arrival_time);
         
+        return BlockedQueue;
     }
     
     public static void findWaitingTime(String process[],int wt_time[],int n ,int brusttime[],int quantum,int completion_time[],int arrival_time[]){
