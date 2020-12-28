@@ -10,7 +10,9 @@ public class SimProcess {
     private int priority;
     private long size; // Size in bytes
     private long trackAddress;
+    private String trackAddressHex = "0x0";
     private boolean needsIO = false;
+    public static final int PRIORITIES = 5;
 
     public SimProcess(String name, int arrivalTime, int burstTime, int priority,
             long size, long trackAddress) {
@@ -26,7 +28,7 @@ public class SimProcess {
         this.name = name;
         this.arrivalTime = (int)(Math.random()* 50);
         this.burstTime = (int)(Math.random()* 50);
-        this.priority = (int)(Math.random()* 5);
+        this.priority = (int)(Math.random()* SimProcess.PRIORITIES);
         this.size = (long)(Math.random()* SCAN.MBYTES);
         this.trackAddress = (int)(Math.random()* SCAN.DISK_SIZE);
         this.needsIO = new Random().nextBoolean();
@@ -61,6 +63,9 @@ public class SimProcess {
         return "\nProcess:" + "\n\tPID: " + name + "\n\tArrival Time: " + arrivalTime 
                 + "\n\tBurst Time: " + burstTime + " ms\n\tPriority: " + priority 
                 + "\n\tSize: " + size + " Bytes"
-                + "\n\tDisk Address: " + trackAddress + '\n';
+                + "\n\tDisk Address: " + trackAddress
+                + "\n\tDisk Address (in Hex): " + trackAddressHex 
+                + Integer.toHexString((int)trackAddress )
+                + "\n\tNeeds IO: " + needsIO + '\n';
     }
 }
