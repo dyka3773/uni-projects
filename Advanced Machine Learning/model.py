@@ -8,9 +8,10 @@ Original file is located at
 
 #TO DO
 
-- **change batch_size in cell [23]**
-- **change epochs in cell [23]**
-- import all train images and train
+- ~~**change batch_size in cell [23]**~~
+- ~~**change epochs in cell [23]**~~
+- ~~**change importing image in cell [5]**~~
+- ~~import all train images and train~~
 - import test images and fit
 - export csv with test image results
 """
@@ -75,49 +76,58 @@ def resize(image_pil, width, height):
     background.paste(image_resize, offset)
     return background.convert('RGB')
 
-labels= pandas.read_csv('/content/drive/MyDrive/Xrays/labels_train.csv', header=None, usecols=[1], names=['file_name', 'class_id'])
+data= pandas.read_csv('/content/drive/MyDrive/Xrays/labels_train.csv', header=None, usecols=[0,1], names=['file_name', 'class_id'])
 #print(labels[1:])
+labels = data['class_id'].values
+labels = labels[1:]
+img_name = data['file_name'].values
+img_name = img_name[1:]
 
-data_labels = np.array(labels[1:])
-print(data_labels.shape)
+#data_labels = np.array(data[1:])
+#print(data_labels.shape)   
 
-#img = mpimg.imread('/content/drive/MyDrive/Xrays/train_images/img_1002194571005371555.jpg')
-#width,height = img.shape
+labels = np.array(labels)
+print(labels.shape)   
+print(labels)
 
-img = Image.open('/content/drive/MyDrive/Xrays/train_images/img_4358977458434011046.jpg')
-#width,height = img.size
-#print(img)
-#print('\n\n',width,height)
-img = resize(img, 1080, 720)
-img = np.asarray(img)
-#print(img)
-#img = Image.fromarray(img)
-#display(img)
+train_imgs = []
+for i in range(img_name.size):
+  img = Image.open('/content/drive/MyDrive/Xrays/train_images/{train_image}'.format(train_image=img_name[i]))
+  train_imgs.append(img)
 
-img1 = Image.open('/content/drive/MyDrive/Xrays/train_images/img_5224016757187192130.jpg')
-img1 = resize(img1, 1080, 720)
-img1 = np.asarray(img1)
+print("Loaded Training data")
 
-data_labels = [[1]]
-data_labels = np.array(data_labels)
-data_labels_test = [[2]]
-data_labels_test = np.array(data_labels_test)
+test_imgs_paths = os.listdir('/content/drive/MyDrive/Xrays/test_images/')
+test_imgs = []
+for path in test_imgs_paths:
+  img = Image.open('/content/drive/MyDrive/Xrays/test_images/{test_image}'.format(test_image=path))
+  test_imgs.append(img)
 
-train_data = []
-train_data.append(img)
+print("Loaded Test data")
 
-train_data = np.array(train_data, dtype="float32")/255.0
+for i in range(img_name.size):
+  train_imgs[i]= resize(train_imgs[i], 100, 100)
 
-test_data = []
-test_data.append(img1)
+for i in range(img_name.size):
+  train_imgs[i]= np.asarray(train_imgs[i])
 
-test_data = np.array(test_data, dtype="float32")/255.0
+train_imgs = np.array(train_imgs, dtype="float32")/255.0
+
+print(train_imgs.shape)
+
+for i in range(len(test_imgs_paths)):
+  test_imgs[i]= resize(test_imgs[i], 100, 100)
+  test_imgs[i]= np.asarray(test_imgs[i])
+
+test_imgs = np.array(test_imgs, dtype="float32")/255.0
+
+print(test_imgs.shape)
 
 depth = 20
 
-x_train = train_data
-y_train = data_labels
-x_test = test_data
+x_train = train_imgs
+y_train = labels
+x_test = test_imgs
 y_test = data_labels_test
 num_classes = 3
 
@@ -269,8 +279,8 @@ model.summary()
 plot_model(model, show_shapes=True, dpi=48)
 
 # Training parameters
-batch_size = 1  # orig paper trained all networks with batch_size=128
-epochs = 20
+batch_size = 64  # orig paper trained all networks with batch_size=128
+epochs = 200
 
 # Prepare model model saving directory.
 model_name = 'resnet20-e{epoch:04d}-loss{loss:.3f}-acc{acc:.3f}-valloss{val_loss:.3f}-valacc{val_acc:.3f}.h5'
@@ -344,7 +354,6 @@ history = model.fit(datagen.flow(x_train, t_train, batch_size=batch_size),
                     validation_data=(x_test, t_test), epochs=epochs, verbose=0, 
                     workers=4, steps_per_epoch = int(x_train.shape[0]/batch_size), 
                     callbacks=[lr_reducer, lr_scheduler, MyCallback(), checkpoint])
-
 
 # Score trained model.
 scores = model.evaluate(x_test, t_test, verbose=1)
