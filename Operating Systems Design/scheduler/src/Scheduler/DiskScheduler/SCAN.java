@@ -97,8 +97,8 @@ public class SCAN {
                 + "\n\tSeek Operations: " + seekOps + '\n';
     }
     
-    public void printHeadPosition() {
-        System.out.println(this.headPosition);
+    public String getHeadPosition() {
+        return Integer.toString((int)this.headPosition);
     }
     
 }
