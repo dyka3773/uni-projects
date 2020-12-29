@@ -78,7 +78,8 @@ public class SimProcess {
 
     @Override
     public String toString() {
-        return "\nProcess:" + "\n\tPID: " + name + "\n\tArrival Time: " + arrivalTime 
+        return "\nProcess:" + "\n\tPID: " + name 
+                + "\n\tArrival Time: " + arrivalTime + " tick"
                 + "\n\tBurst Time: " + burstTime + " ms\n\tPriority: " + priority 
                 + "\n\tSize: " + size + " Bytes"
                 + "\n\tDisk Address: " + trackAddress

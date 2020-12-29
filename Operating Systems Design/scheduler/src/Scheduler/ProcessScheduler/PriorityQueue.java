@@ -1,4 +1,5 @@
 package Scheduler.ProcessScheduler;
+import Scheduler.DiskScheduler.CSCAN;
 import Scheduler.DiskScheduler.SCAN;
 import Scheduler.SimProcess;
 import java.util.ArrayList;
@@ -26,13 +27,14 @@ public class PriorityQueue {
             blockedQueue = scheduler.start(processesQueue.get(i));
             System.out.println("Round Robin's Blocked Queue:\n" + blockedQueue.toString());
             
-            SCAN diskScheduler = new SCAN(blockedQueue, SCAN.Direction.LEFT);
-            System.out.println("Disk sequence:\n" + diskScheduler.getSeekSequence());
+            CSCAN diskScheduler = new CSCAN(blockedQueue);
+            System.out.println("Disk head position: "+ diskScheduler.getHeadPosition() 
+                    + "\nDisk sequence:\n" + diskScheduler.getSeekSequence());
             
             blockedQueue = scheduler.start(blockedQueue);
             System.out.println("Round Robin's Blocked Queue:\n" + blockedQueue.toString());
             
-            System.out.print("Paused...<Press ENTER>\n");
+            System.out.print("<Press ENTER>\n");
             Scanner sc = new Scanner(System.in);
             String temp = sc.nextLine();
         }
