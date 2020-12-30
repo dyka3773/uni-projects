@@ -1,6 +1,11 @@
 package Scheduler.ProcessScheduler;
+import Scheduler.DiskScheduler.CSCAN;
+import Scheduler.DiskScheduler.FIFO;
+import Scheduler.DiskScheduler.SCAN;
+import Scheduler.DiskScheduler.SSTF;
 import Scheduler.SimProcess;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class PriorityQueue {
@@ -16,7 +21,50 @@ public class PriorityQueue {
     }
     
     public void start() {
-        sortQueuesByPriority();
+        RoundRobin scheduler = new RoundRobin();
+        int diskSelection = 0;
+        System.out.print("Selection:\n1.\tSCAN\n2.\tC-SCAN\n3.\tFIFO\n4.\tSSTF\n"
+                + "Your selection: ");
+        do {
+            Scanner input = new Scanner(System.in);
+            diskSelection = input.nextInt();
+        }while(diskSelection < 1 || diskSelection > 4);
+        
+        for(int i=0; i<SimProcess.PRIORITIES; i++) {
+            sortQueuesByPriority();
+            
+            System.out.println("Round Robin's Current Process Queue: \n" + processesQueue.get(i).toString());
+            blockedQueue = scheduler.start(processesQueue.get(i));
+            System.out.println("Round Robin's Blocked Queue:\n" + blockedQueue.toString());
+            
+            switch(diskSelection) {
+                case 1: 
+                    SCAN SCANScheduler = new SCAN(blockedQueue, SCAN.Direction.LEFT);
+                    System.out.println("Disk head position: "+ SCANScheduler.getHeadPosition()
+                    + "\nDisk sequence:\n" + SCANScheduler.getSeekSequence());
+                    break;
+                case 2: CSCAN CSCANScheduler = new CSCAN(blockedQueue);
+                        System.out.println("Disk head position: "+ CSCANScheduler.getHeadPosition() 
+                        + "\nDisk sequence:\n" + CSCANScheduler.getSeekSequence());
+                        break;
+                //case 3: FIFO FIFOScheduler = new FIFO(blockedQueue);
+                //        System.out.println("Disk head position: "+ FIFOScheduler.getHeadPosition() 
+                //        + "\nDisk sequence:\n" + CSCANScheduler.getSeekSequence());
+                //        break;
+                //case 4: SSTF SSTFScheduler = new SSTF();
+                //        System.out.println("Disk head position: "+ SSTFScheduler.getHeadPosition() 
+                //        + "\nDisk sequence:\n" + CSCANScheduler.getSeekSequence());
+                //        break;
+            }
+            
+            blockedQueue = scheduler.start(blockedQueue);
+            System.out.println("Round Robin's Blocked Queue:\n" + blockedQueue.toString());
+            
+            System.out.print("<Press ENTER>\n");
+            Scanner sc = new Scanner(System.in);
+            String temp = sc.nextLine();
+        }
+        
     }
     
     private void sortQueuesByPriority() {
@@ -28,10 +76,6 @@ public class PriorityQueue {
             System.exit(1);
         }
         for(SimProcess p : memory) {
-            if (p.needsIO()) {
-                blockedQueue.add(p);
-                break;
-            }
             switch (p.getPriority()) {
                 case 0: processesQueue.get(0).add(p);
                         break;

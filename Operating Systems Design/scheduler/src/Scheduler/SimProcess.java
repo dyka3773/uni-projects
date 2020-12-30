@@ -62,13 +62,24 @@ public class SimProcess {
         return (trackAddressHex + Integer.toHexString((int)trackAddress));
     }
     
+    public String getIO() {
+        if (this.needsIO())
+            return "True";
+        else return "False";
+    }
+    
+    public void setIO(boolean io) {
+        this.needsIO = io;
+    }
+    
     public boolean needsIO() {
         return needsIO;
     }
 
     @Override
     public String toString() {
-        return "\nProcess:" + "\n\tPID: " + name + "\n\tArrival Time: " + arrivalTime 
+        return "\nProcess:" + "\n\tPID: " + name 
+                + "\n\tArrival Time: " + arrivalTime + " tick"
                 + "\n\tBurst Time: " + burstTime + " ms\n\tPriority: " + priority 
                 + "\n\tSize: " + size + " Bytes"
                 + "\n\tDisk Address: " + trackAddress
