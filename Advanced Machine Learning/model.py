@@ -76,6 +76,8 @@ def resize(image_pil, width, height):
     background.paste(image_resize, offset)
     return background.convert('RGB')
 
+width = height = 256
+
 data= pandas.read_csv('/content/drive/MyDrive/Xrays/labels_train.csv', header=None, usecols=[0,1], names=['file_name', 'class_id'])
 #print(labels[1:])
 labels = data['class_id'].values
@@ -97,16 +99,8 @@ for i in range(img_name.size):
 
 print("Loaded Training data")
 
-test_imgs_paths = os.listdir('/content/drive/MyDrive/Xrays/test_images/')
-test_imgs = []
-for path in test_imgs_paths:
-  img = Image.open('/content/drive/MyDrive/Xrays/test_images/{test_image}'.format(test_image=path))
-  test_imgs.append(img)
-
-print("Loaded Test data")
-
 for i in range(img_name.size):
-  train_imgs[i]= resize(train_imgs[i], 100, 100)
+  train_imgs[i]= resize(train_imgs[i], width, height)
 
 for i in range(img_name.size):
   train_imgs[i]= np.asarray(train_imgs[i])
@@ -115,20 +109,12 @@ train_imgs = np.array(train_imgs, dtype="float32")/255.0
 
 print(train_imgs.shape)
 
-for i in range(len(test_imgs_paths)):
-  test_imgs[i]= resize(test_imgs[i], 100, 100)
-  test_imgs[i]= np.asarray(test_imgs[i])
+depth = 44
 
-test_imgs = np.array(test_imgs, dtype="float32")/255.0
-
-print(test_imgs.shape)
-
-depth = 20
-
-x_train = train_imgs
-y_train = labels
-x_test = test_imgs
-y_test = data_labels_test
+x_train = train_imgs[:2803]
+y_train = labels[:2803]
+x_test = train_imgs[2803:]
+y_test = labels[2803:]
 num_classes = 3
 
 #datagen.flow(x_train, t_train, batch_size=batch_size), 
@@ -150,7 +136,11 @@ t_test = keras.utils.to_categorical(y_test, num_classes)
 print('y_train (labels) shape:', y_train.shape)
 print('t_train (one-hot rep) shape:', t_train.shape)
 
+print(y_test)
+print(t_test)
+print(y_train)
 print(t_train)
+print(input_shape)
 
 def resnet_layer(inputs,
                  num_filters=16,
@@ -283,7 +273,7 @@ batch_size = 64  # orig paper trained all networks with batch_size=128
 epochs = 200
 
 # Prepare model model saving directory.
-model_name = 'resnet20-e{epoch:04d}-loss{loss:.3f}-acc{acc:.3f}-valloss{val_loss:.3f}-valacc{val_acc:.3f}.h5'
+model_name = 'resnet44-e{epoch:04d}-loss{loss:.3f}-acc{acc:.3f}-valloss{val_loss:.3f}-valacc{val_acc:.3f}.h5'
 if not os.path.isdir(save_dir):
     os.makedirs(save_dir)
 filepath = os.path.join(save_dir, model_name)
@@ -367,3 +357,37 @@ plt.xlabel('Epochs')
 plt.ylabel('%')
 plt.legend(('acc','val-acc'))
 plt.grid(b=True)
+
+test_imgs_paths = os.listdir('/content/drive/MyDrive/Xrays/test_images/')
+test_imgs = []
+for path in test_imgs_paths:
+  img = Image.open('/content/drive/MyDrive/Xrays/test_images/{test_image}'.format(test_image=path))
+  test_imgs.append(img)
+
+print("Loaded Test data")
+
+for i in range(len(test_imgs_paths)):
+  test_imgs[i]= resize(test_imgs[i], width, height)
+  test_imgs[i]= np.asarray(test_imgs[i])
+
+test_imgs = np.array(test_imgs, dtype="float32")/255.0
+
+print(test_imgs.shape)
+
+def getMaxIndex(list):
+  maxim= max(list)
+  for i in range(len(list)):
+    if maxim == list[i]:
+      return i
+
+import csv
+
+with open('submission_resnet44_256p_batch64.csv', mode='w') as submission_file:
+    submission_file = csv.writer(submission_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+    submission_file.writerow(['file_name', 'class_id'])
+    j=0
+    for i  in predictions:
+      #print("image : {img} \t\tclass : {i}".format(img=test_imgs_paths[j], i=getMaxIndex(i)))
+      submission_file.writerow(['{img}'.format(img=test_imgs_paths[j]), '{i}'.format(i=getMaxIndex(i))])
+      j+=1
