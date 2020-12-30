@@ -19,6 +19,7 @@ Original file is located at
 - try dropouts
 - try reducing the complexity
 - try AvgPooling
+- try managing memory with `del`
 """
 
 from google.colab import drive
@@ -81,7 +82,7 @@ def resize(image_pil, width, height):
     background.paste(image_resize, offset)
     return background.convert('RGB')
 
-width = height = 256
+width = height = 270
 
 data= pandas.read_csv('/content/drive/MyDrive/Xrays/labels_train.csv', header=None, usecols=[0,1], names=['file_name', 'class_id'])
 #print(labels[1:])
@@ -114,7 +115,7 @@ train_imgs = np.array(train_imgs, dtype="float32")/255.0
 
 print(train_imgs.shape)
 
-depth = 44
+depth = 8
 
 #x_train = train_imgs[:2803]
 #y_train = labels[:2803]
@@ -124,7 +125,7 @@ num_classes = 3
 
 from sklearn.model_selection import train_test_split
 
-x_train, x_test, y_train, y_test = train_test_split(train_imgs,labels, test_size=0.2)
+x_train, x_test, y_train, y_test = train_test_split(train_imgs,labels, test_size=0.20)
 
 input_shape = x_train.shape[1:]
 
@@ -141,6 +142,15 @@ t_test = keras.utils.to_categorical(y_test, num_classes)
 
 print('y_train (labels) shape:', y_train.shape)
 print('t_train (one-hot rep) shape:', t_train.shape)
+
+train_imgs = []
+train_imgs = None
+del train_imgs
+labels = []
+labels = None
+del labels
+
+#trying to release memory
 
 print(y_test)
 print(t_test)
@@ -275,7 +285,7 @@ model.summary()
 plot_model(model, show_shapes=True, dpi=48)
 
 # Training parameters
-batch_size = 64  # orig paper trained all networks with batch_size=128
+batch_size = 32  # orig paper trained all networks with batch_size=128
 epochs = 200
 
 # Prepare model model saving directory.
@@ -388,7 +398,7 @@ def getMaxIndex(list):
 
 import csv
 
-with open('submission_resnet44_256p_batch64.csv', mode='w') as submission_file:
+with open('submission_300p_batch64.csv', mode='w') as submission_file:
     submission_file = csv.writer(submission_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     submission_file.writerow(['file_name', 'class_id'])
