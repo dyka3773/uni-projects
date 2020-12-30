@@ -12,8 +12,13 @@ Original file is located at
 - ~~**change epochs in cell [23]**~~
 - ~~**change importing image in cell [5]**~~
 - ~~import all train images and train~~
-- import test images and fit
-- export csv with test image results
+- ~~import test images and fit~~
+- ~~export csv with test image results~~
+- data augmentation
+- train test split
+- try dropouts
+- try reducing the complexity
+- try AvgPooling
 """
 
 from google.colab import drive
@@ -111,14 +116,15 @@ print(train_imgs.shape)
 
 depth = 44
 
-x_train = train_imgs[:2803]
-y_train = labels[:2803]
-x_test = train_imgs[2803:]
-y_test = labels[2803:]
+#x_train = train_imgs[:2803]
+#y_train = labels[:2803]
+#x_test = train_imgs[2803:]
+#y_test = labels[2803:]
 num_classes = 3
 
-#datagen.flow(x_train, t_train, batch_size=batch_size), 
-#                    validation_data=(x_test, t_test),
+from sklearn.model_selection import train_test_split
+
+x_train, x_test, y_train, y_test = train_test_split(train_imgs,labels, test_size=0.2)
 
 input_shape = x_train.shape[1:]
 
