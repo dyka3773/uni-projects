@@ -20,6 +20,42 @@ Original file is located at
 - try reducing the complexity
 - try AvgPooling
 - try managing memory with `del`
+
+```# resize data for deep learning 
+x_train = x_train.reshape(-1, img_size, img_size, 1)
+y_train = np.array(y_train)
+
+x_val = x_val.reshape(-1, img_size, img_size, 1)
+y_val = np.array(y_val)
+
+x_test = x_test.reshape(-1, img_size, img_size, 1)
+y_test = np.array(y_test)
+```
+
+For the data augmentation, i choosed to :
+
+- Randomly rotate some training images by 30 degrees
+- Randomly Zoom by 20% some training images
+- Randomly shift images horizontally by 10% of the width
+- Randomly shift images vertically by 10% of the height
+- Randomly flip images horizontally. Once our model is ready, we fit the training dataset
+```
+datagen = ImageDataGenerator(
+        featurewise_center=False,  # set input mean to 0 over the dataset
+        samplewise_center=False,  # set each sample mean to 0
+        featurewise_std_normalization=False,  # divide inputs by std of the dataset
+        samplewise_std_normalization=False,  # divide each input by its std
+        zca_whitening=False,  # apply ZCA whitening
+        rotation_range = 30,  # randomly rotate images in the range (degrees, 0 to 180)
+        zoom_range = 0.2, # Randomly zoom image 
+        width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
+        height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
+        horizontal_flip = True,  # randomly flip images
+        vertical_flip=False)  # randomly flip images
+```
+```
+datagen.fit(x_train)
+```
 """
 
 from google.colab import drive
@@ -125,7 +161,7 @@ num_classes = 3
 
 from sklearn.model_selection import train_test_split
 
-x_train, x_test, y_train, y_test = train_test_split(train_imgs,labels, test_size=0.20)
+x_train, x_test, y_train, y_test = train_test_split(train_imgs,labels, test_size=0.15)
 
 input_shape = x_train.shape[1:]
 
@@ -143,6 +179,13 @@ t_test = keras.utils.to_categorical(y_test, num_classes)
 print('y_train (labels) shape:', y_train.shape)
 print('t_train (one-hot rep) shape:', t_train.shape)
 
+print(y_test)
+print(t_test)
+print(y_train)
+print(t_train)
+print(input_shape)
+
+#Idk which one works 
 train_imgs = []
 train_imgs = None
 del train_imgs
@@ -150,13 +193,15 @@ labels = []
 labels = None
 del labels
 
-#trying to release memory
+y_test = []
+y_test = None
+del y_test
 
-print(y_test)
-print(t_test)
-print(y_train)
-print(t_train)
-print(input_shape)
+y_train = []
+y_train = None
+del y_train
+
+#Trying to release memory
 
 def resnet_layer(inputs,
                  num_filters=16,
@@ -224,7 +269,7 @@ def resnet_v1(input_shape, depth, num_classes=3):
 
     # Add classifier on top.
     # v1 does not use BN after last shortcut connection-ReLU
-    x = MaxPooling2D(pool_size=8)(x)
+    x = AveragePooling2D(pool_size=8)(x)
     y = Flatten()(x)
     outputs = Dense(num_classes,
                     activation='softmax',
@@ -289,7 +334,7 @@ batch_size = 32  # orig paper trained all networks with batch_size=128
 epochs = 200
 
 # Prepare model model saving directory.
-model_name = 'resnet44-e{epoch:04d}-loss{loss:.3f}-acc{acc:.3f}-valloss{val_loss:.3f}-valacc{val_acc:.3f}.h5'
+model_name = 'resnet8-e{epoch:04d}-loss{loss:.3f}-acc{acc:.3f}-valloss{val_loss:.3f}-valacc{val_acc:.3f}.h5'
 if not os.path.isdir(save_dir):
     os.makedirs(save_dir)
 filepath = os.path.join(save_dir, model_name)
@@ -327,7 +372,7 @@ datagen = ImageDataGenerator(
     width_shift_range=0.1,
     # randomly shift images vertically
     height_shift_range=0.1,
-    # set range for random shear
+    # set range for random shear                                                  ## dew it
     shear_range=0.,
     # set range for random zoom
     zoom_range=0.,
@@ -341,7 +386,7 @@ datagen = ImageDataGenerator(
     horizontal_flip=True,
     # randomly flip images
     vertical_flip=False,
-    # set rescaling factor (applied before any other transformation)
+    # set rescaling factor (applied before any other transformation)              ##dew it
     rescale=None,
     # set function that will be applied on each input
     preprocessing_function=None,
@@ -396,9 +441,11 @@ def getMaxIndex(list):
     if maxim == list[i]:
       return i
 
+predictions = model.predict(test_imgs)
+
 import csv
 
-with open('submission_300p_batch64.csv', mode='w') as submission_file:
+with open('submission_resnet8_270p_batch32(2).csv', mode='w') as submission_file:
     submission_file = csv.writer(submission_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     submission_file.writerow(['file_name', 'class_id'])
