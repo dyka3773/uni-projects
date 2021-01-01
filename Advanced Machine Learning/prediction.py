@@ -45,7 +45,7 @@ def resize(image_pil, width, height):
     background.paste(image_resize, offset)
     return background.convert('RGB')
 
-width = height = 128
+width = height = 256
 
 test_imgs_paths = os.listdir('/content/drive/MyDrive/Xrays/test_images/')
 test_imgs = []
@@ -63,9 +63,12 @@ test_imgs = np.array(test_imgs, dtype="float32")/255.0
 
 print(test_imgs.shape)
 
-#model.load_weights(os.path.join(save_dir,'/resnet20-e0089-loss0.515-acc0.844-valloss0.631-valacc0.801.h5'))
+test_imgs_mean = np.mean(test_imgs, axis=0)
+test_imgs -= test_imgs_mean
 
-model = load_model(os.path.join(save_dir,'resnet20-128p-e0087-loss0.427-acc0.878-valloss0.694-valacc0.795.h5'))
+model = load_model(os.path.join(save_dir,'resnet20-e0090-loss0.483-acc0.850-valloss0.610-valacc0.806.h5'))
+
+model.summary()
 
 predictions =  model.predict(test_imgs)
 
@@ -77,7 +80,7 @@ def getMaxIndex(list):
 
 import csv
 
-with open('submission_file_herck.csv', mode='w') as submission_file:
+with open('submission_resnet20_256p.csv', mode='w') as submission_file:
     submission_file = csv.writer(submission_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     submission_file.writerow(['file_name', 'class_id'])
@@ -86,6 +89,8 @@ with open('submission_file_herck.csv', mode='w') as submission_file:
       #print("image : {img} \t\tclass : {i}".format(img=test_imgs_paths[j], i=getMaxIndex(i)))
       submission_file.writerow(['{img}'.format(img=test_imgs_paths[j]), '{i}'.format(i=getMaxIndex(i))])
       j+=1
+
+print("Done")
 
 j=0
 

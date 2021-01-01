@@ -15,11 +15,11 @@ Original file is located at
 - ~~import test images and fit~~
 - ~~export csv with test image results~~
 - data augmentation
-- train test split
+- ~~train test split~~
 - try dropouts
-- try reducing the complexity
+- ~~try reducing the complexity~~
 - try AvgPooling
-- try managing memory with `del`
+- ~~try managing memory with `del`~~
 
 ```# resize data for deep learning 
 x_train = x_train.reshape(-1, img_size, img_size, 1)
@@ -118,7 +118,7 @@ def resize(image_pil, width, height):
     background.paste(image_resize, offset)
     return background.convert('RGB')
 
-width = height = 270
+width = height = 170
 
 data= pandas.read_csv('/content/drive/MyDrive/Xrays/labels_train.csv', header=None, usecols=[0,1], names=['file_name', 'class_id'])
 #print(labels[1:])
@@ -133,6 +133,20 @@ img_name = img_name[1:]
 labels = np.array(labels)
 print(labels.shape)   
 print(labels)
+
+class_0=class_1=class_2=0
+
+for i in labels:
+  if i=='0':
+    class_0 += 1
+  elif i=='1':
+    class_1 += 1
+  else:
+    class_2 += 1
+
+plt.subplot(111)
+plt.bar(['class_0','class_1','class_2'],[class_0, class_1, class_2])
+plt.show()
 
 train_imgs = []
 for i in range(img_name.size):
@@ -151,17 +165,13 @@ train_imgs = np.array(train_imgs, dtype="float32")/255.0
 
 print(train_imgs.shape)
 
-depth = 8
+depth = 20
 
-#x_train = train_imgs[:2803]
-#y_train = labels[:2803]
-#x_test = train_imgs[2803:]
-#y_test = labels[2803:]
 num_classes = 3
 
 from sklearn.model_selection import train_test_split
 
-x_train, x_test, y_train, y_test = train_test_split(train_imgs,labels, test_size=0.15)
+x_train, x_test, y_train, y_test = train_test_split(train_imgs,labels, test_size=0.3)
 
 input_shape = x_train.shape[1:]
 
@@ -269,7 +279,7 @@ def resnet_v1(input_shape, depth, num_classes=3):
 
     # Add classifier on top.
     # v1 does not use BN after last shortcut connection-ReLU
-    x = AveragePooling2D(pool_size=8)(x)
+    x = MaxPooling2D(pool_size=8)(x)
     y = Flatten()(x)
     outputs = Dense(num_classes,
                     activation='softmax',
@@ -281,7 +291,7 @@ def resnet_v1(input_shape, depth, num_classes=3):
     return model
 
 def lr_schedule(epoch):
-  lr = 1e-3
+  lr = 1e-2
   if (epoch>180) :
       lr *= 0.5e-3
   elif epoch > 160:
@@ -334,7 +344,7 @@ batch_size = 32  # orig paper trained all networks with batch_size=128
 epochs = 200
 
 # Prepare model model saving directory.
-model_name = 'resnet8-e{epoch:04d}-loss{loss:.3f}-acc{acc:.3f}-valloss{val_loss:.3f}-valacc{val_acc:.3f}.h5'
+model_name = 'resnet20-e{epoch:04d}-loss{loss:.3f}-acc{acc:.3f}-valloss{val_loss:.3f}-valacc{val_acc:.3f}.h5'
 if not os.path.isdir(save_dir):
     os.makedirs(save_dir)
 filepath = os.path.join(save_dir, model_name)
@@ -354,54 +364,26 @@ lr_reducer = ReduceLROnPlateau(factor=np.sqrt(0.1),
 
 # This will do preprocessing and realtime data augmentation:
 datagen = ImageDataGenerator(
-    # set input mean to 0 over the dataset
-    featurewise_center=False,
-    # set each sample mean to 0
-    samplewise_center=False,
-    # divide inputs by std of dataset
-    featurewise_std_normalization=False,
-    # divide each input by its std
-    samplewise_std_normalization=False,
-    # apply ZCA whitening
-    zca_whitening=False,
-    # epsilon for ZCA whitening
-    zca_epsilon=1e-06,
-    # randomly rotate images in the range (deg 0 to 180)
-    rotation_range=0,
-    # randomly shift images horizontally
-    width_shift_range=0.1,
-    # randomly shift images vertically
-    height_shift_range=0.1,
-    # set range for random shear                                                  ## dew it
-    shear_range=0.,
-    # set range for random zoom
-    zoom_range=0.,
-    # set range for random channel shifts
-    channel_shift_range=0.,
-    # set mode for filling points outside the input boundaries
-    fill_mode='nearest',
-    # value used for fill_mode = "constant"
-    cval=0.,
-    # randomly flip images
-    horizontal_flip=True,
-    # randomly flip images
-    vertical_flip=False,
-    # set rescaling factor (applied before any other transformation)              ##dew it
-    rescale=None,
-    # set function that will be applied on each input
-    preprocessing_function=None,
-    # image data format, either "channels_first" or "channels_last"
-    data_format=None,
-    # fraction of images reserved for validation (strictly between 0 and 1)
-    validation_split=0.0)
+  featurewise_center=False,  # set input mean to 0 over the dataset
+  samplewise_center=False,  # set each sample mean to 0
+  featurewise_std_normalization=False,  # divide inputs by std of the dataset
+  samplewise_std_normalization=False,  # divide each input by its std
+  zca_whitening=False,  # apply ZCA whitening
+  rotation_range = 30,  # randomly rotate images in the range (degrees, 0 to 180)
+  zoom_range = 0.2, # Randomly zoom image 
+  width_shift_range=0.1,  # randomly shift images horizontally (fraction of total width)
+  height_shift_range=0.1,  # randomly shift images vertically (fraction of total height)
+  horizontal_flip = True,  # randomly flip images
+  vertical_flip=False)  # randomly flip images
 
 # Compute quantities required for featurewise normalization
 # (std, mean, and principal components if ZCA whitening is applied).
+
 datagen.fit(x_train)
 
 
 # Fit the model on the batches generated by datagen.flow().
-history = model.fit(datagen.flow(x_train, t_train, batch_size=batch_size), 
+history = model.fit(datagen.flow(x_train, t_train, batch_size=batch_size*4), 
                     validation_data=(x_test, t_test), epochs=epochs, verbose=0, 
                     workers=4, steps_per_epoch = int(x_train.shape[0]/batch_size), 
                     callbacks=[lr_reducer, lr_scheduler, MyCallback(), checkpoint])
@@ -419,6 +401,24 @@ plt.ylabel('%')
 plt.legend(('acc','val-acc'))
 plt.grid(b=True)
 
+#Idk which one works 
+x_train = []
+x_train = None
+del x_train
+t_train = []
+t_train = None
+del t_train
+
+x_test = []
+x_test = None
+del x_test
+
+t_test = []
+t_test = None
+del t_test
+
+#Trying to release memory
+
 test_imgs_paths = os.listdir('/content/drive/MyDrive/Xrays/test_images/')
 test_imgs = []
 for path in test_imgs_paths:
@@ -435,17 +435,22 @@ test_imgs = np.array(test_imgs, dtype="float32")/255.0
 
 print(test_imgs.shape)
 
+test_imgs -= x_train_mean
+
+#test_imgs_mean = np.mean(test_imgs, axis=0)
+#test_imgs -= test_imgs_mean
+
+predictions = model.predict(test_imgs)
+
 def getMaxIndex(list):
   maxim= max(list)
   for i in range(len(list)):
     if maxim == list[i]:
       return i
 
-predictions = model.predict(test_imgs)
-
 import csv
 
-with open('submission_resnet8_270p_batch32(2).csv', mode='w') as submission_file:
+with open('submission_resnet8_200p_DataGen_MaxPool.csv', mode='w') as submission_file:
     submission_file = csv.writer(submission_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     submission_file.writerow(['file_name', 'class_id'])
