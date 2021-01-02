@@ -29,7 +29,7 @@ public class SimProcess {
         this.arrivalTime = (int)(Math.random()* 50);
         this.burstTime = (int)(Math.random()* 50);
         this.priority = (int)(Math.random()* SimProcess.PRIORITIES);
-        this.size = (long)(Math.random()* SCAN.MBYTES);
+        this.size = (long)(Math.random()* SCAN.MEGABYTES);
         this.trackAddress = (int)(Math.random()* SCAN.DISK_SIZE);
         this.needsIO = new Random().nextBoolean();
     }

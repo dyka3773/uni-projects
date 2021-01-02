@@ -53,7 +53,7 @@ public class RoundRobin {
     }
     
     public static void findWaitingTime(String process[],int wt_time[],int n ,int brusttime[],int quantum,int completion_time[],int arrival_time[]){
-         // copy the value of brusttime array into wt_time array.
+        // copy the value of brusttime array into wt_time array.
         int rem_time[] = new int[n];
          
         for(int i=0;i<wt_time.length;i++){
@@ -63,7 +63,6 @@ public class RoundRobin {
         int arrival=0;
         // processing until the value of element of rem_time array is 0
         while(true){
-        //            ;
             boolean done = true;
             for(int i=0;i<n;i++){
                 if(rem_time[i]>0){

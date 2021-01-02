@@ -41,11 +41,11 @@ public class PriorityQueue {
                 case 1: 
                     SCAN SCANScheduler = new SCAN(blockedQueue, SCAN.Direction.LEFT);
                     System.out.println("Disk head position: "+ SCANScheduler.getHeadPosition()
-                    + "\nDisk sequence:\n" + SCANScheduler.getSeekSequence());
+                    + "\nDisk sequence:\n" + SCANScheduler.getProcessTrackSequence());
                     break;
                 case 2: CSCAN CSCANScheduler = new CSCAN(blockedQueue);
                         System.out.println("Disk head position: "+ CSCANScheduler.getHeadPosition() 
-                        + "\nDisk sequence:\n" + CSCANScheduler.getSeekSequence());
+                        + "\nDisk sequence:\n" + CSCANScheduler.getProcessTrackSequence());
                         break;
                 //case 3: FIFO FIFOScheduler = new FIFO(blockedQueue);
                 //        System.out.println("Disk head position: "+ FIFOScheduler.getHeadPosition() 
