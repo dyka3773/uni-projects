@@ -40,10 +40,12 @@ public class PriorityQueue {
             switch(diskSelection) {
                 case 1: 
                     SCAN SCANScheduler = new SCAN(blockedQueue, SCAN.Direction.LEFT);
+                    SCANScheduler.start();
                     System.out.println("Disk head position: "+ SCANScheduler.getHeadPosition()
                     + "\nDisk sequence:\n" + SCANScheduler.getProcessTrackSequence());
                     break;
                 case 2: CSCAN CSCANScheduler = new CSCAN(blockedQueue);
+                        CSCANScheduler.start();
                         System.out.println("Disk head position: "+ CSCANScheduler.getHeadPosition() 
                         + "\nDisk sequence:\n" + CSCANScheduler.getProcessTrackSequence());
                         break;
