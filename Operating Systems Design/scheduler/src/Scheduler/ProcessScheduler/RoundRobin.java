@@ -27,8 +27,7 @@ public class RoundRobin {
         for (int i = 0; i < sortedQueue.size()-1; i++) 
             for (int j = 0; j < sortedQueue.size()-i-1; j++) 
                 if (sortedQueue.get(j).getArrivalTime() > sortedQueue.get(j+1).getArrivalTime()) 
-                { 
-                    // swap arr[j+1] and arr[j] 
+                {
                     SimProcess temp = sortedQueue.get(j); 
                     sortedQueue.set(j, sortedQueue.get(j+1)); 
                     sortedQueue.set(j+1, temp); 
@@ -91,8 +90,8 @@ public class RoundRobin {
                         rem_time[i]=0;
                         completion_time[i]=t; }
                     }
-                 }
-              }
+                }
+            }
              
             if(done==true)    
             { 

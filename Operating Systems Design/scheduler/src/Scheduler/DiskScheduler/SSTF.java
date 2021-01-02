@@ -6,18 +6,20 @@ import java.util.Scanner;
  *
  * @author Captain Nero
  */
-public class SSTF {
+public class SSTF implements DiskScheduler{
     // Attributes used for the algorithm
     private long distance;
     private boolean accessed;
    
     // Attributes used when calling the algorithm
     private int arr[];
-    private int head;
+    private long head;
+    private long[] seek_sequence;
+    private long seek_count;
 
     public SSTF(int[] arr) {
         this.arr = arr;
-        head = (int)SCAN.DISK_SIZE/2;
+        head = (int)DISK_SIZE/2;
         //start();
     }
 
@@ -36,7 +38,7 @@ public class SSTF {
         return false;
     }   
         
-    public void calculateDifference(int queue[], int head, SSTF diff[])                                       
+    public void calculateDifference(int queue[], long head, SSTF diff[])                                       
     {
         for (int i = 0; i < diff.length; i++) 
             diff[i].distance = Math.abs(queue[i] - head); 
@@ -57,7 +59,7 @@ public class SSTF {
         return index; 
     } 
     
-    public void shortestSeekTimeFirst(int request[], int head)                                                        
+    public void shortestSeekTimeFirst(int request[], long head)                                                        
     { 
         if (request.length == 0) 
             return; 
@@ -70,10 +72,10 @@ public class SSTF {
             diff[i] = new SSTF(); 
           
         // count total number of seek operation     
-        int seek_count = 0;  
+        seek_count = 0;  
           
         // stores sequence in which disk access is done 
-        int[] seek_sequence = new int[request.length + 1];  
+        seek_sequence = new long[request.length + 1];  
           
         for (int i = 0; i < request.length; i++) {              
             seek_sequence[i] = head; 
@@ -96,6 +98,31 @@ public class SSTF {
         // print the sequence 
         for (int i = 0; i < seek_sequence.length; i++)  
             System.out.println(seek_sequence[i]); 
+    }
+
+    @Override
+    public String getHeadPosition() {
+        return Long.toString(head);
+    }
+
+    @Override
+    public void setHeadPosition(long hpos) {
+        this.head = hpos;
+    }
+
+    @Override
+    public String getProcessTrackSequence() {
+        return seek_sequence.toString();
+    }
+
+    @Override
+    public String getSeekOperations() {
+        return Long.toString(seek_count);
+    }
+
+    @Override
+    public void setSeekOperations(long sop) {
+        seek_count = sop;
     }
     
 }
