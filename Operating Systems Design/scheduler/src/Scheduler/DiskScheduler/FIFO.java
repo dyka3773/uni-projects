@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class FIFO implements DiskScheduler{
     
     private ArrayList<SimProcess> requestQueue;
-    private long currentTrack;//(long) (Math.random() * 200 + 1);
+    private long currentTrack;
     private double avgSeekLength = 0;
     private long tracksTraversedSum;
     private ArrayList<SimProcess> processTrackSequence;

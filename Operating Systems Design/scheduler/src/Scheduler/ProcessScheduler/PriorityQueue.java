@@ -38,25 +38,34 @@ public class PriorityQueue {
             System.out.println("Round Robin's Blocked Queue:\n" + blockedQueue.toString());
             
             switch(diskSelection) {
-                case 1: 
+                case 1: {
                     SCAN SCANScheduler = new SCAN(blockedQueue, SCAN.Direction.LEFT);
                     SCANScheduler.start();
                     System.out.println("Disk head position: "+ SCANScheduler.getHeadPosition()
                     + "\nDisk sequence:\n" + SCANScheduler.getProcessTrackSequence());
                     break;
-                case 2: CSCAN CSCANScheduler = new CSCAN(blockedQueue);
-                        CSCANScheduler.start();
-                        System.out.println("Disk head position: "+ CSCANScheduler.getHeadPosition() 
-                        + "\nDisk sequence:\n" + CSCANScheduler.getProcessTrackSequence());
-                        break;
-                //case 3: FIFO FIFOScheduler = new FIFO(blockedQueue);
-                //        System.out.println("Disk head position: "+ FIFOScheduler.getHeadPosition() 
-                //        + "\nDisk sequence:\n" + CSCANScheduler.getSeekSequence());
-                //        break;
-                //case 4: SSTF SSTFScheduler = new SSTF();
-                //        System.out.println("Disk head position: "+ SSTFScheduler.getHeadPosition() 
-                //        + "\nDisk sequence:\n" + CSCANScheduler.getSeekSequence());
-                //        break;
+                }
+                case 2: {
+                    CSCAN CSCANScheduler = new CSCAN(blockedQueue);
+                    CSCANScheduler.start();
+                    System.out.println("Disk head position: "+ CSCANScheduler.getHeadPosition() 
+                    + "\nDisk sequence:\n" + CSCANScheduler.getProcessTrackSequence());
+                    break;
+                }
+                case 3: {
+                    FIFO FIFOScheduler = new FIFO(blockedQueue);
+                    FIFOScheduler.start();
+                    System.out.println("Disk head position: "+ FIFOScheduler.getHeadPosition() 
+                    + "\nDisk sequence:\n" + FIFOScheduler.getProcessTrackSequence());
+                    break;
+                }
+                case 4: {
+                    SSTF SSTFScheduler = new SSTF(blockedQueue);
+                    SSTFScheduler.start();
+                    System.out.println("Disk head position: "+ SSTFScheduler.getHeadPosition() 
+                    + "\nDisk sequence:\n" + SSTFScheduler.getProcessTrackSequence());
+                    break;
+                }
             }
             
             blockedQueue = scheduler.start(blockedQueue);

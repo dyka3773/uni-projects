@@ -18,6 +18,12 @@ public class RoundRobin {
     private ArrayList<SimProcess> processList;
     private int n;
     
+    private int arrival_time[];
+    private int brusttime[];
+    private int waiting_time[];
+    private int turnaround_time[];
+    private int completion_time[];
+    
     public RoundRobin() {
     }
                                        //***Priority Queue Elements are ArrayLists***
@@ -33,21 +39,26 @@ public class RoundRobin {
                     sortedQueue.set(j+1, temp); 
                 }
         
-        this.processList = sortedQueue;
-        this.n = processList.size();
-        int arrival_time[] = new int[n];
-        String process[] = new String[n];
-        int brusttime[] = new int[n];
-        
-        int index =0;
         ArrayList<SimProcess> execQueue = new ArrayList();
         ArrayList<SimProcess> BlockedQueue = new ArrayList<SimProcess>();
-        for(SimProcess i : processList){
+        
+        for (SimProcess i : sortedQueue){
             if (i.needsIO()){
                 BlockedQueue.add(i);
                 continue;
             }
             execQueue.add(i);
+        }
+        
+        this.processList = execQueue;
+        this.n = processList.size();
+        arrival_time = new int[n];
+        String process[] = new String[n];
+        brusttime = new int[n];
+        
+        int index =0;
+        
+        for(SimProcess i : processList){
             arrival_time[index] = i.getArrivalTime();
             brusttime[index] = i.getBurstTime();
             process[index] = i.getName();
@@ -58,16 +69,19 @@ public class RoundRobin {
         for(SimProcess i: execQueue)
             System.out.println(i.toString());
         
-        findAvgTime(process,n,brusttime,quantum,arrival_time);
+        findAvgTime(process);
         
+        for(SimProcess i: BlockedQueue){
+            i.setIO(false);
+        }
         return BlockedQueue;
     }
     
-    public static void findWaitingTime(String process[],int wt_time[],int n ,int brusttime[],int quantum,int completion_time[],int arrival_time[]){
+    public void findWaitingTime(){
         // copy the value of brusttime array into wt_time array.
         int rem_time[] = new int[n];
          
-        for(int i=0;i<wt_time.length;i++){
+        for(int i=0;i<waiting_time.length;i++){
             rem_time[i]= brusttime[i];
         }
         int t=0;
@@ -77,19 +91,19 @@ public class RoundRobin {
             boolean done = true;
             for(int i=0;i<n;i++){
                 if(rem_time[i]>0){
-                     done =false;
+                    done =false;
                     if(rem_time[i]>quantum && arrival_time[i]<=arrival){
                         t +=quantum;
                         rem_time[i]-=quantum;
                         arrival++;
                     }
-                    else{
-                    if(arrival_time[i]<=arrival){
+                    else if(arrival_time[i]<=arrival){
                         arrival++;
                         t+=rem_time[i];
                         rem_time[i]=0;
-                        completion_time[i]=t; }
+                        completion_time[i]=t; 
                     }
+                    else arrival++;
                 }
             }
              
@@ -100,31 +114,31 @@ public class RoundRobin {
         }    
     }
     
-    public static void findTurnAroundTime(String process[] ,int wt_time[],int n,int brusttime[],int tat_time[],int completion_time[],int arrival_time[]){
+    public void findTurnAroundTime(){
         for(int i=0;i<n;i++){
-            tat_time[i]= completion_time[i]-arrival_time[i];
-            wt_time[i] = tat_time[i]-brusttime[i];
+            turnaround_time[i]= completion_time[i]-arrival_time[i];
+            waiting_time[i] = turnaround_time[i]-brusttime[i];
              
              
         }    
     }
     
-    public static void findAvgTime(String process[],int n,int brusttime[],int quantum,int arrival_time[]){
-      int wt_time[] = new int[n];
-      int tat_time[] = new int[n];
-      int completion_time[] = new int[n];
-      findWaitingTime(process,wt_time,n,brusttime,quantum,completion_time,arrival_time);    
-      findTurnAroundTime(process,wt_time,n,brusttime,tat_time,completion_time,arrival_time);
+    public void findAvgTime(String process[]){
+      waiting_time = new int[n];
+      turnaround_time = new int[n];
+      completion_time = new int[n];
+      findWaitingTime();    
+      findTurnAroundTime();
       int total_wt = 0, total_tat = 0; 
        
-      System.out.println("Processes " +" Arrival Time\t"+ "  Burst time " +" completion time"+ 
-              " Turn Around Time " + " Waiting time");
+      System.out.println("Processes " +" Arrival Time\t"+ "  Burst time " +" Completion time"+ 
+              " Turnaround Time " + " Waiting time");
       for (int i=0; i<n; i++) 
       { 
-          total_wt = total_wt + wt_time[i]; 
-          total_tat = total_tat + tat_time[i]; 
+          total_wt = total_wt + waiting_time[i]; 
+          total_tat = total_tat + turnaround_time[i]; 
           System.out.println(" " + (i+1) + "\t\t"+ arrival_time[i]+"\t\t"+ + brusttime[i] +"\t " +completion_time[i]+"\t\t"
-                            +tat_time[i] +"\t\t " + wt_time[i]); 
+                            +turnaround_time[i] +"\t\t " + waiting_time[i]); 
       } 
       
       System.out.println("Average waiting time = " + 

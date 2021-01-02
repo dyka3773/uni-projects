@@ -1,5 +1,7 @@
 package Scheduler.DiskScheduler;
 
+import Scheduler.SimProcess;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
@@ -12,14 +14,14 @@ public class SSTF implements DiskScheduler{
     private boolean accessed;
    
     // Attributes used when calling the algorithm
-    private int arr[];
+    private ArrayList<SimProcess> requestQueue;
     private long head;
     private long[] seek_sequence;
     private long seek_count;
 
-    public SSTF(int[] arr) {
-        this.arr = arr;
-        head = (int)DISK_SIZE/2;
+    public SSTF(ArrayList<SimProcess> ProcessList) {
+        this.requestQueue = ProcessList;
+        head = DISK_SIZE/2;
         //start();
     }
 
@@ -27,7 +29,7 @@ public class SSTF implements DiskScheduler{
     }
     
     public void start() {
-        shortestSeekTimeFirst(arr, head);
+        shortestSeekTimeFirst();
     }
         
     public int setDistance() {
@@ -38,10 +40,10 @@ public class SSTF implements DiskScheduler{
         return false;
     }   
         
-    public void calculateDifference(int queue[], long head, SSTF diff[])                                       
+    public void calculateDifference(SSTF diff[])                                       
     {
         for (int i = 0; i < diff.length; i++) 
-            diff[i].distance = Math.abs(queue[i] - head); 
+            diff[i].distance = Math.abs(requestQueue.get(i).getTrackAddress() - head); 
     } 
     
     public int findMin(SSTF diff[]) 
@@ -59,13 +61,13 @@ public class SSTF implements DiskScheduler{
         return index; 
     } 
     
-    public void shortestSeekTimeFirst(int request[], long head)                                                        
+    public void shortestSeekTimeFirst()                                                        
     { 
-        if (request.length == 0) 
+        if (requestQueue.size() == 0) 
             return; 
               
         // create array of objects of class node     
-        SSTF diff[] = new SSTF[request.length];  
+        SSTF diff[] = new SSTF[requestQueue.size()];  
           
         // initialize array 
         for (int i = 0; i < diff.length; i++)            
@@ -75,11 +77,11 @@ public class SSTF implements DiskScheduler{
         seek_count = 0;  
           
         // stores sequence in which disk access is done 
-        seek_sequence = new long[request.length + 1];  
+        seek_sequence = new long[requestQueue.size() + 1];  
           
-        for (int i = 0; i < request.length; i++) {              
+        for (int i = 0; i < requestQueue.size(); i++) {              
             seek_sequence[i] = head; 
-            calculateDifference(request, head, diff);               
+            calculateDifference(diff);               
             int index = findMin(diff);               
             diff[index].accessed = true; 
               
@@ -87,7 +89,7 @@ public class SSTF implements DiskScheduler{
             seek_count += diff[index].distance;  
               
             // accessed track is now new head 
-            head = request[index];  
+            head = requestQueue.get(index).getTrackAddress();  
         } 
           
         // for last accessed track 
