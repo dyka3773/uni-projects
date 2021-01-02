@@ -402,6 +402,10 @@ plt.ylabel('%')
 plt.legend(('acc','val-acc'))
 plt.grid(b=True)
 
+#print(x_train_mean)
+
+np.save('mean.npy', x_train_mean)
+
 #Idk which one works 
 x_train = []
 x_train = None
@@ -418,6 +422,11 @@ t_test = []
 t_test = None
 del t_test
 
+datagen = None
+del datagen
+
+history = None
+del history
 #Trying to release memory
 
 test_imgs_paths = os.listdir('/content/drive/MyDrive/Xrays/test_images/')
@@ -451,7 +460,7 @@ def getMaxIndex(list):
 
 import csv
 
-with open('submission_resnet8_200p_DataGen_MaxPool.csv', mode='w') as submission_file:
+with open('submission_resnet20_170p_DataGen_MaxPool_val_acc0.817.csv', mode='w') as submission_file:
     submission_file = csv.writer(submission_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     submission_file.writerow(['file_name', 'class_id'])
@@ -460,3 +469,5 @@ with open('submission_resnet8_200p_DataGen_MaxPool.csv', mode='w') as submission
       #print("image : {img} \t\tclass : {i}".format(img=test_imgs_paths[j], i=getMaxIndex(i)))
       submission_file.writerow(['{img}'.format(img=test_imgs_paths[j]), '{i}'.format(i=getMaxIndex(i))])
       j+=1
+
+print("Done")
