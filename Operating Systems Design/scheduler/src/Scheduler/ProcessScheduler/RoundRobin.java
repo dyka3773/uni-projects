@@ -116,8 +116,8 @@ public class RoundRobin {
     
     public void findTurnAroundTime(){
         for(int i=0;i<n;i++){
-            turnaround_time[i]= completion_time[i]-arrival_time[i];
-            waiting_time[i] = turnaround_time[i]-brusttime[i];
+            turnaround_time[i]= Math.abs(completion_time[i]-arrival_time[i]);
+            waiting_time[i] = Math.abs(turnaround_time[i]-brusttime[i]);
              
              
         }    
