@@ -68,8 +68,9 @@ public class PriorityQueue {
                     break;
                 }
             }
-            
-            blockedQueue = scheduler.start(blockedQueue);
+            if(!blockedQueue.isEmpty()){
+                blockedQueue = scheduler.start(blockedQueue);
+            }
             System.out.println("Round Robin's Blocked Queue:\n" + blockedQueue.toString());
             
             System.out.print("<Press ENTER>\n");
