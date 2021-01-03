@@ -5,7 +5,7 @@ import Scheduler.SimProcess;
 public class CSCAN implements DiskScheduler{
     private long headPosition;
     private long seekOperations;
-    private ArrayList<SimProcess> processTrackSequence;
+    private ArrayList<SimProcess> processTrackSequence = new ArrayList<SimProcess>();
     private ArrayList<SimProcess> inputSequence;
 
     public CSCAN(ArrayList<SimProcess> input) {

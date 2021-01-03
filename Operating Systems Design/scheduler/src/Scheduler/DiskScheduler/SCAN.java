@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class SCAN implements DiskScheduler{
     private long headPosition;
     private long seekOperations ;
-    private ArrayList<SimProcess> processTrackSequence;
+    private ArrayList<SimProcess> processTrackSequence = new ArrayList<SimProcess>();
     private ArrayList<SimProcess> inputSequence;
     private Direction direction = Direction.LEFT;
 

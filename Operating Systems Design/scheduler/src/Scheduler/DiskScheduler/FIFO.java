@@ -8,7 +8,7 @@ public class FIFO implements DiskScheduler{
     private long currentTrack;
     private double avgSeekLength = 0;
     private long tracksTraversedSum;
-    private ArrayList<SimProcess> processTrackSequence;
+    private ArrayList<SimProcess> processTrackSequence = new ArrayList<SimProcess>();
     
     public FIFO(ArrayList<SimProcess> ProcessList) {
         requestQueue = ProcessList;

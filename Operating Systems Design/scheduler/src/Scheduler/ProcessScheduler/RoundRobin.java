@@ -137,7 +137,7 @@ public class RoundRobin {
       { 
           total_wt = total_wt + waiting_time[i]; 
           total_tat = total_tat + turnaround_time[i]; 
-          System.out.println(" " + (i+1) + "\t\t"+ arrival_time[i]+"\t\t"+ + brusttime[i] +"\t " +completion_time[i]+"\t\t"
+          System.out.println(" " + process[i] + "\t\t"+ arrival_time[i]+"\t\t"+ + brusttime[i] +"\t " +completion_time[i]+"\t\t"
                             +turnaround_time[i] +"\t\t " + waiting_time[i]); 
       } 
       

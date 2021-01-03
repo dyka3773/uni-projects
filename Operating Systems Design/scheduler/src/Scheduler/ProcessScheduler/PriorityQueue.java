@@ -9,15 +9,15 @@ import java.util.Scanner;
 
 
 public class PriorityQueue {
-    private ArrayList<ArrayList<SimProcess>> processesQueue;
-    private ArrayList<SimProcess> memory;
+    private ArrayList<ArrayList<SimProcess>> processesQueue = new ArrayList<ArrayList<SimProcess>>();
     private ArrayList<SimProcess> blockedQueue;
 
     public PriorityQueue(ArrayList<SimProcess> memory) {
-        this.processesQueue = new ArrayList(SimProcess.PRIORITIES-1);
-        this.memory = memory;
-        for(int i=0; i<5; i++)
+        //this.processesQueue = new ArrayList(SimProcess.PRIORITIES-1);
+        //this.memory = memory;
+        for(int i=0; i<SimProcess.PRIORITIES; i++)
             processesQueue.add(new ArrayList());
+        sortQueuesByPriority(memory);
     }
     
     public void start() {
@@ -31,7 +31,8 @@ public class PriorityQueue {
         }while(diskSelection < 1 || diskSelection > 4);
         
         for(int i=0; i<SimProcess.PRIORITIES; i++) {
-            sortQueuesByPriority();
+            
+            if(processesQueue.get(i).isEmpty()) continue;
             
             System.out.println("Round Robin's Current Process Queue: \n" + processesQueue.get(i).toString());
             blockedQueue = scheduler.start(processesQueue.get(i));
@@ -78,10 +79,10 @@ public class PriorityQueue {
         
     }
     
-    private void sortQueuesByPriority() {
+    private void sortQueuesByPriority(ArrayList<SimProcess> memory) {
         // Check if no processes are loaded
         // If not, exit, else, continue with scheduling.
-        if (this.memory.isEmpty()) {
+        if (memory.isEmpty()) {
             System.err.print("The list is empty. "
                     + "No processes have been loaded.\n");
             System.exit(1);
@@ -101,6 +102,7 @@ public class PriorityQueue {
             }
         }
     }
+    
     
     public void printProcessQueues() {
         processesQueue.forEach(i -> {
