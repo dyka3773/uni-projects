@@ -34,7 +34,7 @@ The interface that was used for the Disk Schedulers are:
   * Interface DiskScheduler
 
 The classes that were used for the Schedulers are:
-  * Class RoundRobin
+  * [Class RoundRobin](./scheduler/src/Scheduler/ProcessScheduler/RoundRobin.java)
   * Class SSTF
   * Class FIFO
   * Class SCAN
