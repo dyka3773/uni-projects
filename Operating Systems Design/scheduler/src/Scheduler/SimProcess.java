@@ -14,16 +14,7 @@ public class SimProcess {
     private boolean needsIO = false;
     public static final int PRIORITIES = 5;
 
-    public SimProcess(String name, int arrivalTime, int burstTime, int priority,
-            long size, long trackAddress) {
-        this.name = name;
-        this.arrivalTime = arrivalTime;
-        this.burstTime = burstTime;
-        this.priority = priority;
-        this.size = size;
-        this.trackAddress = trackAddress;
-    }
-    
+
     public SimProcess(String name) {
         this.name = name;
         this.arrivalTime = (int)(Math.random()* 50);

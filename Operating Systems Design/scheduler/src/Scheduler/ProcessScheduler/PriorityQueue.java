@@ -76,6 +76,7 @@ public class PriorityQueue {
             System.out.print("<Press ENTER>\n");
             Scanner sc = new Scanner(System.in);
             String temp = sc.nextLine();
+            blockedQueue = null;
         }
         
     }
@@ -103,21 +104,4 @@ public class PriorityQueue {
             }
         }
     }
-    
-    
-    public void printProcessQueues() {
-        processesQueue.forEach(i -> {
-            System.out.println(i.toString());
-        });
-    }
-    
-    public void printProcessQueuesIndex(int index) {
-        try {
-            System.out.println(processesQueue.get(index).toString());
-        } catch (IndexOutOfBoundsException exc) {
-            System.out.println("Error: Index is out of bounds!\n"
-            +"Info: Index of ArrayList: " + processesQueue.size());
-        }
-    }
 }
-
