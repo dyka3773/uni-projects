@@ -41,7 +41,7 @@ The classes that were used for the Schedulers are:
   * [Class CSCAN](./scheduler/src/Scheduler/DiskScheduler/CSCAN.java)
 
 ## Algorithm
-* [Class EntryPoint](./scheduler/src/Scheduler/CLI/EntryPoint.java) contains our main method. An ArrayList object is created, named ``memory``, where inside our “fake” Processes are stored. Then, a PriorityQueue object is created, named ``pq``, and initialized with the ``memory`` ArrayList.
+* [Class EntryPoint](./scheduler/src/CLI/EntryPoint.java) contains our main method. An ArrayList object is created, named ``memory``, where inside our “fake” Processes are stored. Then, a PriorityQueue object is created, named ``pq``, and initialized with the ``memory`` ArrayList.
 
 * [Class SimProcess](./scheduler/src/Scheduler/SimProcess.java) contains our “false” Processes. Each SimProcess contains the following attributes: ``name, arrivalTime, burstTime, priority, size, trackAddress, trackAddressHex, needIO`` and a static final attribute for the process’ rank. Also, the appropriate ``getters``, ``setters`` and ``toString`` were added.
 
