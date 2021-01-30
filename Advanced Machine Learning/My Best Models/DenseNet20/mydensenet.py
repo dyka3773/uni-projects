@@ -457,7 +457,7 @@ def getMaxIndex(list):
 
 import csv
 
-with open('submission_resnet20_170p_DataGen_MaxPool_val_acc0.817.csv', mode='w') as submission_file:
+with open('submission_densenet20_150p.csv', mode='w') as submission_file:
     submission_file = csv.writer(submission_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
     submission_file.writerow(['file_name', 'class_id'])
