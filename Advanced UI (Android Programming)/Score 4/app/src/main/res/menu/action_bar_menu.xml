@@ -2,16 +2,24 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-<!--    &lt;!&ndash; "Mark Favorite", should appear as action button if possible &ndash;&gt;-->
-<!--    <item-->
-<!--        android:id="@+id/action_favorite"-->
-<!--        android:icon="@drawable/ic_favorite_black_48dp"-->
-<!--        android:title="@string/action_favorite"-->
-<!--        app:showAsAction="ifRoom"/>-->
+    <item android:title="Sports">
+        <item
+            android:id="@+id/team_sports_button"
+            android:title="Team Sports"/>
 
-<!--    &lt;!&ndash; Settings, should always be in the overflow &ndash;&gt;-->
-<!--    <item android:id="@+id/action_settings"-->
-<!--        android:title="@string/action_settings"-->
-<!--        app:showAsAction="never"/>-->
+        <item
+            android:id="@+id/individual_sports_button"
+            android:title="Individual Sports"/>
+    </item>
+
+    <item android:title="Teams/Athletes">
+        <item
+            android:id="@+id/athletes_button"
+            android:title="Athletes"/>
+        <item
+            android:id="@+id/teams_button"
+            android:title="Teams"/>
+        <!--        android:icon=""-->
+    </item>
 
 </menu>
