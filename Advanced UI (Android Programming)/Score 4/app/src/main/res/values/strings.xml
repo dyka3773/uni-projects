@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Score 4</string>
+    <string name="hello_blank_fragment">Hello I am disabled</string>
 </resources>
