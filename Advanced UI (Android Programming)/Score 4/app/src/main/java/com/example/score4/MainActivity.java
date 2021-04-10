@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
 
-import com.example.score4.LocalDB.Individual_Sports;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity {
@@ -81,8 +80,8 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
 
-        // Highlight the selected item has been done by NavigationView
-        menuItem.setChecked(true);
+//        // Highlight the selected item has been done by NavigationView
+//        menuItem.setChecked(true);
         // Set action bar title
         setTitle(menuItem.getTitle());
         // Close the navigation drawer

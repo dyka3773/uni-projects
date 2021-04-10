@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="football">#4CBB17</color>
+    <color name="basketball">#B54213</color>
+    <color name="boxing">#E24442</color>
+    <color name="volleyball">#0061F6</color>
+    <color name="wrestling">#DFE201</color>
+    <color name="background_color">#EBE9E9</color>
+    <color name="letters">#F1F1F1</color>
+    <color name="theme_background">#FCBC4B</color>
+    <color name="theme_background_dark">#C3933F</color>
 </resources>
