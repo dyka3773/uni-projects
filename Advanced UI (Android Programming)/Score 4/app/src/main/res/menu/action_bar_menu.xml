@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:title="Sports">
+        <item
+            android:id="@+id/team_sports_button"
+            android:title="Team Sports"/>
+
+        <item
+            android:id="@+id/individual_sports_button"
+            android:title="Individual Sports"/>
+    </item>
+
+    <item android:title="Teams/Athletes">
+        <item
+            android:id="@+id/athletes_button"
+            android:title="Athletes"/>
+        <item
+            android:id="@+id/teams_button"
+            android:title="Teams"/>
+        <!--        android:icon=""-->
+    </item>
+
+</menu>
