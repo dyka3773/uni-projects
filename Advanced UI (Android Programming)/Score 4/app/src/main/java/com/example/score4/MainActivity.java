@@ -34,8 +34,22 @@ public class MainActivity extends AppCompatActivity {
         drawerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
 
         navigationView = (NavigationView) findViewById(R.id.navigation);
+
         // Setup drawer view
         setupDrawerContent(navigationView);
+
+        //
+        Fragment fragment = null;
+
+        try {
+            fragment = (Fragment) Homescreen.class.newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+        
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -67,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                 fragmentClass = Team_Selection.class;
                 break;
             default:
-                fragmentClass = Team_Sports.class; //IDK IF THAT'S OK
+                fragmentClass = Homescreen.class; //IDK IF THAT'S OK
         }
 
         try {

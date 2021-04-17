@@ -28,26 +28,7 @@
             android:id="@+id/container"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/theme_background">
-
-            <ImageView
-                android:id="@+id/app_logo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:contentDescription="@string/app_name"
-                app:srcCompat="@drawable/logo" />
-
-            <TextView
-                android:id="@+id/welcome_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Welcome"
-                android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textColor="@color/letters"
-                android:textSize="36sp"
-                android:textStyle="bold" />
+            android:layout_height="match_parent">
         </FrameLayout>
 
     </LinearLayout>
