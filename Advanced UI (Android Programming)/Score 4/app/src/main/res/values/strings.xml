@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">Score 4</string>
     <string name="hello_blank_fragment">Hello I am disabled</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus et fermentum felis.
+        Interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque convallis, velit id condimentum accumsan, leo risus sodales turpis,
+        in condimentum mi justo in nulla. Cras tempus urna quis ultricies sagittis.
+        Praesent pulvinar nulla sed tortor dapibus hendrerit a eu sem. Mauris nec purus nisl.
+        Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
+        Fusce ut ipsum id ex commodo scelerisque quis vel est. Cras tincidunt nisi ac ipsum vehicula, a posuere tellus rutrum.
+        Nulla vitae efficitur quam. Etiam ac luctus arcu. Pellentesque nec porttitor mauris, fermentum blandit quam. Cras non facilisis est.
+        Nunc accumsan tellus nulla, id vulputate dolor dignissim a. Integer tincidunt nisi quis tristique facilisis.</string>
+
 </resources>
