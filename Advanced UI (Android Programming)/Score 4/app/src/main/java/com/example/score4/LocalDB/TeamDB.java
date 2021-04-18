@@ -1,6 +1,7 @@
 package com.example.score4.LocalDB;
 
 import androidx.room.PrimaryKey;
+import com.google.android.gms.maps.model.LatLng;
 
 public class TeamDB {
     @PrimaryKey
@@ -17,6 +18,8 @@ public class TeamDB {
     private int SID;
 
     private int e_year;
+
+    private LatLng hometown;
 
     public int getTID() {
         return TID;
@@ -72,5 +75,13 @@ public class TeamDB {
 
     public void setE_year(int e_year) {
         this.e_year = e_year;
+    }
+
+    public LatLng getHometown() {
+        return hometown;
+    }
+
+    public void setHometown(LatLng hometown) {
+        this.hometown = hometown;
     }
 }

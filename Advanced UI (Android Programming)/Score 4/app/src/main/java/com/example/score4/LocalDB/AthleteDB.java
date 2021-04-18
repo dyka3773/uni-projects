@@ -4,6 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+import com.google.android.gms.maps.model.LatLng;
+
 public class AthleteDB {
     @PrimaryKey
     private int AID;
@@ -23,6 +25,8 @@ public class AthleteDB {
 
     @ColumnInfo (name = "birthdayYear")
     private int b_year;
+
+    private LatLng hometown;
 
     public int getAID() {
         return AID;
@@ -78,5 +82,13 @@ public class AthleteDB {
 
     public void setB_year(int b_year) {
         this.b_year = b_year;
+    }
+
+    public LatLng getHometown() {
+        return hometown;
+    }
+
+    public void setHometown(LatLng hometown) {
+        this.hometown = hometown;
     }
 }
