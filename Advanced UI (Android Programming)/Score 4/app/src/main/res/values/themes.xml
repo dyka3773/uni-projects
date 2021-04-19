@@ -2,7 +2,7 @@
     <!-- Base application theme. -->
     <style name="Theme.Score4" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/theme_background</item>
+        <item name="colorPrimary">@color/background_color</item>
         <item name="colorPrimaryVariant">@color/theme_background_dark</item>
         <item name="colorOnPrimary">@color/letters</item>
         <!-- Secondary brand color. -->
