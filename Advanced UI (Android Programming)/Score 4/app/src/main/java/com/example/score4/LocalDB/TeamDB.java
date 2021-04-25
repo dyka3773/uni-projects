@@ -1,12 +1,19 @@
 package com.example.score4.LocalDB;
 
-import androidx.room.PrimaryKey;
-import com.google.android.gms.maps.model.LatLng;
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.ForeignKey;
 
+//import com.google.android.gms.maps.model.LatLng;
+
+@Entity (tableName = "team", primaryKeys = {"tid", "teamName", "tsid"}, foreignKeys = {
+        @ForeignKey(entity = SportDB.class, parentColumns = "sid", childColumns = "tsid")})
 public class TeamDB {
-    @PrimaryKey
+    @ColumnInfo (name = "tid") @NonNull
     private int TID;
 
+    @ColumnInfo (name = "teamName") @NonNull
     private String teamName;
 
     private String s_name;
@@ -15,11 +22,12 @@ public class TeamDB {
 
     private String country;
 
+    @ColumnInfo (name = "tsid") @NonNull
     private int SID;
 
     private int e_year;
 
-    private LatLng hometown;
+    private double hometown;
 
     public int getTID() {
         return TID;
@@ -77,11 +85,11 @@ public class TeamDB {
         this.e_year = e_year;
     }
 
-    public LatLng getHometown() {
+    public double getHometown() {
         return hometown;
     }
 
-    public void setHometown(LatLng hometown) {
+    public void setHometown(double hometown) {
         this.hometown = hometown;
     }
 }

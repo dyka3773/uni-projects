@@ -1,32 +1,35 @@
+
 package com.example.score4.LocalDB;
 
+import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
+import androidx.room.Entity;
 import androidx.room.ForeignKey;
-import androidx.room.PrimaryKey;
+import androidx.room.Index;
 
 import com.google.android.gms.maps.model.LatLng;
 
+@Entity (tableName = "athlete", primaryKeys = "aid", foreignKeys = {
+        @ForeignKey(entity = SportDB.class, parentColumns = "sid", childColumns = "asid")},
+        indices = {@Index(value = "asid", unique = true)})
 public class AthleteDB {
-    @PrimaryKey
+    @ColumnInfo (name = "aid") @NonNull
     private int AID;
 
-    @ColumnInfo (name = "firstName")
     private String f_name;
 
-    @ColumnInfo (name = "lastName")
     private String l_name;
 
     private String city;
 
     private String country;
 
-    //@ForeignKey (entity = SportDB.class) auto den kserw an xreiazetai aparaithta, na to rwthsw
+    @ColumnInfo (name = "asid")
     private int SID;
 
-    @ColumnInfo (name = "birthdayYear")
     private int b_year;
 
-    private LatLng hometown;
+    private double hometown;
 
     public int getAID() {
         return AID;
@@ -84,11 +87,11 @@ public class AthleteDB {
         this.b_year = b_year;
     }
 
-    public LatLng getHometown() {
+    public double getHometown() {
         return hometown;
     }
 
-    public void setHometown(LatLng hometown) {
+    public void setHometown(double hometown) {
         this.hometown = hometown;
     }
 }

@@ -1,23 +1,30 @@
 package com.example.score4.LocalDB;
 
+import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.Index;
 import androidx.room.PrimaryKey;
 
+@Entity (tableName = "sport" )
 public class SportDB {
     @PrimaryKey
-    private int SID;
+    @ColumnInfo (name = "sid") @NonNull
+    private int sportID;
 
+    @ColumnInfo (name = "sport") @NonNull
     private String sportName;
 
     private String sportType;
 
     private String gender;
 
-    public int getSID() {
-        return SID;
+    public int getSportID() {
+        return sportID;
     }
 
-    public void setSID(int SID) {
-        this.SID = SID;
+    public void setSportID(int sportID) {
+        this.sportID = sportID;
     }
 
     public String getSportName() {
