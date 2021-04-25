@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homescreen2">
+
+    <fragment
+        android:id="@+id/team_Sports"
+        android:name="com.example.score4.Team_Sports"
+        android:label="team_sports_fragment"
+        tools:layout="@layout/team_sports_fragment" />
+    <fragment
+        android:id="@+id/individual_Sports"
+        android:name="com.example.score4.Individual_Sports"
+        android:label="individual_sports_fragment"
+        tools:layout="@layout/individual_sports_fragment" >
+        <action
+            android:id="@+id/action_individual_Sports_to_sport2"
+            app:destination="@id/sport2" />
+    </fragment>
+    <fragment
+        android:id="@+id/homescreen2"
+        android:name="com.example.score4.Homescreen"
+        android:label="homescreen_fragment"
+        tools:layout="@layout/homescreen_fragment" >
+        <action
+            android:id="@+id/action_homescreen2_to_team_Sports"
+            app:destination="@id/team_Sports" />
+        <action
+            android:id="@+id/action_homescreen2_to_individual_Sports"
+            app:destination="@id/individual_Sports" />
+        <action
+            android:id="@+id/action_homescreen2_to_athlete_Selection"
+            app:destination="@id/athlete_Selection" />
+    </fragment>
+    <fragment
+        android:id="@+id/sport2"
+        android:name="com.example.score4.Sport"
+        android:label="sport_fragment"
+        tools:layout="@layout/sport_fragment" />
+    <fragment
+        android:id="@+id/team_Selection"
+        android:name="com.example.score4.Team_Selection"
+        android:label="team_selection_fragment"
+        tools:layout="@layout/team_selection_fragment" >
+        <action
+            android:id="@+id/action_team_Selection_to_team"
+            app:destination="@id/team" />
+    </fragment>
+    <fragment
+        android:id="@+id/team"
+        android:name="com.example.score4.Team"
+        android:label="Team" />
+    <fragment
+        android:id="@+id/athlete_Selection"
+        android:name="com.example.score4.Athlete_Selection"
+        android:label="athlete_selection_fragment"
+        tools:layout="@layout/athlete_selection_fragment" >
+        <action
+            android:id="@+id/action_athlete_Selection_to_athlete"
+            app:destination="@id/athlete" />
+    </fragment>
+    <fragment
+        android:id="@+id/athlete"
+        android:name="com.example.score4.Athlete"
+        android:label="Athlete" />
+</navigation>
