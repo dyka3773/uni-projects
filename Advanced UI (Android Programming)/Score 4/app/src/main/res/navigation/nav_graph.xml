@@ -9,7 +9,11 @@
         android:id="@+id/team_Sports"
         android:name="com.example.score4.Team_Sports"
         android:label="team_sports_fragment"
-        tools:layout="@layout/team_sports_fragment" />
+        tools:layout="@layout/team_sports_fragment" >
+        <action
+            android:id="@+id/action_team_Sports_to_sport2"
+            app:destination="@id/sport2" />
+    </fragment>
     <fragment
         android:id="@+id/individual_Sports"
         android:name="com.example.score4.Individual_Sports"
