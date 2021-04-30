@@ -24,7 +24,7 @@ public class GetData {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                             }
                         } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
+                            Log.w(TAG, "getBasketballMatch Error getting documents.", task.getException());
                         }
                     }
                 });
@@ -42,7 +42,7 @@ public class GetData {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                             }
                         } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
+                            Log.w(TAG, "getBoxingMatch Error getting documents.", task.getException());
                         }
                     }
                 });
@@ -59,7 +59,7 @@ public class GetData {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                             }
                         } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
+                            Log.w(TAG, "getFootballMatch Error getting documents.", task.getException());
                         }
                     }
                 });
@@ -76,7 +76,7 @@ public class GetData {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                             }
                         } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
+                            Log.w(TAG, "getVolleyballMatch Error getting documents.", task.getException());
                         }
                     }
                 });
@@ -94,7 +94,7 @@ public class GetData {
                                 Log.d(TAG, document.getId() + " => " + document.getData());
                             }
                         } else {
-                            Log.w(TAG, "Error getting documents.", task.getException());
+                            Log.w(TAG, "getWrestlingMatch Error getting documents.", task.getException());
                         }
                     }
                 });
