@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import com.example.score4.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 
 import static android.content.ContentValues.TAG;
 
@@ -24,35 +25,83 @@ public class InsertData {
         data.put("score_b", score_b);
         data.put("sport", "Basketball");
         data.put("team_a", team_a);
-        data.put("teab_b", team_b);
+        data.put("team_b", team_b);
 
         MainActivity.db.collection("Basketball").document(documentID)
                 .set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                        Log.d(TAG, "insertBasketballMatch() DocumentSnapshot successfully written!");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
+                        Log.w(TAG, "insertBasketballMatch() Error writing document", e);
                     }
                 });
 
         data.clear();
     }
-/*
+
     public static void insertBoxingMatch(String city, String country, String date, int score_a,
                                          int score_b, int AID_a, int AID_b, String documentID){
         data.put("city", city);
         data.put("country", country);
         data.put("date", date);
         data.put("num_of_athletes", 2);
-        data.put("Athletes/" + AID_a, ) // edw tha prepei na balw deutero map
+        MainActivity.db.collection("Basketball").document(documentID)
+                .set(data)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "insertBoxingMatch DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "insertBoxingMatch Error writing document", e);
+                    }
+                });
+        data.clear();
+
+        data.put("AID", AID_a);
+        data.put("score", score_a);
+        MainActivity.db.collection("Basketball").document(documentID).collection("Athletes").add(data) //tha dhmiourgisei neo document me tyxaio id
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "insertBoxingMatch subcollection A, DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                    Log.d(TAG, "insertBoxingMatch subcollection A, Error writing document");
+                    }
+                });
+        data.clear();
+
+        data.put("AID", AID_b);
+        data.put("score", score_b);
+        MainActivity.db.collection("Basketball").document(documentID).collection("Athletes").add(data) //tha dhmiourgisei neo document me tyxaio id
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "insertBoxingMatch subcollection B, DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d(TAG, "insertBoxingMatch subcollection B, Error writing document");
+                    }
+                });
+        data.clear();
     }
- */
+
     public static void insertFootballMatch(String city, String country, String date, int score_a,
                                              int score_b, int team_a, int team_b, String documentID){
         data.put("city", city);
@@ -62,20 +111,20 @@ public class InsertData {
         data.put("score_b", score_b);
         data.put("sport", "Football");
         data.put("team_a", team_a);
-        data.put("teab_b", team_b);
+        data.put("team_b", team_b);
 
         MainActivity.db.collection("Football").document(documentID)
                 .set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                        Log.d(TAG, "insertFootballMatch DocumentSnapshot successfully written!");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
+                        Log.w(TAG, "insertFootballMatch Error writing document", e);
                     }
                 });
 
@@ -91,20 +140,20 @@ public class InsertData {
         data.put("score_b", score_b);
         data.put("sport", "Volleyball");
         data.put("team_a", team_a);
-        data.put("teab_b", team_b);
+        data.put("team_b", team_b);
 
         MainActivity.db.collection("Volleyball").document(documentID)
                 .set(data)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully written!");
+                        Log.d(TAG, "insertVolleyballMatch DocumentSnapshot successfully written!");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error writing document", e);
+                        Log.w(TAG, "insertVolleyballMatch Error writing document", e);
                     }
                 });
 
