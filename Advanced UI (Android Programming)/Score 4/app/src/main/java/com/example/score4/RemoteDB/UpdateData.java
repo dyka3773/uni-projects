@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import com.example.score4.MainActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 
 import static android.content.ContentValues.TAG;
 
@@ -27,7 +26,37 @@ public class UpdateData {
                 });
     }
 
-    public static void updateBoxingData(String documentID, String fieldName, Object value){}
+    public static void updateBoxingData(String documentID, String athletesDocumentID,String fieldName, Object value) {
+        MainActivity.db.collection("Boxing").document(documentID).update(fieldName, value)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "updateBoxingData DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "updateBoxingData Error updating document", e);
+                    }
+                });
+    }
+
+    public static void updateAthleteBoxingData(String documentID, String athletesDocumentID,String fieldName, Object value) {
+        MainActivity.db.collection("Boxing").document(documentID).collection("Athletes").document(athletesDocumentID).update(fieldName, value)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "updateBoxingData DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "updateBoxingData Error updating document", e);
+                    }
+                });
+    }
 
     public static void updateFootballData(String documentID, String fieldName, Object value){
         MainActivity.db.collection("Football").document(documentID).update(fieldName, value)
@@ -61,5 +90,35 @@ public class UpdateData {
                 });
     }
 
-    public static void updateWrestlingData(String documentID, String fieldName, Object value){}
+    public static void updateWrestlingData(String documentID, String athletesDocumentID,String fieldName, Object value) {
+        MainActivity.db.collection("Wrestling").document(documentID).update(fieldName, value)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "updateWrestlingData DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "updateWrestlingData Error updating document", e);
+                    }
+                });
+    }
+
+    public static void updateAthleteWrestlingData(String documentID, String athletesDocumentID,String fieldName, Object value) {
+        MainActivity.db.collection("Wrestling").document(documentID).collection("Athletes").document(athletesDocumentID).update(fieldName, value)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "updateAthleteWrestlingData DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "updateAthleteWrestlingData Error updating document", e);
+                    }
+                });
+    }
 }
