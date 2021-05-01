@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homescreen2">
+    app:startDestination="@id/homescreen">
 
     <fragment
         android:id="@+id/team_Sports"
@@ -11,7 +11,7 @@
         android:label="team_sports_fragment"
         tools:layout="@layout/team_sports_fragment" >
         <action
-            android:id="@+id/action_team_Sports_to_sport2"
+            android:id="@+id/navigateToCertainTeamSport"
             app:destination="@id/sport2" />
     </fragment>
     <fragment
@@ -20,23 +20,26 @@
         android:label="individual_sports_fragment"
         tools:layout="@layout/individual_sports_fragment" >
         <action
-            android:id="@+id/action_individual_Sports_to_sport2"
+            android:id="@+id/navigateToCertainIndividualSport"
             app:destination="@id/sport2" />
     </fragment>
     <fragment
-        android:id="@+id/homescreen2"
+        android:id="@+id/homescreen"
         android:name="com.example.score4.Homescreen"
         android:label="homescreen_fragment"
         tools:layout="@layout/homescreen_fragment" >
         <action
-            android:id="@+id/action_homescreen2_to_team_Sports"
+            android:id="@+id/navigateToTeamSports"
             app:destination="@id/team_Sports" />
         <action
-            android:id="@+id/action_homescreen2_to_individual_Sports"
+            android:id="@+id/navigateToIndividualSports"
             app:destination="@id/individual_Sports" />
         <action
-            android:id="@+id/action_homescreen2_to_athlete_Selection"
+            android:id="@+id/navigateToAtheleteSelection"
             app:destination="@id/athlete_Selection" />
+        <action
+            android:id="@+id/navigateToTeamSelection"
+            app:destination="@id/team_Selection" />
     </fragment>
     <fragment
         android:id="@+id/sport2"
@@ -49,7 +52,7 @@
         android:label="team_selection_fragment"
         tools:layout="@layout/team_selection_fragment" >
         <action
-            android:id="@+id/action_team_Selection_to_team"
+            android:id="@+id/navigateToCertainTeam"
             app:destination="@id/team" />
     </fragment>
     <fragment
@@ -62,7 +65,7 @@
         android:label="athlete_selection_fragment"
         tools:layout="@layout/athlete_selection_fragment" >
         <action
-            android:id="@+id/action_athlete_Selection_to_athlete"
+            android:id="@+id/navigateToCertainAthlete"
             app:destination="@id/athlete" />
     </fragment>
     <fragment

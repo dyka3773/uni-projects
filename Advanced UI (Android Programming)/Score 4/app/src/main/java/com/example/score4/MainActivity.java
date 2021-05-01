@@ -52,19 +52,6 @@ public class MainActivity extends AppCompatActivity {
 
         // Setup drawer view
         setupDrawerContent(navigationView);
-
-        //
-        Fragment fragment = null;
-
-        try {
-            fragment = (Fragment) Homescreen.class.newInstance();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
-        
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -115,8 +102,6 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
 
-//        // Highlight the selected item has been done by NavigationView
-//        menuItem.setChecked(true);
         // Set action bar title
         setTitle(menuItem.getTitle());
         // Close the navigation drawer
