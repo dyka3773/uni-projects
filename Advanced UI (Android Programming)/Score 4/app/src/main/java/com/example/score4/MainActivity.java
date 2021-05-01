@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         // Tie DrawerLayout events to the ActionBarToggle
         drawerLayout.addDrawerListener(drawerToggle);
 
-        navigationView = (NavigationView) findViewById(R.id.navigation);
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
 
         // Setup drawer view
         setupDrawerContent(navigationView);
@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Insert the fragment by replacing any existing fragment
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.container, fragment).commit();
+        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
 
         // Set action bar title
         setTitle(menuItem.getTitle());
