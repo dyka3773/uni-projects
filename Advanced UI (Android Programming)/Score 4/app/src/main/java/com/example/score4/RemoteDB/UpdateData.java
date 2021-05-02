@@ -10,7 +10,8 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import static android.content.ContentValues.TAG;
 
 public class UpdateData {
-    public static void updateBasketballData(String documentID, String fieldName, Object value){
+    // Tha prepei na breis kapoion tropo gia na pairneis to documentID apo thn bash
+    public static void updateBasketballData(String documentID, String fieldName, Object value) {
         MainActivity.db.collection("Basketball").document(documentID).update(fieldName, value)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -26,7 +27,7 @@ public class UpdateData {
                 });
     }
 
-    public static void updateBoxingData(String documentID, String athletesDocumentID,String fieldName, Object value) {
+    public static void updateBoxingData(String documentID, String fieldName, Object value) {
         MainActivity.db.collection("Boxing").document(documentID).update(fieldName, value)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -42,23 +43,7 @@ public class UpdateData {
                 });
     }
 
-    public static void updateAthleteBoxingData(String documentID, String athletesDocumentID,String fieldName, Object value) {
-        MainActivity.db.collection("Boxing").document(documentID).collection("Athletes").document(athletesDocumentID).update(fieldName, value)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "updateBoxingData DocumentSnapshot successfully updated!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "updateBoxingData Error updating document", e);
-                    }
-                });
-    }
-
-    public static void updateFootballData(String documentID, String fieldName, Object value){
+    public static void updateFootballData(String documentID, String fieldName, Object value) {
         MainActivity.db.collection("Football").document(documentID).update(fieldName, value)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -74,7 +59,7 @@ public class UpdateData {
                 });
     }
 
-    public static void updateVolleyballData(String documentID, String fieldName, Object value){
+    public static void updateVolleyballData(String documentID, String fieldName, Object value) {
         MainActivity.db.collection("Volleyball").document(documentID).update(fieldName, value)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -90,7 +75,7 @@ public class UpdateData {
                 });
     }
 
-    public static void updateWrestlingData(String documentID, String athletesDocumentID,String fieldName, Object value) {
+    public static void updateWrestlingData(String documentID, String fieldName, Object value) {
         MainActivity.db.collection("Wrestling").document(documentID).update(fieldName, value)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -102,22 +87,6 @@ public class UpdateData {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "updateWrestlingData Error updating document", e);
-                    }
-                });
-    }
-
-    public static void updateAthleteWrestlingData(String documentID, String athletesDocumentID,String fieldName, Object value) {
-        MainActivity.db.collection("Wrestling").document(documentID).collection("Athletes").document(athletesDocumentID).update(fieldName, value)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "updateAthleteWrestlingData DocumentSnapshot successfully updated!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "updateAthleteWrestlingData Error updating document", e);
                     }
                 });
     }
