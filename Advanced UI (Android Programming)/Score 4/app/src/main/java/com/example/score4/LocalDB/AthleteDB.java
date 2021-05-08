@@ -13,6 +13,21 @@ import com.google.android.gms.maps.model.LatLng;
         @ForeignKey(entity = SportDB.class, parentColumns = "sid", childColumns = "asid")},
         indices = {@Index(value = "asid", unique = true)})
 public class AthleteDB {
+
+    public AthleteDB() {
+    }
+
+    public AthleteDB(int AID, String f_name, String l_name, String city, String country, int SID, int b_year, double hometown) {
+        this.AID = AID;
+        this.f_name = f_name;
+        this.l_name = l_name;
+        this.city = city;
+        this.country = country;
+        this.SID = SID;
+        this.b_year = b_year;
+        this.hometown = hometown;
+    }
+
     @ColumnInfo (name = "aid") @NonNull
     private int AID;
 

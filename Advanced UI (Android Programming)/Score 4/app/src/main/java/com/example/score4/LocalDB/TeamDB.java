@@ -7,13 +7,27 @@ import androidx.room.ForeignKey;
 
 //import com.google.android.gms.maps.model.LatLng;
 
-@Entity (tableName = "team", primaryKeys = {"tid", "teamName", "tsid"}, foreignKeys = {
+@Entity (tableName = "team", primaryKeys = "tid", foreignKeys = {
         @ForeignKey(entity = SportDB.class, parentColumns = "sid", childColumns = "tsid")})
 public class TeamDB {
+
+    public TeamDB() {
+    }
+
+    public TeamDB(int TID, String teamName, String s_name, String city, String country, int SID, int e_year, double hometown) {
+        this.TID = TID;
+        this.teamName = teamName;
+        this.s_name = s_name;
+        this.city = city;
+        this.country = country;
+        this.SID = SID;
+        this.e_year = e_year;
+        this.hometown = hometown;
+    }
+
     @ColumnInfo (name = "tid") @NonNull
     private int TID;
 
-    @ColumnInfo (name = "teamName") @NonNull
     private String teamName;
 
     private String s_name;
@@ -22,7 +36,7 @@ public class TeamDB {
 
     private String country;
 
-    @ColumnInfo (name = "tsid") @NonNull
+    @ColumnInfo (name = "tsid")
     private int SID;
 
     private int e_year;

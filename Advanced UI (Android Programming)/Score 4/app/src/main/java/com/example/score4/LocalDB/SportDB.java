@@ -8,6 +8,17 @@ import androidx.room.PrimaryKey;
 
 @Entity (tableName = "sport" )
 public class SportDB {
+
+    public SportDB() {
+    }
+
+    public SportDB(int sportID, @NonNull String sportName, String sportType, String gender) {
+        this.sportID = sportID;
+        this.sportName = sportName;
+        this.sportType = sportType;
+        this.gender = gender;
+    }
+
     @PrimaryKey
     @ColumnInfo (name = "sid") @NonNull
     private int sportID;
