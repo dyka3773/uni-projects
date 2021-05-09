@@ -13,13 +13,17 @@ import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
 
 import com.example.score4.LocalDB.LocalDatabase;
+import com.example.score4.RemoteDB.UpdateData;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
     public static FirebaseFirestore db;
     public static LocalDatabase localDB;
+
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
