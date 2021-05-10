@@ -11,6 +11,8 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
+import androidx.room.Room;
+import androidx.room.RoomDatabase;
 
 import com.example.score4.LocalDB.LocalDatabase;
 import com.example.score4.RemoteDB.UpdateData;
@@ -34,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db = FirebaseFirestore.getInstance();
+        localDB = Room.databaseBuilder(getApplicationContext(), LocalDatabase.class, "LocalDB").allowMainThreadQueries().build();
         setContentView(R.layout.activity_main);
 
         // Set a Toolbar to replace the ActionBar.

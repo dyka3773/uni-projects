@@ -1,4 +1,3 @@
-
 package com.example.score4.LocalDB;
 
 import androidx.annotation.NonNull;
@@ -10,9 +9,31 @@ import androidx.room.Index;
 import com.google.android.gms.maps.model.LatLng;
 
 @Entity (tableName = "athlete", primaryKeys = "aid", foreignKeys = {
-        @ForeignKey(entity = SportDB.class, parentColumns = "sid", childColumns = "asid")},
-        indices = {@Index(value = "asid", unique = true)})
+        @ForeignKey(entity = SportDB.class, parentColumns = "sid", childColumns = "asid")})//, indices = {@Index(value = "asid", unique = true)})
 public class AthleteDB {
+    @ColumnInfo (name = "aid") @NonNull
+    private int AID;
+
+    @ColumnInfo (name = "FirstName")
+    private String f_name;
+
+    @ColumnInfo (name = "LastName")
+    private String l_name;
+
+    @ColumnInfo (name = "City")
+    private String city;
+
+    @ColumnInfo (name = "Country")
+    private String country;
+
+    @ColumnInfo (name = "asid")
+    private int SID;
+
+    @ColumnInfo (name = "BirthdayYear")
+    private int b_year;
+
+    @ColumnInfo (name = "Hometown")
+    private double hometown;
 
     public AthleteDB() {
     }
@@ -27,24 +48,6 @@ public class AthleteDB {
         this.b_year = b_year;
         this.hometown = hometown;
     }
-
-    @ColumnInfo (name = "aid") @NonNull
-    private int AID;
-
-    private String f_name;
-
-    private String l_name;
-
-    private String city;
-
-    private String country;
-
-    @ColumnInfo (name = "asid")
-    private int SID;
-
-    private int b_year;
-
-    private double hometown;
 
     public int getAID() {
         return AID;

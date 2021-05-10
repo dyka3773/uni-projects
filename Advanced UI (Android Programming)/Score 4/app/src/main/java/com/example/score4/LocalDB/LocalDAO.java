@@ -8,16 +8,7 @@ import androidx.room.Update;
 import java.util.List;
 
 @Dao
-public interface DAO {
-    @Query("SELECT * FROM athlete")
-    public List<AthleteDB> getAthleteDB();
-
-    @Query("SELECT * FROM sport")
-    public List<SportDB> getSportDB();
-
-    @Query("SELECT * FROM team")
-    public List<TeamDB> getTeamDB();
-
+public interface LocalDAO {
     @Insert
     public void insertAthleteLocal(AthleteDB athlete);
 
@@ -44,4 +35,13 @@ public interface DAO {
 
     @Update
     public void updateTeamLocal(TeamDB team);
+
+    @Query("SELECT * FROM athlete")
+    public List<AthleteDB> getAthleteDB();
+
+    @Query("SELECT * FROM sport")
+    public List<SportDB> getSportDB();
+
+    @Query("SELECT * FROM team")
+    public List<TeamDB> getTeamDB();
 }

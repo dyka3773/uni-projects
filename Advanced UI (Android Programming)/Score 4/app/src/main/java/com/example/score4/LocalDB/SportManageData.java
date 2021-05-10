@@ -9,20 +9,20 @@ public class SportManageData {
     public static void insertSport(int sportID, String sportName, String sportType, String gender, FragmentActivity activity) {
         try {
             SportDB sport = new SportDB(sportID, sportName, sportType, gender);
-            MainActivity.localDB.dao().insertSportLocal(sport);
-            Toast.makeText(activity, "Sport data inserted successfully!", Toast.LENGTH_SHORT);
+            MainActivity.localDB.localDao().insertSportLocal(sport);
+            Toast.makeText(activity, "Sport data inserted successfully!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG);
+            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
     public static void updateSport(int sportID, String sportName, String sportType, String gender, FragmentActivity activity) {
         try {
             SportDB sport = new SportDB(sportID, sportName, sportType, gender);
-            MainActivity.localDB.dao().updateSportLocal(sport);
-            Toast.makeText(activity, "Sport data updated successfully!", Toast.LENGTH_SHORT);
+            MainActivity.localDB.localDao().updateSportLocal(sport);
+            Toast.makeText(activity, "Sport data updated successfully!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG);
+            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
@@ -30,10 +30,10 @@ public class SportManageData {
         try {
             SportDB sport = new SportDB();
             sport.setSportID(sportID);
-            MainActivity.localDB.dao().deleteSportLocal(sport);
-            Toast.makeText(activity, "Sport data deleted successfully!", Toast.LENGTH_SHORT);
+            MainActivity.localDB.localDao().deleteSportLocal(sport);
+            Toast.makeText(activity, "Sport data deleted successfully!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG);
+            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 }
