@@ -16,6 +16,7 @@ public class SportManageData {
         }
     }
 
+    // An afiseis kapoio pedio enos antikeimenou sport ws null tote automata tha perastei to null sthn bash.
     public static void updateSport(int sportID, String sportName, String sportType, String gender, FragmentActivity activity) {
         try {
             SportDB sport = new SportDB(sportID, sportName, sportType, gender);

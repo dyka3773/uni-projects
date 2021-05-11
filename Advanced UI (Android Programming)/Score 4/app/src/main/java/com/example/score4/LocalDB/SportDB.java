@@ -23,7 +23,7 @@ public class SportDB {
     @ColumnInfo (name = "sid") @NonNull
     private int sportID;
 
-    @ColumnInfo (name = "sport") @NonNull
+    @ColumnInfo (name = "sport")
     private String sportName;
 
     private String sportType;
