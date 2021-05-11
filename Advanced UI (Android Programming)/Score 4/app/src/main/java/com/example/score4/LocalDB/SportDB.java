@@ -61,4 +61,14 @@ public class SportDB {
     public void setGender(String gender) {
         this.gender = gender;
     }
+
+    @Override
+    public String toString() {
+        return "SportDB{" +
+                "sportID=" + sportID +
+                ", sportName='" + sportName + '\'' +
+                ", sportType='" + sportType + '\'' +
+                ", gender='" + gender + '\'' +
+                '}';
+    }
 }

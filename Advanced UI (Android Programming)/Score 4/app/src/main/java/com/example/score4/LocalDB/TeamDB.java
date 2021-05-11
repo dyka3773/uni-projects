@@ -106,4 +106,18 @@ public class TeamDB {
     public void setHometown(double hometown) {
         this.hometown = hometown;
     }
+
+    @Override
+    public String toString() {
+        return "TeamDB{" +
+                "TID=" + TID +
+                ", teamName='" + teamName + '\'' +
+                ", s_name='" + s_name + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", SID=" + SID +
+                ", e_year=" + e_year +
+                ", hometown=" + hometown +
+                '}';
+    }
 }

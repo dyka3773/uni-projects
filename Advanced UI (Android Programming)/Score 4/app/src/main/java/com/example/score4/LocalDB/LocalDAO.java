@@ -44,4 +44,13 @@ public interface LocalDAO {
 
     @Query("SELECT * FROM team")
     public List<TeamDB> getTeamDB();
+
+    @Query("DELETE FROM sport")
+    public void deleteAllSport();
+
+    @Query("DELETE FROM athlete")
+    public void deleteAllAthlete();
+
+    @Query("DELETE FROM team")
+    public void deleteAllTeam();
 }

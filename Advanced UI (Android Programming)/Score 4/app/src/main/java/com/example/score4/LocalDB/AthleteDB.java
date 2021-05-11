@@ -112,4 +112,18 @@ public class AthleteDB {
     public void setHometown(double hometown) {
         this.hometown = hometown;
     }
+
+    @Override
+    public String toString() {
+        return "AthleteDB{" +
+                "AID=" + AID +
+                ", f_name='" + f_name + '\'' +
+                ", l_name='" + l_name + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", SID=" + SID +
+                ", b_year=" + b_year +
+                ", hometown=" + hometown +
+                '}';
+    }
 }
