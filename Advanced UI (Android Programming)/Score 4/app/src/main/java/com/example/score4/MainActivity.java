@@ -20,6 +20,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,11 +33,14 @@ public class MainActivity extends AppCompatActivity {
     private NavigationView navigationView;
     private ActionBarDrawerToggle drawerToggle;
 
+    public Stack<Fragment> fragmentStack = new Stack<Fragment>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         db = FirebaseFirestore.getInstance();
-        localDB = Room.databaseBuilder(getApplicationContext(), LocalDatabase.class, "LocalDB").allowMainThreadQueries().build();//fallbackToDestructiveMigration().build(); auto se periptwsh poy xalasei h bash
+        localDB = Room.databaseBuilder(getApplicationContext(), LocalDatabase.class, "LocalDB").allowMainThreadQueries().build();
         setContentView(R.layout.activity_main);
 
         // Set a Toolbar to replace the ActionBar.

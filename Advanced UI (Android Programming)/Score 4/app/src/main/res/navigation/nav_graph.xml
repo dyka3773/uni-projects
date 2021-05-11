@@ -12,7 +12,7 @@
         tools:layout="@layout/team_sports_fragment" >
         <action
             android:id="@+id/navigateToCertainTeamSport"
-            app:destination="@id/sport2" />
+            app:destination="@id/sport" />
     </fragment>
     <fragment
         android:id="@+id/individual_Sports"
@@ -21,7 +21,7 @@
         tools:layout="@layout/individual_sports_fragment" >
         <action
             android:id="@+id/navigateToCertainIndividualSport"
-            app:destination="@id/sport2" />
+            app:destination="@id/sport" />
     </fragment>
     <fragment
         android:id="@+id/homescreen"
@@ -42,10 +42,14 @@
             app:destination="@id/team_Selection" />
     </fragment>
     <fragment
-        android:id="@+id/sport2"
+        android:id="@+id/sport"
         android:name="com.example.score4.Sport"
         android:label="sport_fragment"
-        tools:layout="@layout/sport_fragment" />
+        tools:layout="@layout/sport_fragment" >
+        <argument
+            android:name="SportIs"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/team_Selection"
         android:name="com.example.score4.Team_Selection"
