@@ -12,8 +12,8 @@ public abstract class LocalDatabase extends RoomDatabase {
     public void wipeDBTables(FragmentActivity activity) {
         try {
             localDao().deleteAllAthlete();
-            localDao().deleteAllSport();
             localDao().deleteAllTeam();
+            localDao().deleteAllSport();
             Toast.makeText(activity, "DB wiped successfully!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
             Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
