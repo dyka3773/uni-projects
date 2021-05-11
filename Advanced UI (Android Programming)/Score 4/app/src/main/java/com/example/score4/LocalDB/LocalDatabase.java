@@ -19,6 +19,5 @@ public abstract class LocalDatabase extends RoomDatabase {
         } catch (Exception e) {
             Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
         }
-
     }
 }
