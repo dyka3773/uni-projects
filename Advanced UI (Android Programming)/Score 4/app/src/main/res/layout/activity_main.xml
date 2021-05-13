@@ -23,13 +23,16 @@
             android:layout_height="wrap_content"
             />
 
-        <fragment
-            android:id="@+id/nav_host_fragment"
-            android:name="androidx.navigation.fragment.NavHostFragment"
+        <FrameLayout
+            android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:defaultNavHost="true"
-            app:navGraph="@navigation/nav_graph" />
+            >
+<!--            app:navGraph="@navigation/nav_graph" -->
+<!--            app:defaultNavHost="true"-->
+<!--            android:name="androidx.navigation.fragment.NavHostFragment"-->
+        </FrameLayout>
+
     </LinearLayout>
 
     <com.google.android.material.navigation.NavigationView

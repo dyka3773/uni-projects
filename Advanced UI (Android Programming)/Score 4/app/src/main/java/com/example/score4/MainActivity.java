@@ -2,15 +2,20 @@ package com.example.score4;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
@@ -26,21 +31,27 @@ public class MainActivity extends AppCompatActivity {
 
     public static FirebaseFirestore db;
     public static LocalDatabase localDB;
-
+    public static NotificationCompat.Builder builder;
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private NavigationView navigationView;
     private ActionBarDrawerToggle drawerToggle;
 
-    public Stack<Fragment> fragmentStack = new Stack<Fragment>();
+    public static Stack<Fragment> fragmentStack = new Stack<Fragment>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        createNotificationChannel();
+        builder = new NotificationCompat.Builder(this, getString(R.string.channel_id)).setSmallIcon(R.drawable.logo)
+                .setContentTitle("title text")
+                .setContentText("contenttext")
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+        ;
         db = FirebaseFirestore.getInstance();
         localDB = Room.databaseBuilder(getApplicationContext(), LocalDatabase.class, "LocalDB").allowMainThreadQueries().build();
+
         setContentView(R.layout.activity_main);
 
         // Set a Toolbar to replace the ActionBar.
@@ -65,6 +76,12 @@ public class MainActivity extends AppCompatActivity {
 
         // Setup drawer view
         setupDrawerContent(navigationView);
+
+        Homescreen homescreen = new Homescreen();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.container, homescreen);
+        fragmentTransaction.commit();
+
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
@@ -112,8 +129,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         // Insert the fragment by replacing any existing fragment
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.nav_host_fragment, fragment).commit();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.add(R.id.container, fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
 
         // Set action bar title
         setTitle(menuItem.getTitle());
@@ -149,4 +168,13 @@ public class MainActivity extends AppCompatActivity {
         // Pass any configuration change to the drawer toggles
         drawerToggle.onConfigurationChanged(newConfig);
     }
+
+    private void createNotificationChannel() {
+            CharSequence name = getString(R.string.channel_id);
+            int importance = NotificationManager.IMPORTANCE_HIGH; // To IMPORTANCE_HIGH dhmiourgei popup notification
+            NotificationChannel channel = new NotificationChannel(getString(R.string.channel_id), name, importance);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+    }
+
 }
