@@ -1,10 +1,12 @@
-package com.example.score4;
+package com.example.score4.RemoteDB;
 
 import android.content.Context;
 import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
+import com.example.score4.MainActivity;
 
 import java.util.Map;
 
