@@ -20,11 +20,15 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
 import com.example.score4.LocalDB.LocalDatabase;
+import com.example.score4.RemoteDB.GetData;
 import com.example.score4.RemoteDB.UpdateData;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Map;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,7 +36,15 @@ public class MainActivity extends AppCompatActivity {
     public static FirebaseFirestore db;
     public static LocalDatabase localDB;
     public static NotificationCompat.Builder builder;
+    public static ArrayList<Map> Basketball = new ArrayList<>();
+    public static ArrayList<Map> Boxing = new ArrayList<>();
+    public static ArrayList<Map> Football = new ArrayList<>();
+    public static ArrayList<Map> Volleyball = new ArrayList<>();
+    public static ArrayList<Map> Wrestling = new ArrayList<>();
+    public static String date;
 
+    private Calendar calendar;
+    private SimpleDateFormat dateFormat;
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
     private NavigationView navigationView;
@@ -44,13 +56,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createNotificationChannel();
+
         builder = new NotificationCompat.Builder(this, getString(R.string.channel_id)).setSmallIcon(R.drawable.logo)
                 .setContentTitle("title text")
                 .setContentText("contenttext")
                 .setPriority(NotificationCompat.PRIORITY_MAX)
         ;
+
         db = FirebaseFirestore.getInstance();
         localDB = Room.databaseBuilder(getApplicationContext(), LocalDatabase.class, "LocalDB").allowMainThreadQueries().build();
+
+        GetData.getSportData("Basketball", Basketball, this);
+        GetData.getSportData("Boxing", Boxing, this);
+        GetData.getSportData("Football", Football, this);
+        GetData.getSportData("Volleyball", Volleyball, this);
+        GetData.getSportData("Wrestling", Wrestling, this);
+
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        date = dateFormat.format(calendar.getTime());
 
         setContentView(R.layout.activity_main);
 
