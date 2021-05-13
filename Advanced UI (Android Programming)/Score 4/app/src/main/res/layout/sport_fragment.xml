@@ -1,160 +1,221 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
 
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/match_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background_color">
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center_horizontal">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow7"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/today"
-            android:text="Today"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="1"
+            android:text="Today"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="30sp"
-            android:textColor="@color/black"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TableRow>
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow8"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="46dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow7">
 
 
         <TextView
             android:id="@+id/subject_1"
-            android:text="Name 1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Name 1"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/subject_2"
-            android:layout_width="176dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
             android:text="Name 2"
-            android:textSize="20sp" />
-
-
-    </TableRow>
-
-    <TableRow>
-
-
-
-        <TextView
-            android:id="@+id/team_Name_2"
-            android:text="Team Name 2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
-
-        <TextView
-            android:id="@+id/team_Name_2"
-            android:text="Team Name 2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/subject_1"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </TableRow>
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:gravity="center_horizontal">
-
-        <TextView
-            android:id="@+id/tomorrow"
-            android:text="Tomorrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:textColor="@color/black"/>
-
-
-    </TableRow>
-
-    <TableRow>
-
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow9"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="87dp"
+        android:layout_marginBottom="87dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <TextView
             android:id="@+id/team_Name_1"
-            android:text="Team Name 1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Team Name 1"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
-
-        <ImageView
-            android:scaleType="centerInside"
-            android:id="@+id/imageView"
-            android:layout_marginLeft="180sp"
-            android:layout_width="20sp"
-            android:layout_height="45sp"
-            android:src="@drawable/edit_app" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="45sp"
-            android:layout_height="45sp"
-            android:src="@drawable/trash_can_black_app" />
-
-
-    </TableRow>
-
-    <TableRow>
-
-
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/team_Name_2"
-            android:text="Team Name 2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Team Name 2"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/team_Name_1"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center_horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow11"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow8">
+
+        <TextView
+            android:id="@+id/tomorrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Tomorrow"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow11"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="1dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow10">
+
+
+        <TextView
+            android:id="@id/team_Name_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Team Name 1"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
             android:scaleType="centerInside"
+            android:src="@drawable/edit_app"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/trash_can_black_app"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow12"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="391dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow11">
+
+
+        <TextView
+            android:id="@id/team_Name_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Team Name 2"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
             android:id="@+id/edit"
-            android:layout_marginLeft="180sp"
-            android:layout_width="45sp"
-            android:layout_height="45sp"
-            android:src="@drawable/edit_app" />
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:scaleType="centerInside"
+            android:src="@drawable/edit_app"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/delete"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
             android:id="@+id/delete"
-            android:layout_width="45sp"
-            android:layout_height="45sp"
-            android:src="@drawable/trash_can_black_app" />
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/trash_can_black_app"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

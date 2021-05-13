@@ -29,7 +29,7 @@ public class Team_Sports extends Fragment {
         basketballButton = view.findViewById(R.id.basketball_button);
         footballButton = view.findViewById(R.id.football_button);
 
-        // TODO: Fix the NavController below
+        // TODO: Add Parameters
         volleyballButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,144 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tableLayout2"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow13"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:gravity="center_horizontal"
-        android:textAlignment="center">
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow14"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/team_name"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="1"
             android:text="Team Name"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="30sp"
-            android:textColor="@color/black"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TableRow>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow14"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow13">
 
         <TextView
             android:id="@+id/city"
-            android:text="City"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="City"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/city_var"
-            android:text="Random"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Random"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TableRow>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow15"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow14">
 
         <TextView
             android:id="@+id/country"
-            android:text="Country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Country"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/country_var"
-            android:text="Random"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Random"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow16"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow17"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow15">
 
         <TextView
             android:id="@+id/sport"
-            android:text="Sport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Sport"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/sport_var"
-            android:text="Random"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Random"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow17"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow18"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow16">
 
         <TextView
             android:id="@+id/birthday"
-            android:text="Established"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Established"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/birthday_var"
-            android:text="Random"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Random"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow18"
+        android:layout_width="0dp"
+        android:layout_height="500dp"
         android:gravity="center_horizontal"
-        android:textAlignment="center">
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow17">
 
-        <TextView
-            android:id="@+id/map"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_column="1"
-            android:text="Map"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:textColor="@color/black"/>
-    </TableRow>
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/mapView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-
-</TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
