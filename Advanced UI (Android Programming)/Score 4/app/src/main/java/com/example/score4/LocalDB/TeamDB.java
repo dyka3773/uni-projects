@@ -14,7 +14,7 @@ public class TeamDB {
     public TeamDB() {
     }
 
-    public TeamDB(int TID, String teamName, String s_name, String city, String country, int SID, int e_year, double hometown) {
+    public TeamDB(int TID, String teamName, String s_name, String city, String country, int SID, int e_year, double latitude, double longtitude) {
         this.TID = TID;
         this.teamName = teamName;
         this.s_name = s_name;
@@ -22,7 +22,8 @@ public class TeamDB {
         this.country = country;
         this.SID = SID;
         this.e_year = e_year;
-        this.hometown = hometown;
+        this.latitude = latitude;
+        this.longtitude = longtitude;
     }
 
     @ColumnInfo (name = "tid") @NonNull
@@ -41,7 +42,9 @@ public class TeamDB {
 
     private int e_year;
 
-    private double hometown;
+    private double latitude;
+
+    private double longtitude;
 
     public int getTID() {
         return TID;
@@ -99,12 +102,20 @@ public class TeamDB {
         this.e_year = e_year;
     }
 
-    public double getHometown() {
-        return hometown;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setHometown(double hometown) {
-        this.hometown = hometown;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongtitude() {
+        return longtitude;
+    }
+
+    public void setLongtitude(double longtitude) {
+        this.longtitude = longtitude;
     }
 
     @Override
@@ -117,7 +128,7 @@ public class TeamDB {
                 ", country='" + country + '\'' +
                 ", SID=" + SID +
                 ", e_year=" + e_year +
-                ", hometown=" + hometown +
+                ", hometown=" + latitude +
                 '}';
     }
 }
