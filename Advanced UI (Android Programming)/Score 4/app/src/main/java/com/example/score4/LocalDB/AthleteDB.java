@@ -32,13 +32,16 @@ public class AthleteDB {
     @ColumnInfo (name = "BirthdayYear")
     private int b_year;
 
-    @ColumnInfo (name = "Hometown")
-    private double hometown;
+    @ColumnInfo (name = "Latitude")
+    private double latitude;
+
+    @ColumnInfo (name = "Longtitude")
+    private double longtitude;
 
     public AthleteDB() {
     }
 
-    public AthleteDB(int AID, String f_name, String l_name, String city, String country, int SID, int b_year, double hometown) {
+    public AthleteDB(int AID, String f_name, String l_name, String city, String country, int SID, int b_year, double latitude, double longtitude) {
         this.AID = AID;
         this.f_name = f_name;
         this.l_name = l_name;
@@ -46,7 +49,8 @@ public class AthleteDB {
         this.country = country;
         this.SID = SID;
         this.b_year = b_year;
-        this.hometown = hometown;
+        this.latitude = latitude;
+        this.longtitude = longtitude;
     }
 
     public int getAID() {
@@ -105,12 +109,20 @@ public class AthleteDB {
         this.b_year = b_year;
     }
 
-    public double getHometown() {
-        return hometown;
+    public double getLatitude() {
+        return latitude;
     }
 
-    public void setHometown(double hometown) {
-        this.hometown = hometown;
+    public void setLatitude(double latitude) {
+        this.latitude = latitude;
+    }
+
+    public double getLongtitude() {
+        return longtitude;
+    }
+
+    public void setLongtitude(double longtitude) {
+        this.longtitude = longtitude;
     }
 
     @Override
@@ -123,7 +135,8 @@ public class AthleteDB {
                 ", country='" + country + '\'' +
                 ", SID=" + SID +
                 ", b_year=" + b_year +
-                ", hometown=" + hometown +
+                ", latitude=" + latitude +
+                ", longtitude=" + longtitude +
                 '}';
     }
 }

@@ -12,12 +12,13 @@ import static android.content.ContentValues.TAG;
 // Gia kapoion logo ta MainActivity.localDB.dao().kapoia_methodos() bgazoyn attempt to invoke virtual method on null object reference.
 public class AthleteManageData {
     public static void insertAthlete(int AID, String f_name, String l_name, String city, String country, int SID,
-                                     int b_year, double hometown, FragmentActivity activity) {
+                                     int b_year, double latitude, double longtitude, FragmentActivity activity) {
         try {
-            AthleteDB athlete = new AthleteDB(AID, f_name, l_name, city, country, SID, b_year, hometown);
+            AthleteDB athlete = new AthleteDB(AID, f_name, l_name, city, country, SID, b_year, latitude, longtitude);
             Log.d(TAG, "AID: " + athlete.getAID() + " f_name: " + athlete.getF_name()
                     + " l_name: " + athlete.getL_name() + " city: " + athlete.getCity() + " country: " + athlete.getCountry()
-                    + " SID: " + athlete.getSID() + " b_year: " + athlete.getB_year() + " hometown:" + athlete.getHometown());
+                    + " SID: " + athlete.getSID() + " b_year: " + athlete.getB_year() + " latitude:" + athlete.getLatitude()
+                    + " longtitude: " + athlete.getLongtitude());
             MainActivity.localDB.localDao().insertAthleteLocal(athlete);
             Toast.makeText(activity, "Athlete data inserted successfully!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
@@ -26,9 +27,9 @@ public class AthleteManageData {
     }
 
     public static void updateAthlete(int AID, String f_name, String l_name, String city, String country, int SID,
-                                     int b_year, double hometown, FragmentActivity activity) {
+                                     int b_year, double latitude, double longtitude, FragmentActivity activity) {
         try {
-            AthleteDB athlete = new AthleteDB(AID, f_name, l_name, city, country, SID, b_year, hometown);
+            AthleteDB athlete = new AthleteDB(AID, f_name, l_name, city, country, SID, b_year, latitude, longtitude);
             MainActivity.localDB.localDao().updateAthleteLocal(athlete);
             Toast.makeText(activity, "Athlete data updated successfully!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
