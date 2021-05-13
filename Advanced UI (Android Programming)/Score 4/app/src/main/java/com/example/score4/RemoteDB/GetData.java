@@ -1,7 +1,9 @@
 package com.example.score4.RemoteDB;
 
+import android.content.Context;
 import android.util.Log;
 import android.widget.Toast;
+import android.os.Handler;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -12,13 +14,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.LogRecord;
 
 import static android.content.ContentValues.TAG;
 
 public class GetData {
-    public static void getSportData(String collectionName, Map<String, Object> data, FragmentActivity activity) {
+    public static void getSportData(String collectionName, ArrayList<Map> data, Context context, FragmentActivity activity) {
         data.clear();
         MainActivity.db.collection(collectionName)
                 .get()
@@ -27,8 +32,7 @@ public class GetData {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                Log.d(TAG, document.getId() + " => " + document.getData());
-                                data.put(document.getId(), document.getData());
+                                data.add(document.getData());
                             }
                         } else {
                             Log.w(TAG, collectionName + " Error getting documents.", task.getException());
