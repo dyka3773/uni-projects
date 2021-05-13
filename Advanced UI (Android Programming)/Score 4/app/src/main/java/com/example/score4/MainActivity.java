@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         ;
 
         db = FirebaseFirestore.getInstance();
-        localDB = Room.databaseBuilder(getApplicationContext(), LocalDatabase.class, "LocalDB").allowMainThreadQueries().build();
+        localDB = Room.databaseBuilder(getApplicationContext(), LocalDatabase.class, "LocalDB").allowMainThreadQueries().fallbackToDestructiveMigration().build();
 
         GetData.getSportData("Basketball", Basketball, this);
         GetData.getSportData("Boxing", Boxing, this);

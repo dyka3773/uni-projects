@@ -7,7 +7,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {AthleteDB.class, SportDB.class, TeamDB.class}, version = 2)
+@Database(entities = {AthleteDB.class, SportDB.class, TeamDB.class}, version = 3)
 public abstract class LocalDatabase extends RoomDatabase {
     public abstract LocalDAO localDao();
     public void wipeDBTables(FragmentActivity activity) {
