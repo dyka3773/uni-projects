@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     public static FirebaseFirestore db;
     public static LocalDatabase localDB;
     public static NotificationCompat.Builder builder;
+
     public static ArrayList<Map> Basketball = new ArrayList<>();
     public static ArrayList<Map> Boxing = new ArrayList<>();
     public static ArrayList<Map> Football = new ArrayList<>();
@@ -102,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
         setupDrawerContent(navigationView);
 
         Homescreen homescreen = new Homescreen();
+
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.container, homescreen);
         fragmentTransaction.commit();
