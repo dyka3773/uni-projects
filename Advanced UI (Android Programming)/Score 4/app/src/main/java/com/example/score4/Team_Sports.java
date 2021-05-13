@@ -3,6 +3,8 @@ package com.example.score4;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
@@ -33,7 +35,13 @@ public class Team_Sports extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putString("SportIs", "Volleyball");
-                Navigation.findNavController(v).navigate(R.id.navigateToCertainTeam);
+
+                Sport frag = new Sport();
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.container, frag);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
         basketballButton.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +49,13 @@ public class Team_Sports extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putString("SportIs", "Basketball");
-                Navigation.findNavController(v).navigate(R.id.navigateToCertainTeam, bundle);
+
+                Sport frag = new Sport();
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.container, frag);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
         footballButton.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +63,13 @@ public class Team_Sports extends Fragment {
             public void onClick(View v) {
                 Bundle bundle = new Bundle();
                 bundle.putString("SportIs", "Football");
-                Navigation.findNavController(v).navigate(R.id.navigateToCertainTeam, bundle);
+
+                Sport frag = new Sport();
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.container, frag);
+                ft.addToBackStack(null);
+                ft.commit();
             }
         });
 
