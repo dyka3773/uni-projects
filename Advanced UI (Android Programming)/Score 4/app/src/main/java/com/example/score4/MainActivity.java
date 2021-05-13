@@ -2,12 +2,16 @@ package com.example.score4;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MenuItem;
 import androidx.appcompat.widget.Toolbar;
@@ -27,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static FirebaseFirestore db;
     public static LocalDatabase localDB;
-
+    public static NotificationCompat.Builder builder;
 
     private DrawerLayout drawerLayout;
     private Toolbar toolbar;
@@ -39,7 +43,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        createNotificationChannel();
+        builder = new NotificationCompat.Builder(this, getString(R.string.channel_id)).setSmallIcon(R.drawable.logo)
+                .setContentTitle("title text")
+                .setContentText("contenttext")
+                .setPriority(NotificationCompat.PRIORITY_MAX)
+        ;
         db = FirebaseFirestore.getInstance();
         localDB = Room.databaseBuilder(getApplicationContext(), LocalDatabase.class, "LocalDB").allowMainThreadQueries().build();
 
@@ -159,4 +168,13 @@ public class MainActivity extends AppCompatActivity {
         // Pass any configuration change to the drawer toggles
         drawerToggle.onConfigurationChanged(newConfig);
     }
+
+    private void createNotificationChannel() {
+            CharSequence name = getString(R.string.channel_id);
+            int importance = NotificationManager.IMPORTANCE_HIGH; // To IMPORTANCE_HIGH dhmiourgei popup notification
+            NotificationChannel channel = new NotificationChannel(getString(R.string.channel_id), name, importance);
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+    }
+
 }

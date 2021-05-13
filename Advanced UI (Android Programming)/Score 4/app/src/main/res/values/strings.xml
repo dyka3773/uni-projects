@@ -13,5 +13,6 @@
     <string name="everything_from_the_athletes_to_the_teams_do_not_resemble_anything_from_real_life">Everything, from the Athletes to the Teams do not resemble anything from real life</string>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>
+    <string name="channel_id">notificationChannel</string>
 
 </resources>
