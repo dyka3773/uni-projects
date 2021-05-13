@@ -16,7 +16,7 @@ public class Homescreen extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.homescreen_fragment, container, false);
 
-
+        getActivity().setTitle("Score4");
 
         return view;
     }

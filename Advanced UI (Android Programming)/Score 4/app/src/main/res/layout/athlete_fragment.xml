@@ -1,140 +1,187 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tableLayout"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/background_color">
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:gravity="center_horizontal"
-        android:textAlignment="center">
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/athlete_name"
-            android:text="Athlete Name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_column="1"
+            android:text="Athlete Name"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textSize="30sp"
-            android:textColor="@color/black"/>
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TableRow>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow">
 
         <TextView
             android:id="@+id/city"
-            android:text="City"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="City"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/city_var"
-            android:text="Random"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Random"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TableRow>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow2">
 
         <TextView
             android:id="@+id/country"
-            android:text="Country"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Country"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/country_var"
-            android:text="Random"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Random"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow3">
 
         <TextView
             android:id="@+id/sport"
-            android:text="Sport"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Sport"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/sport_var"
-            android:text="Random"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Random"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow5"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/tableRow6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow4">
 
         <TextView
             android:id="@+id/birthday"
-            android:text="Birthday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Birthday"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/birthday_var"
-            android:text="Random"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Random"
             android:textSize="20sp"
-            android:layout_marginTop="10sp"
-            android:layout_marginBottom="10sp"
-            android:layout_column="1" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <TableRow
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow6"
+        android:layout_width="0dp"
+        android:layout_height="500dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow5">
 
         <com.google.android.gms.maps.MapView
             android:id="@+id/map_view"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
-    </TableRow>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
-</TableLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
