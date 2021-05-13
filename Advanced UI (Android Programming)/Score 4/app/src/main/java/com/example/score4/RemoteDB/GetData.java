@@ -14,16 +14,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
-import java.util.logging.LogRecord;
 
 import static android.content.ContentValues.TAG;
 
 public class GetData {
-    public static void getSportData(String collectionName, ArrayList<Map> data, Context context, FragmentActivity activity) {
+    public static void getSportData(String collectionName, ArrayList<Map> data, FragmentActivity activity) {
         data.clear();
         MainActivity.db.collection(collectionName)
                 .get()
