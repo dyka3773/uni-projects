@@ -44,16 +44,17 @@
 
 
         <EditText
-            android:id="@+id/first_name_input"
+            android:id="@+id/edit_first_name_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:ems="6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/subject_1"
+            android:id="@+id/edit_first_name_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="First Name"
@@ -75,7 +76,7 @@
 
 
         <TextView
-            android:id="@+id/last_name_id"
+            android:id="@+id/edit_last_name_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Last Name"
@@ -85,10 +86,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/last_name_input"
+            android:id="@+id/edit_last_name_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:ems="6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -106,7 +108,7 @@
 
 
         <TextView
-            android:id="@+id/city_id"
+            android:id="@+id/edit_city_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="City"
@@ -116,10 +118,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/city_input"
+            android:id="@+id/edit_city_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:ems="6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -137,7 +140,7 @@
 
 
         <TextView
-            android:id="@+id/country_id"
+            android:id="@+id/edit_country_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Country"
@@ -147,10 +150,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/country_input"
+            android:id="@+id/edit_country_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:ems="6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -168,7 +172,7 @@
 
 
         <TextView
-            android:id="@+id/birth_year_id"
+            android:id="@+id/edit_birth_year_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Birth Year"
@@ -178,10 +182,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/birth_year_input"
+            android:id="@+id/edit_birth_year_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:ems="6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -199,7 +204,7 @@
 
 
         <TextView
-            android:id="@+id/hometown_id"
+            android:id="@+id/edit_hometown_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hometown"
@@ -209,10 +214,11 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/hometown_input"
+            android:id="@+id/edit_hometown_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:ems="6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -230,7 +236,7 @@
 
 
         <TextView
-            android:id="@+id/aid_id"
+            android:id="@+id/edit_aid_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ID"
@@ -240,15 +246,39 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/aid_input"
+            android:id="@+id/edit_aid_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
+            android:ems="6"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tableRow15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tableRow14">
+
+
+        <Button
+            android:id="@+id/edit_save_changes_button_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/white"
+            android:text="Save Changes"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 

@@ -19,10 +19,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/edit_team_id"
+            android:id="@+id/add_athlete_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Edit Team"
+            android:text="Add a new Athlete"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30sp"
@@ -44,7 +44,7 @@
 
 
         <EditText
-            android:id="@+id/edit_name_input"
+            android:id="@+id/add_first_name_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -54,10 +54,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/edit_name_id"
+            android:id="@+id/add_first_name_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Name"
+            android:text="First Name"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,17 +76,17 @@
 
 
         <TextView
-            android:id="@+id/edit_stadium_name_id"
+            android:id="@+id/add_last_name_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Stadium Name"
+            android:text="Last Name"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edit_stadium_name_input"
+            android:id="@+id/add_last_name_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -108,7 +108,7 @@
 
 
         <TextView
-            android:id="@+id/edit_city_id"
+            android:id="@+id/add_city_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="City"
@@ -118,7 +118,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edit_city_input"
+            android:id="@+id/add_city_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -140,7 +140,7 @@
 
 
         <TextView
-            android:id="@+id/edit_country_id"
+            android:id="@+id/add_country_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Country"
@@ -150,7 +150,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edit_country_input"
+            android:id="@+id/add_country_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -172,17 +172,17 @@
 
 
         <TextView
-            android:id="@+id/edit_establishment_year_id"
+            android:id="@+id/add_birth_year_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Establishment Year"
+            android:text="Birth Year"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edit_birth_year_input"
+            android:id="@+id/add_birth_year_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -204,7 +204,7 @@
 
 
         <TextView
-            android:id="@+id/edit_hometown_id"
+            android:id="@+id/add_hometown_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Hometown"
@@ -214,7 +214,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edit_hometown_input"
+            android:id="@+id/add_hometown_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -236,7 +236,7 @@
 
 
         <TextView
-            android:id="@+id/edit_tid_id"
+            android:id="@+id/add_aid_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="ID"
@@ -246,7 +246,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edit_tid_input"
+            android:id="@+id/add_aid_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -268,11 +268,11 @@
 
 
         <Button
-            android:id="@+id/edit_save_changes_button_id"
+            android:id="@+id/add_a_new_athlete_button_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/white"
-            android:text="Save Changes"
+            android:text="Hit me Up Scotty"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
