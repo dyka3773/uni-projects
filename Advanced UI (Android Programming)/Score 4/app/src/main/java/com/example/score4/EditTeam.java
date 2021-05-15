@@ -11,10 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.score4.LocalDB.AthleteDB;
-import com.example.score4.LocalDB.TeamDB;
 import com.example.score4.LocalDB.TeamManageData;
-import com.example.score4.R;
 
 
 public class EditTeam extends Fragment {
@@ -40,8 +37,8 @@ public class EditTeam extends Fragment {
         edit_city_input = view.findViewById(R.id.edit_city_input);
         edit_country_input = view.findViewById(R.id.edit_country_input);
         edit_birth_year_input = view.findViewById(R.id.edit_birth_year_input);
-        edit_sport_input = view.findViewById(R.id.edit_sport_input);
-        edit_tid_input = view.findViewById(R.id.edit_tid_input);
+        edit_sport_input = view.findViewById(R.id.add_sport_input);
+        edit_tid_input = view.findViewById(R.id.add_tid_input);
         edit_save_changes_button_id = view.findViewById(R.id.edit_save_changes_button_id);
 
         Bundle bundle = this.getArguments();

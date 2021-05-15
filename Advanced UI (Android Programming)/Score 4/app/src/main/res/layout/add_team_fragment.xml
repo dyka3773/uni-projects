@@ -6,7 +6,8 @@
     android:id="@+id/match_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color">
+    android:background="@color/background_color"
+    tools:context=".AddTeam">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/tableRow7"
@@ -246,7 +247,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edit_sport_input"
+            android:id="@+id/add_sport_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -278,7 +279,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/edit_tid_input"
+            android:id="@+id/add_tid_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
