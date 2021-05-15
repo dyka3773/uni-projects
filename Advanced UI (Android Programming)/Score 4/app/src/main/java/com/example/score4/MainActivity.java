@@ -19,7 +19,13 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
+import com.example.score4.LocalDB.AthleteDB;
+import com.example.score4.LocalDB.AthleteManageData;
+import com.example.score4.LocalDB.FillDB;
 import com.example.score4.LocalDB.LocalDatabase;
+import com.example.score4.LocalDB.SportDB;
+import com.example.score4.LocalDB.SportManageData;
+import com.example.score4.LocalDB.TeamManageData;
 import com.example.score4.RemoteDB.GetData;
 import com.example.score4.RemoteDB.UpdateData;
 import com.google.android.material.navigation.NavigationView;
@@ -76,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         date = dateFormat.format(calendar.getTime());
+
+        FillDB.filldb(this);
 
         setContentView(R.layout.activity_main);
 

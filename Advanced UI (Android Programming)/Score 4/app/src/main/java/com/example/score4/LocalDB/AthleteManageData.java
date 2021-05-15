@@ -15,10 +15,7 @@ public class AthleteManageData {
                                      int b_year, double latitude, double longtitude, FragmentActivity activity) {
         try {
             AthleteDB athlete = new AthleteDB(AID, f_name, l_name, city, country, SID, b_year, latitude, longtitude);
-            Log.d(TAG, "AID: " + athlete.getAID() + " f_name: " + athlete.getF_name()
-                    + " l_name: " + athlete.getL_name() + " city: " + athlete.getCity() + " country: " + athlete.getCountry()
-                    + " SID: " + athlete.getSID() + " b_year: " + athlete.getB_year() + " latitude:" + athlete.getLatitude()
-                    + " longtitude: " + athlete.getLongtitude());
+            Log.d(TAG, "Athlete data inserted successfully!");
             MainActivity.localDB.localDao().insertAthleteLocal(athlete);
             Toast.makeText(activity, "Athlete data inserted successfully!", Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
