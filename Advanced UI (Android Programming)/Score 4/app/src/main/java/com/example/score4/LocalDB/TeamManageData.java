@@ -12,7 +12,7 @@ public class TeamManageData {
         try {
             TeamDB team = new TeamDB(tid, teamName, s_name, city, country, SID, e_year, latitude, longtitude);
             MainActivity.localDB.localDao().insertTeamLocal(team);
-            Toast.makeText(activity, "Team data inserted successfully!", Toast.LENGTH_SHORT).show();
+            SendNotification.getNotification(activity, "Success!", "Team " + tid + " has been inserted to the database successfully.");
         } catch (Exception e) {
             Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -23,7 +23,7 @@ public class TeamManageData {
         try {
             TeamDB team = new TeamDB(tid, teamName, s_name, city, country, SID, e_year, latitude,longtitude);
             MainActivity.localDB.localDao().updateTeamLocal(team);
-            Toast.makeText(activity, "Team data updated successfully!", Toast.LENGTH_SHORT).show();
+            SendNotification.getNotification(activity, "Success!", "Team " + tid + " has been updated successfully.");
         } catch (Exception e) {
             Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -34,7 +34,7 @@ public class TeamManageData {
             TeamDB team = new TeamDB();
             team.setTID(tid);
             MainActivity.localDB.localDao().deleteTeamLocal(team);
-            Toast.makeText(activity, "Team data deleted successfully!", Toast.LENGTH_SHORT).show();
+            SendNotification.getNotification(activity, "Success!", "Team " + tid + " has been deleted successfully.");
         } catch (Exception e) {
             Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
         }

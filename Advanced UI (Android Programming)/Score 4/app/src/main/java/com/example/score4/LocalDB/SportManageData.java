@@ -10,7 +10,7 @@ public class SportManageData {
         try {
             SportDB sport = new SportDB(sportID, sportName, sportType, gender);
             MainActivity.localDB.localDao().insertSportLocal(sport);
-            Toast.makeText(activity, "Sport data inserted successfully!", Toast.LENGTH_SHORT).show();
+            SendNotification.getNotification(activity, "Success!", "Sport " + sportID + " has been inserted to the database successfully.");
         } catch (Exception e) {
             Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -21,7 +21,7 @@ public class SportManageData {
         try {
             SportDB sport = new SportDB(sportID, sportName, sportType, gender);
             MainActivity.localDB.localDao().updateSportLocal(sport);
-            Toast.makeText(activity, "Sport data updated successfully!", Toast.LENGTH_SHORT).show();
+            SendNotification.getNotification(activity, "Success!", "Sport " + sportID + " has been updated successfully.");
         } catch (Exception e) {
             Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
         }
@@ -32,7 +32,7 @@ public class SportManageData {
             SportDB sport = new SportDB();
             sport.setSportID(sportID);
             MainActivity.localDB.localDao().deleteSportLocal(sport);
-            Toast.makeText(activity, "Sport data deleted successfully!", Toast.LENGTH_SHORT).show();
+            SendNotification.getNotification(activity, "Success!", "Sport " + sportID + " has been deleted successfully.");
         } catch (Exception e) {
             Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
         }
