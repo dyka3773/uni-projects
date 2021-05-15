@@ -1,11 +1,13 @@
 package com.example.score4.LocalDB;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.score4.Athlete;
 import com.example.score4.MainActivity;
 import com.example.score4.Team;
+import static android.content.ContentValues.TAG;
 
 public class FillDB {
     public static void filldb(Context context) {
@@ -61,7 +63,7 @@ public class FillDB {
             MainActivity.localDB.localDao().insertTeamLocal(teamDB);
             teamDB = null;
         } catch (Exception e) {
-            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.d(TAG, e.getMessage());
         }
 
 
