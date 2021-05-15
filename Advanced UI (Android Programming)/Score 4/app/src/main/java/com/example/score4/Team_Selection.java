@@ -87,7 +87,7 @@ public class Team_Selection extends Fragment {
                 public void onClick(View v) {
                     localDB.localDao().deleteTeamLocal(team);  // Refresh list
 
-                    Toast.makeText(getActivity(),teamName,Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(),"Team Deleted!",Toast.LENGTH_SHORT).show();
                 }
             });
 
@@ -105,5 +105,11 @@ public class Team_Selection extends Fragment {
 
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle("Team Selection");
     }
 }

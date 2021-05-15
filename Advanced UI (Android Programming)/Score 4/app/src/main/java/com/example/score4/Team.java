@@ -61,8 +61,8 @@ public class Team extends Fragment {
             stadiumName.setText(bundle.getString("stadiumName"));
             city.setText(bundle.getString("city"));
             country.setText(bundle.getString("country"));
-            sid.setText(String.valueOf((bundle.getString("sid"))));
-            e_year.setText(String.valueOf((bundle.getString("e_year"))));
+            sid.setText(String.valueOf((bundle.getInt("sid"))));
+            e_year.setText(String.valueOf((bundle.getInt("e_year"))));
             lat.setText(String.valueOf(bundle.getDouble("lat")));
             lng.setText(String.valueOf(bundle.getDouble("lng")));
 
@@ -83,5 +83,12 @@ public class Team extends Fragment {
         }
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        getActivity().setTitle("Team");
     }
 }

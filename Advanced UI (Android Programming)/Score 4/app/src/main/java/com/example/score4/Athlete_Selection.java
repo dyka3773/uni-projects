@@ -105,4 +105,10 @@ public class Athlete_Selection extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle("Athlete Selection");
+    }
 }

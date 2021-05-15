@@ -78,4 +78,10 @@ public class Team_Sports extends Fragment {
 
         return view;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().setTitle("Team Sports");
+    }
 }
