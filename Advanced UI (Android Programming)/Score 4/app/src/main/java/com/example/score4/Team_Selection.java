@@ -75,8 +75,24 @@ public class Team_Selection extends Fragment {
             editButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getActivity(),teamName,Toast.LENGTH_SHORT).show();
-                    // TODO edit
+                    Bundle bundle = new Bundle();
+                    bundle.putString("teamName", teamName);
+                    bundle.putInt("id", id);
+                    bundle.putString("stadiumName", stadiumName);
+                    bundle.putString("city", city);
+                    bundle.putString("country", country);
+                    bundle.putInt("sid", sid);
+                    bundle.putInt("e_year", e_year);
+                    bundle.putDouble("lat", lat);
+                    bundle.putDouble("lng", lng);
+
+                    EditTeam frag = new EditTeam();
+                    frag.setArguments(bundle);
+
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    ft.replace(R.id.container, frag);
+                    ft.addToBackStack(null);
+                    ft.commit();
                 }
             });
 
