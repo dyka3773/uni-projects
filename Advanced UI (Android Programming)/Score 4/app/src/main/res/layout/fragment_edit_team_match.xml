@@ -19,10 +19,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/match_title"
+            android:id="@+id/edit_match_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="_ Match"
+            android:text="Edit Match"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30sp"
@@ -44,7 +44,7 @@
 
 
         <EditText
-            android:id="@+id/athlete_a_input"
+            android:id="@+id/team_a_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -54,10 +54,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/athlete_a_id"
+            android:id="@+id/team_a_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Athlete A"
+            android:text="Team A"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,17 +76,17 @@
 
 
         <TextView
-            android:id="@+id/athlete_b_id"
+            android:id="@+id/team_b_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Athlete B"
+            android:text="Team B"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/athlete_b_input"
+            android:id="@+id/team_b_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"
@@ -111,7 +111,7 @@
             android:id="@+id/score_a_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Score of Athlete A"
+            android:text="Score of Team A"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -143,7 +143,7 @@
             android:id="@+id/score_b_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Score of Athlete B"
+            android:text="Score of Team B"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -268,17 +268,17 @@
 
 
         <TextView
-            android:id="@+id/noa_id"
+            android:id="@+id/sports_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Number of Athletes"
+            android:text="Sport"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/noa_input"
+            android:id="@+id/sports_input"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="text"

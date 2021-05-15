@@ -88,70 +88,93 @@ public class Sport extends Fragment {
 
         for(i=0;i<matchList.size();i++){
             Map<String,Object> match = matchList.get(i);
-
-            View view1 = inflater.inflate(R.layout.fragment_db_item, container);
-
-            ImageView editButton = view1.findViewById(R.id.edit_button);
-
-            editButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // TODO fix later
-                    Fragment frag ;
-
-                    if ( bundle.getString("SportIs").equals("Volleyball")||
-                            bundle.getString("SportIs").equals("Football")||
-                            bundle.getString("SportIs").equals("Basketball") )
-                        frag = new EditTeamMatch(match);
-                    else
-                        frag = new EditIndividualMatch(match);
-
-                    FragmentTransaction ft = getFragmentManager().beginTransaction();
-                    ft.replace(R.id.container, frag);
-                    ft.addToBackStack(null);
-                    ft.commit();
-                }
-            });
-
             final int j =i;
             final ArrayList<String> jdList = idList;
 
-            ImageView deleteButton = view1.findViewById(R.id.delete_button);
-            deleteButton.setOnClickListener(new View.OnClickListener() {
+            View view1 = inflater.inflate(R.layout.fragment_db_item, container);
+
+            View.OnClickListener click1 = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if ( bundle.getString("SportIs").equals("Volleyball")||
+                            bundle.getString("SportIs").equals("Football")||
+                            bundle.getString("SportIs").equals("Basketball") ) {
+
+                        Bundle bundle2= new Bundle();
+                        bundle2.putString("SportIs", bundle.getString("SportIs"));
+                        bundle2.putString("DocID",jdList.get(j));
+
+                        bundle2.putString("team_a", match.get("team_a").toString());
+                        bundle2.putString("team_b", match.get("team_b").toString());
+                        bundle2.putString("score_a", match.get("score_a").toString());
+                        bundle2.putString("score_b", match.get("score_b").toString());
+                        bundle2.putString("city", match.get("city").toString());
+                        bundle2.putString("country", match.get("country").toString());
+                        bundle2.putString("date", match.get("date").toString());
+                        bundle2.putString("sport", match.get("sport").toString());
+
+                        EditTeamMatch frag  = new EditTeamMatch();
+                        frag.setArguments(bundle2);
+
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.container, frag);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                    }
+                    else {
+
+                        Bundle bundle2 = new Bundle();
+                        bundle2.putString("SportIs",bundle.getString("SportIs"));
+                        bundle2.putString("DocID",jdList.get(j));
+
+                        EditIndividualMatch frag = new EditIndividualMatch(match);
+                        frag.setArguments(bundle2);
+
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.replace(R.id.container, frag);
+                        ft.addToBackStack(null);
+                        ft.commit();
+                    }
+
+                }
+            };
+
+
+            View.OnClickListener click2 = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     DeleteData.deleteSportData(bundle.getString("SportIs"), jdList.get(j) ,getActivity());
 
                     Toast.makeText(getActivity(),"Match Deleted!",Toast.LENGTH_SHORT).show();
                 }
-            });
+            };
 
             Bundle bundle1 = new Bundle();
 
             switch (bundle.getString("SportIs")){
                 case "Volleyball":{
-                    bundle1.putString("Name", match.get("team_a").toString()+" vs "+ match.get("team_b"));
+                    bundle1.putString("Name","Teams: " +match.get("team_a").toString()+" - "+ match.get("team_b")+"\nScore: "+match.get("score_a").toString()+" - "+ match.get("score_b"));
                     break;
                 }
                 case "Basketball":{
-                    bundle1.putString("Name", match.get("team_a").toString()+" vs "+ match.get("team_b"));
+                    bundle1.putString("Name","Teams: " +match.get("team_a").toString()+" - "+ match.get("team_b")+"\nScore: "+match.get("score_a").toString()+" - "+ match.get("score_b"));
                     break;
                 }
                 case "Wrestling":{
-                    bundle1.putString("Name", match.get("athlete_a").toString()+" vs "+ match.get("athlete_b"));
+                    bundle1.putString("Name","Athletes: "+ match.get("athlete_a").toString()+" - "+ match.get("athlete_b")+"\nScore: "+match.get("score_a").toString()+" - "+ match.get("score_b"));
                     break;
                 }
                 case "Football":{
-                    bundle1.putString("Name", match.get("team_a").toString()+" vs "+ match.get("team_b"));
+                    bundle1.putString("Name","Teams: " +match.get("team_a").toString()+" - "+ match.get("team_b")+"\nScore: "+match.get("score_a").toString()+" - "+ match.get("score_b"));
                     break;
                 }
                 case "Boxing":{
-                    bundle1.putString("Name", match.get("athlete_a").toString()+" vs "+ match.get("athlete_b"));
+                    bundle1.putString("Name","Athletes: "+ match.get("athlete_a").toString()+" - "+ match.get("athlete_b")+"\nScore: "+match.get("score_a").toString()+" - "+ match.get("score_b"));
                     break;
                 }
             }
 
-            db_item db_item= new db_item();
+            db_item db_item= new db_item(click1,click2);
             db_item.setArguments(bundle1);
 
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();

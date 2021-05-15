@@ -7,60 +7,131 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.score4.RemoteDB.UpdateData;
 
 import java.util.Map;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link EditIndividualMatch#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class EditIndividualMatch extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    Map<String,Object> match;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private EditText athlete_a_input;
+    private EditText athlete_b_input;
+    private EditText score_a_input;
+    private EditText score_b_input;
+    private EditText city_input;
+    private EditText country_input;
+    private EditText date_input;
+    private EditText noa_input;
 
-    public EditIndividualMatch(Map<String, Object> match) {
+    private Button edit_save_changes_button_id;
+
+
+    public EditIndividualMatch() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment EditIndividualMatch.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static EditIndividualMatch newInstance(String param1, String param2) {
-        EditIndividualMatch fragment = new EditIndividualMatch(match);
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+    public EditIndividualMatch(Map<String, Object> match) {
+        this.match = match;
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_edit_individual_match, container, false);
+        View view = inflater.inflate(R.layout.fragment_edit_individual_match, container, false);
+
+        Bundle bundle = getArguments();
+
+        athlete_a_input= view.findViewById(R.id.athlete_a_input);
+        athlete_b_input= view.findViewById(R.id.athlete_b_input);
+        score_a_input= view.findViewById(R.id.score_a_input);
+        score_b_input= view.findViewById(R.id.score_b_input);
+        city_input= view.findViewById(R.id.city_input);
+        country_input= view.findViewById(R.id.country_input);
+        date_input= view.findViewById(R.id.date_input);
+        noa_input= view.findViewById(R.id.noa_input);
+
+        athlete_a_input.setText(match.get("athlete_a").toString());
+        athlete_b_input.setText(match.get("athlete_b").toString());
+        score_a_input.setText(match.get("score_a").toString());
+        score_b_input.setText(match.get("score_b").toString());
+        city_input.setText(match.get("city").toString());
+        country_input.setText(match.get("country").toString());
+        date_input.setText(match.get("date").toString());
+        noa_input.setText(match.get("num_of_athletes").toString());
+
+        edit_save_changes_button_id = view.findViewById(R.id.edit_save_changes_button_id);
+        edit_save_changes_button_id.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                UpdateData.updateSportData(
+                        bundle.getString("SportIs"),
+                        bundle.getString("DocID"),
+                        "athlete_a",
+                        athlete_a_input.getText().toString(),
+                        getActivity()
+                );
+                UpdateData.updateSportData(
+                        bundle.getString("SportIs"),
+                        bundle.getString("DocID"),
+                        "athlete_b",
+                        athlete_b_input.getText().toString(),
+                        getActivity()
+                );
+                UpdateData.updateSportData(
+                        bundle.getString("SportIs"),
+                        bundle.getString("DocID"),
+                        "score_a",
+                        score_a_input.getText().toString(),
+                        getActivity()
+                );
+                UpdateData.updateSportData(
+                        bundle.getString("SportIs"),
+                        bundle.getString("DocID"),
+                        "score_b",
+                        score_b_input.getText().toString(),
+                        getActivity()
+                );
+                UpdateData.updateSportData(
+                        bundle.getString("SportIs"),
+                        bundle.getString("DocID"),
+                        "city",
+                        city_input.getText().toString(),
+                        getActivity()
+                );
+                UpdateData.updateSportData(
+                        bundle.getString("SportIs"),
+                        bundle.getString("DocID"),
+                        "country",
+                        country_input.getText().toString(),
+                        getActivity()
+                );
+                UpdateData.updateSportData(
+                        bundle.getString("SportIs"),
+                        bundle.getString("DocID"),
+                        "date",
+                        date_input.getText().toString(),
+                        getActivity()
+                );
+                UpdateData.updateSportData(
+                        bundle.getString("SportIs"),
+                        bundle.getString("DocID"),
+                        "num_of_athletes",
+                        noa_input.getText().toString(),
+                        getActivity()
+                );
+
+                Toast.makeText(getActivity(),"Individual Match Updated!",Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        return view;
     }
 }
