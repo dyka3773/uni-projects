@@ -20,4 +20,6 @@ public class Sport extends Fragment {
 
         return view;
     }
+
+    // TODO ADD COLOR ACCORDING TO SPORT
 }

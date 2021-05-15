@@ -6,7 +6,8 @@
     android:id="@+id/tableLayout3"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background_color">
+    android:background="@color/background_color"
+    tools:context=".Team_Selection">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/tableRow19"
