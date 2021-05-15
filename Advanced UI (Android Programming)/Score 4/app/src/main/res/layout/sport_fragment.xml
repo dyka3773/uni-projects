@@ -13,7 +13,6 @@
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:gravity="center_horizontal"
-        app:layout_constraintBottom_toTopOf="@+id/tableRow8"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -22,7 +21,7 @@
             android:id="@+id/today"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Today"
+            android:text="_ Matches"
             android:textAlignment="center"
             android:textColor="@color/black"
             android:textSize="30sp"
@@ -34,47 +33,14 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <include
-        layout="@layout/fragment_db_item"
+    <TableRow
+        android:id="@+id/fragmentContainerView"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:id="@+id/item1"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tableRow7" />
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/tableRow10"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center_horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/item1">
-
-        <TextView
-            android:id="@+id/tomorrow"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tomorrow"
-            android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <include
-        layout="@layout/fragment_db_item"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableRow10" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

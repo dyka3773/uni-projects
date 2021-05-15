@@ -31,6 +31,7 @@ public class Individual_Sports extends Fragment {
                 bundle.putString("SportIs", "Boxing");
 
                 Sport frag = new Sport();
+                frag.setArguments(bundle);
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.container, frag);
@@ -46,6 +47,7 @@ public class Individual_Sports extends Fragment {
                 bundle.putString("SportIs", "Wrestling");
 
                 Sport frag = new Sport();
+                frag.setArguments(bundle);
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.container, frag);

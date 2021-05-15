@@ -70,9 +70,7 @@ public class Athlete_Selection extends Fragment {
                 }
             });
 
-            ImageView editButton = view1.findViewById(R.id.edit_button);
-
-            editButton.setOnClickListener(new View.OnClickListener() {
+            View.OnClickListener click1 = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Bundle bundle = new Bundle();
@@ -94,23 +92,21 @@ public class Athlete_Selection extends Fragment {
                     ft.addToBackStack(null);
                     ft.commit();
                 }
-            });
+            };
 
-            ImageView deleteButton = view1.findViewById(R.id.delete_button);
-
-            deleteButton.setOnClickListener(new View.OnClickListener() {
+            View.OnClickListener click2 = new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     localDB.localDao().deleteAthleteLocal(athlete);  // Refresh list
 
                     Toast.makeText(getActivity(),"Athlete Deleted!",Toast.LENGTH_SHORT).show();
                 }
-            });
+            };
 
             Bundle bundle1 = new Bundle();
             bundle1.putString("Name",firstName+" "+lastName);
 
-            db_item db_item= new db_item();
+            db_item db_item= new db_item(click1,click2);
             db_item.setArguments(bundle1);
 
             FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();

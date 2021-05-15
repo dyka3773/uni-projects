@@ -32,7 +32,6 @@ public class Team_Sports extends Fragment {
         basketballButton = view.findViewById(R.id.basketball_button);
         footballButton = view.findViewById(R.id.football_button);
 
-        // TODO: Add Parameters
         volleyballButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -40,6 +39,7 @@ public class Team_Sports extends Fragment {
                 bundle.putString("SportIs", "Volleyball");
 
                 Sport frag = new Sport();
+                frag.setArguments(bundle);
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.container, frag);
@@ -54,6 +54,7 @@ public class Team_Sports extends Fragment {
                 bundle.putString("SportIs", "Basketball");
 
                 Sport frag = new Sport();
+                frag.setArguments(bundle);
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.container, frag);
@@ -68,6 +69,7 @@ public class Team_Sports extends Fragment {
                 bundle.putString("SportIs", "Football");
 
                 Sport frag = new Sport();
+                frag.setArguments(bundle);
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.container, frag);

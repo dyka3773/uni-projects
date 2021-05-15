@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Map;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link EditIndividualMatch#newInstance} factory method to
@@ -24,7 +26,7 @@ public class EditIndividualMatch extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public EditIndividualMatch() {
+    public EditIndividualMatch(Map<String, Object> match) {
         // Required empty public constructor
     }
 
@@ -38,7 +40,7 @@ public class EditIndividualMatch extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static EditIndividualMatch newInstance(String param1, String param2) {
-        EditIndividualMatch fragment = new EditIndividualMatch();
+        EditIndividualMatch fragment = new EditIndividualMatch(match);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

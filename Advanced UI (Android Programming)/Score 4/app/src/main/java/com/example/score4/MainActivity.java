@@ -48,6 +48,13 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<Map> Football = new ArrayList<>();
     public static ArrayList<Map> Volleyball = new ArrayList<>();
     public static ArrayList<Map> Wrestling = new ArrayList<>();
+
+    public static ArrayList<String> idListBasketball = new ArrayList<>();
+    public static ArrayList<String> idListVolleyball = new ArrayList<>();
+    public static ArrayList<String> idListFootball = new ArrayList<>();
+    public static ArrayList<String> idListBoxing = new ArrayList<>();
+    public static ArrayList<String> idListWrestling = new ArrayList<>();
+
     public static String date;
 
     private Calendar calendar;
@@ -78,6 +85,12 @@ public class MainActivity extends AppCompatActivity {
         GetData.getSportData("Football", Football, this);
         GetData.getSportData("Volleyball", Volleyball, this);
         GetData.getSportData("Wrestling", Wrestling, this);
+
+        UpdateData.getAllDocumentIds(idListBasketball, "Basketball");
+        UpdateData.getAllDocumentIds(idListBoxing, "Boxing");
+        UpdateData.getAllDocumentIds(idListFootball, "Football");
+        UpdateData.getAllDocumentIds(idListWrestling, "Wrestling");
+        UpdateData.getAllDocumentIds(idListVolleyball, "Volleyball");
 
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("dd/MM/yyyy");

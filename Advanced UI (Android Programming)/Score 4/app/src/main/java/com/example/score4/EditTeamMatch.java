@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import java.util.Map;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link EditTeamMatch#newInstance} factory method to
@@ -24,7 +26,7 @@ public class EditTeamMatch extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public EditTeamMatch() {
+    public EditTeamMatch(Map<String, Object> match) {
         // Required empty public constructor
     }
 
@@ -38,7 +40,7 @@ public class EditTeamMatch extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static EditTeamMatch newInstance(String param1, String param2) {
-        EditTeamMatch fragment = new EditTeamMatch();
+        EditTeamMatch fragment = new EditTeamMatch(match);
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
