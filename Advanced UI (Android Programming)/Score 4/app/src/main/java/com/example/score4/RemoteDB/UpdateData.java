@@ -5,6 +5,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
 
+import com.example.score4.LocalDB.SendNotification;
 import com.example.score4.MainActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -43,8 +44,7 @@ public class UpdateData {
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Toast.makeText(activity, collectionName + " data updated successfully!", Toast.LENGTH_SHORT).show();
-                    }
+                        SendNotification.getNotification(activity, "Success!", "Match " + documentID + " has been updated.");                    }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
